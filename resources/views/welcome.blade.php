@@ -61,7 +61,7 @@
                         @endif
                     @endauth
                 @endif
-                <button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded-lg hover:bg-primary-container transition-all scale-95 active:opacity-80">Book Consultation</button>
+                <button onclick="Livewire.dispatch('triggerConsultationModal')" class="bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded-lg hover:bg-primary-container transition-all scale-95 active:opacity-80">Book Consultation</button>
             </div>
         </nav>
     </header>
@@ -82,7 +82,7 @@
                     {{ config('system.hero_description', 'LexCore Law Firm provides elite representation across corporate, intellectual property, and high-stakes litigation matters. We combine heritage with modern agility to protect your legacy.') }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-md">
-                    <button class="bg-primary text-on-primary font-label-md text-label-md px-3xl py-md rounded-lg shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all">Book Consultation</button>
+                    <button onclick="Livewire.dispatch('triggerConsultationModal')" class="bg-primary text-on-primary font-label-md text-label-md px-3xl py-md rounded-lg shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all">Book Consultation</button>
                     <a href="#practice-areas" class="inline-flex items-center justify-center bg-transparent border border-primary text-primary font-label-md text-label-md px-3xl py-md rounded-lg hover:bg-primary/5 transition-all text-center">View Practice Areas</a>
                 </div>
             </div>
@@ -295,7 +295,7 @@
                     <h2 class="font-headline-lg text-[42px] text-on-primary mb-md leading-tight">{{ config('system.cta_title', 'Secure your future with proven expertise.') }}</h2>
                     <p class="font-body-lg text-body-lg text-on-primary/70 mb-xl max-w-2xl mx-auto">{{ config('system.cta_description', 'Contact us today for a confidential consultation. Our partners are ready to discuss your matter with the gravity it deserves.') }}</p>
                     <div class="flex flex-col sm:flex-row justify-center gap-md">
-                        <button class="bg-on-primary text-primary font-label-md text-label-md px-3xl py-md rounded-lg hover:bg-surface-container transition-all">Book Consultation</button>
+                        <button onclick="Livewire.dispatch('triggerConsultationModal')" class="bg-on-primary text-primary font-label-md text-label-md px-3xl py-md rounded-lg hover:bg-surface-container transition-all">Book Consultation</button>
                         <a href="#contact" class="inline-flex items-center justify-center bg-transparent border border-on-primary/30 text-on-primary font-label-md text-label-md px-3xl py-md rounded-lg hover:bg-white/10 transition-all text-center">Contact Us</a>
                     </div>
                 </div>
@@ -367,5 +367,7 @@
             });
         });
     </script>
+    
+    @livewire('welcome-book-consultation')
 </body>
 </html>

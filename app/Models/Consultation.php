@@ -37,4 +37,46 @@ class Consultation extends Model
     {
         return $this->belongsTo(User::class, 'assigned_attorney_id');
     }
+
+    /**
+     * Alias for views / admin booking.
+     */
+    public function attorney(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_attorney_id');
+    }
+
+    /**
+     * Map scheduled_at to appointment_date.
+     */
+    public function getScheduledAtAttribute()
+    {
+        return $this->appointment_date;
+    }
+
+    public function setScheduledAtAttribute($value)
+    {
+        $this->attributes['appointment_date'] = $value;
+    }
+
+    /**
+     * Map attorney_id to assigned_attorney_id.
+     */
+    public function getAttorneyIdAttribute()
+    {
+        return $this->assigned_attorney_id;
+    }
+
+    public function setAttorneyIdAttribute($value)
+    {
+        $this->attributes['assigned_attorney_id'] = $value;
+    }
+
+    /**
+     * Mock duration minutes.
+     */
+    public function getDurationMinutesAttribute()
+    {
+        return 60;
+    }
 }
