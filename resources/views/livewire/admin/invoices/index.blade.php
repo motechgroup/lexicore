@@ -17,15 +17,15 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         <div class="bg-white dark:bg-[#1e293b] p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
             <p class="text-slate-400 dark:text-slate-500 text-xs uppercase tracking-wider font-semibold mb-1">Gross Billings</p>
-            <h3 class="font-display-lg text-2xl text-slate-800 dark:text-white font-bold">${{ number_format($totalBilled, 2) }}</h3>
+            <h3 class="font-display-lg text-2xl text-slate-800 dark:text-white font-bold">{{ config('system.site_currency_symbol', '$') }}{{ number_format($totalBilled, 2) }}</h3>
         </div>
         <div class="bg-white dark:bg-[#1e293b] p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
             <p class="text-slate-400 dark:text-slate-500 text-xs uppercase tracking-wider font-semibold mb-1">Collections MTD</p>
-            <h3 class="font-display-lg text-2xl text-emerald-600 dark:text-emerald-450 font-bold">${{ number_format($collectionsMtd, 2) }}</h3>
+            <h3 class="font-display-lg text-2xl text-emerald-600 dark:text-emerald-450 font-bold">{{ config('system.site_currency_symbol', '$') }}{{ number_format($collectionsMtd, 2) }}</h3>
         </div>
         <div class="bg-white dark:bg-[#1e293b] p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
             <p class="text-slate-400 dark:text-slate-500 text-xs uppercase tracking-wider font-semibold mb-1">Unpaid Receivables</p>
-            <h3 class="font-display-lg text-2xl text-rose-600 dark:text-rose-400 font-bold">${{ number_format($outstandingBalance, 2) }}</h3>
+            <h3 class="font-display-lg text-2xl text-rose-600 dark:text-rose-400 font-bold">{{ config('system.site_currency_symbol', '$') }}{{ number_format($outstandingBalance, 2) }}</h3>
         </div>
     </div>
 
@@ -101,7 +101,7 @@
                                 </td>
                                 <!-- Total -->
                                 <td class="px-6 py-4 font-bold text-slate-850 dark:text-white">
-                                    ${{ number_format($invoice->total, 2) }}
+                                    {{ config('system.site_currency_symbol', '$') }}{{ number_format($invoice->total, 2) }}
                                 </td>
                                 <!-- Status Badge -->
                                 <td class="px-6 py-4">

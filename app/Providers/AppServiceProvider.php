@@ -53,6 +53,26 @@ class AppServiceProvider extends ServiceProvider
                     'system.stat_partners' => $settings['stat_partners'] ?? '150+',
                     'system.cta_title' => $settings['cta_title'] ?? 'Secure your future with proven expertise.',
                     'system.cta_description' => $settings['cta_description'] ?? 'Contact us today for a confidential consultation. Our partners are ready to discuss your matter with the gravity it deserves.',
+
+                    // SMTP configurations
+                    'mail.mailers.smtp.host' => $settings['mail_host'] ?? env('MAIL_HOST', 'sandbox.smtp.mailtrap.io'),
+                    'mail.mailers.smtp.port' => $settings['mail_port'] ?? env('MAIL_PORT', 2525),
+                    'mail.mailers.smtp.username' => $settings['mail_username'] ?? env('MAIL_USERNAME'),
+                    'mail.mailers.smtp.password' => $settings['mail_password'] ?? env('MAIL_PASSWORD'),
+                    'mail.mailers.smtp.encryption' => $settings['mail_encryption'] ?? env('MAIL_ENCRYPTION', 'tls'),
+                    'mail.from.address' => $settings['mail_from_address'] ?? env('MAIL_FROM_ADDRESS', 'noreply@lexicore.test'),
+                    'mail.from.name' => $settings['mail_from_name'] ?? env('MAIL_FROM_NAME', 'LexCore Law'),
+
+                    // Currency configurations
+                    'system.site_currency' => $settings['site_currency'] ?? 'USD',
+                    'system.site_currency_symbol' => $settings['site_currency_symbol'] ?? '$',
+
+                    // Services configurations
+                    'services.stripe.key' => $settings['stripe_secret_key'] ?? env('STRIPE_SECRET'),
+                    'services.stripe.pub' => $settings['stripe_publishable_key'] ?? env('STRIPE_KEY'),
+                    'services.paypal.client_id' => $settings['paypal_client_id'] ?? env('PAYPAY_CLIENT_ID'),
+                    'services.paypal.secret' => $settings['paypal_secret'] ?? env('PAYPAL_SECRET'),
+                    'services.paypal.mode' => $settings['paypal_mode'] ?? 'sandbox',
                 ]);
             }
         }

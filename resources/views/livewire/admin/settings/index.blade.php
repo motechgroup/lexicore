@@ -48,6 +48,29 @@
                 </div>
             </div>
 
+            <!-- Currency Settings -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">payments</span>
+                    Currency Settings
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="siteCurrency" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Site Currency (e.g. USD, EUR, KES)</label>
+                        <input wire:model="siteCurrency" id="siteCurrency" type="text" placeholder="USD"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('siteCurrency')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="siteCurrencySymbol" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Currency Symbol (e.g. $, €, KSh)</label>
+                        <input wire:model="siteCurrencySymbol" id="siteCurrencySymbol" type="text" placeholder="$"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('siteCurrencySymbol')" class="mt-1" />
+                    </div>
+                </div>
+            </div>
+
             <!-- 2. Branding & Theme -->
             <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
                 <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
@@ -169,6 +192,140 @@
                                   class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
                         <x-input-error :messages="$errors->get('ctaDescription')" class="mt-1" />
                     </div>
+                </div>
+            </div>
+
+            <!-- SMTP Server Settings -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">mail</span>
+                    SMTP Notification Settings
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="md:col-span-2">
+                        <label for="mailHost" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">SMTP Server Host</label>
+                        <input wire:model="mailHost" id="mailHost" type="text" placeholder="smtp.mailtrap.io"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('mailHost')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="mailPort" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">SMTP Port</label>
+                        <input wire:model="mailPort" id="mailPort" type="number" placeholder="2525"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('mailPort')" class="mt-1" />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="mailUsername" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">SMTP Username</label>
+                        <input wire:model="mailUsername" id="mailUsername" type="text"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('mailUsername')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="mailPassword" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">SMTP Password</label>
+                        <input wire:model="mailPassword" id="mailPassword" type="password"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('mailPassword')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="mailEncryption" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Encryption protocol</label>
+                        <select wire:model="mailEncryption" id="mailEncryption"
+                                class="block w-full px-3 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250">
+                            <option value="tls">TLS</option>
+                            <option value="ssl">SSL</option>
+                            <option value="null">None (Plain Text)</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('mailEncryption')" class="mt-1" />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="mailFromAddress" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Sender Email (From)</label>
+                        <input wire:model="mailFromAddress" id="mailFromAddress" type="email" placeholder="noreply@lexicore.test"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('mailFromAddress')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="mailFromName" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Sender Name (From)</label>
+                        <input wire:model="mailFromName" id="mailFromName" type="text" placeholder="LexCore System"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('mailFromName')" class="mt-1" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Gateways Settings -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-6">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">credit_card</span>
+                    Payment Gateways Configurations
+                </h3>
+
+                <!-- Stripe Gateway settings -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <label for="stripeEnabled" class="font-bold text-[11px] text-slate-550 uppercase tracking-wider flex items-center gap-2 cursor-pointer">
+                            <input wire:model.live="stripeEnabled" id="stripeEnabled" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                            Enable Stripe Card Payments
+                        </label>
+                    </div>
+                    @if($stripeEnabled)
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in duration-200">
+                            <div>
+                                <label for="stripePublishableKey" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Stripe Publishable Key</label>
+                                <input wire:model="stripePublishableKey" id="stripePublishableKey" type="text" placeholder="pk_test_..."
+                                       class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                                <x-input-error :messages="$errors->get('stripePublishableKey')" class="mt-1" />
+                            </div>
+                            <div>
+                                <label for="stripeSecretKey" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Stripe Secret Key</label>
+                                <input wire:model="stripeSecretKey" id="stripeSecretKey" type="password" placeholder="sk_test_..."
+                                       class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                                <x-input-error :messages="$errors->get('stripeSecretKey')" class="mt-1" />
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
+                <!-- PayPal Gateway settings -->
+                <div class="space-y-4 border-t border-slate-100 dark:border-slate-800 pt-4">
+                    <div class="flex items-center justify-between">
+                        <label for="paypalEnabled" class="font-bold text-[11px] text-slate-550 uppercase tracking-wider flex items-center gap-2 cursor-pointer">
+                            <input wire:model.live="paypalEnabled" id="paypalEnabled" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                            Enable PayPal Express Checkout
+                        </label>
+                    </div>
+                    @if($paypalEnabled)
+                        <div class="space-y-4 animate-in fade-in duration-200">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="paypalClientId" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">PayPal Client ID</label>
+                                    <input wire:model="paypalClientId" id="paypalClientId" type="text"
+                                           class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                                    <x-input-error :messages="$errors->get('paypalClientId')" class="mt-1" />
+                                </div>
+                                <div>
+                                    <label for="paypalSecret" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">PayPal Client Secret</label>
+                                    <input wire:model="paypalSecret" id="paypalSecret" type="password"
+                                           class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                                    <x-input-error :messages="$errors->get('paypalSecret')" class="mt-1" />
+                                </div>
+                            </div>
+                            <div>
+                                <label for="paypalMode" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">PayPal Environment Mode</label>
+                                <select wire:model="paypalMode" id="paypalMode"
+                                        class="block w-full px-3 py-2.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200">
+                                    <option value="sandbox">Sandbox (Testing)</option>
+                                    <option value="live">Live (Production)</option>
+                                </select>
+                                <x-input-error :messages="$errors->get('paypalMode')" class="mt-1" />
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
 
