@@ -195,7 +195,7 @@
                     <!-- Attorney 1 -->
                     <div class="group">
                         <div class="aspect-[4/5] overflow-hidden rounded-xl mb-md">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_1_name', 'Julian Thorne') }} Portrait" src="{{ config('system.leader_1_image') }}"/>
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_1_name', 'Julian Thorne') }} Portrait" src="{{ config('system.leader_1_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUSUFnRGzUKW9rQGna9F0Rqx7XiOEeTKZ_ZjFNqpM20c0HpWZ5g3kVDQorJAFkVWElHWzZyyfh9prkVn1SSg9UaRggUQXB--bK3TqGvaMzsByacPZHnyp_W6FqCoCqmoa3ZxCz9rxKq2-LUqvlr56omdaMQaTMIFOBItnzAWDPuEWide7UVsapEIjSbiboOrx8iyOGn23wwr-YYZIbsrtOkpXtgvyLUU7J5xnBafW0eFLAFFGmkbGzxA') }}"/>
                         </div>
                         <h4 class="font-headline-md text-headline-md text-primary">{{ config('system.leader_1_name', 'Julian Thorne') }}</h4>
                         <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">{{ config('system.leader_1_title', 'Managing Partner') }}</p>
@@ -204,7 +204,7 @@
                     <!-- Attorney 2 -->
                     <div class="group">
                         <div class="aspect-[4/5] overflow-hidden rounded-xl mb-md">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_2_name', 'Sarah Kensington') }} Portrait" src="{{ config('system.leader_2_image') }}"/>
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_2_name', 'Sarah Kensington') }} Portrait" src="{{ config('system.leader_2_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuD8-Hj7QxqJVPkNOzaDbA4X5Wf1-KE7g_R-Rf5q70p2ntTcSo2OPIAqGjuELzZETa5gUzP-ANYtBgyvIfZVQBHgdAzNWOlAHTbz60xse078jAUsXhA-cw2XE3ZcL70H9n0yb9nahYlVr2aILfR5A_mRhrooH4--I2NO_umOcRs70zvxgtoCdMjXsVniz33AJjYVzrPDduA1nbFwCIkxyL6lQ2hfXJHj9lrs3fp1-8Y6xcy_1Ot4SBWDwQ') }}"/>
                         </div>
                         <h4 class="font-headline-md text-headline-md text-primary">{{ config('system.leader_2_name', 'Sarah Kensington') }}</h4>
                         <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">{{ config('system.leader_2_title', 'Senior Partner, IP') }}</p>
@@ -213,7 +213,7 @@
                     <!-- Attorney 3 -->
                     <div class="group">
                         <div class="aspect-[4/5] overflow-hidden rounded-xl mb-md">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_3_name', 'Marcus Vane') }} Portrait" src="{{ config('system.leader_3_image') }}"/>
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_3_name', 'Marcus Vane') }} Portrait" src="{{ config('system.leader_3_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCfR2Eho-JK7dkZZ0dl-EpoO3ZRa1r1anOPIV9WwxTZSEPjSLHwPuTXRu8P1Bp1hHxRZZ3WLdW4D7_BiM7aUurMjOnN7WcO8CuefKjQJM0PaSQq7jclmZWLBFvI2QPLnS7GpDNkeh5v-1vUn1lNw1wM1Hqt1QgsG15yXVyo1005jfGb0iFz9_QJKMX15J3lCUN0eEXOzlYQg2NUv2M849uLW--1TlIpwnGChp5BT7PM1KT27Q00xLlMYA') }}"/>
                         </div>
                         <h4 class="font-headline-md text-headline-md text-primary">{{ config('system.leader_3_name', 'Marcus Vane') }}</h4>
                         <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">{{ config('system.leader_3_title', 'Litigation Partner') }}</p>
@@ -222,7 +222,7 @@
                     <!-- Attorney 4 -->
                     <div class="group">
                         <div class="aspect-[4/5] overflow-hidden rounded-xl mb-md">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_4_name', 'Elena Rodriguez') }} Portrait" src="{{ config('system.leader_4_image') }}"/>
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_4_name', 'Elena Rodriguez') }} Portrait" src="{{ config('system.leader_4_image', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1sZwRy7th2uNe38jq37PbLA8AiXzQERTF_96UbTxjJH-y-nNX4IrAbODxzQ9t93Q5yEF4VmUy8R6GKFOtKwMEtdr7t3kdk_0tGFKkcujJKXO-nPxcGp6WCI1hC8YAqkg3pZ-3miR117CpkoR7gqGnnV3ces1Ggu3uiLgreK2c9vAEX5YYmyjNxNuapv57bzedyVRyKNG5tb24tD_0PrNv8lLNe0ykfb6vRV7UTY4Sa88gysZrM-e33Q') }}"/>
                         </div>
                         <h4 class="font-headline-md text-headline-md text-primary">{{ config('system.leader_4_name', 'Elena Rodriguez') }}</h4>
                         <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">{{ config('system.leader_4_title', 'Private Wealth Lead') }}</p>

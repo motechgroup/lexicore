@@ -28,7 +28,10 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         // Bootstrap dynamic configuration parameters from local settings.json
-        $settingsPath = storage_path('app/settings.json');
+        $settingsPath = storage_path('app/private/settings.json');
+        if (! file_exists($settingsPath)) {
+            $settingsPath = storage_path('app/settings.json');
+        }
         if (file_exists($settingsPath)) {
             $settings = json_decode(file_get_contents($settingsPath), true);
             if (is_array($settings)) {
