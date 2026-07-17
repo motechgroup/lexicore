@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Artisan;
 
 define('LARAVEL_START', microtime(true));
 
+// Clear OPCache compiled bytecode cache if active
+if (function_exists('opcache_reset')) {
+    opcache_reset();
+}
+
 // 1. Check/Create .env file and ensure safe drivers for installation
 $envPath = __DIR__.'/../.env';
 $envExamplePath = __DIR__.'/../.env.example';
@@ -98,6 +103,10 @@ header('Content-Type: text/plain');
 
 echo "LexCore Deployment Tool\n";
 echo "=======================\n\n";
+
+if (function_exists('opcache_reset')) {
+    echo "SUCCESS: Reset OPCache compiled bytecode cache.\n";
+}
 
 if ($envCreated) {
     echo "SUCCESS: Created .env file from .env.example\n";

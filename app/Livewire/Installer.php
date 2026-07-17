@@ -265,6 +265,26 @@ class Installer extends Component
             DB::purge();
             DB::reconnect();
 
+            // Clear database tables to ensure clean state (especially for users with existing tables)
+            $connection = config('database.default');
+            if ($connection === 'sqlite') {
+                $tables = DB::select("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
+                DB::statement('PRAGMA foreign_keys = OFF');
+                foreach ($tables as $table) {
+                    $name = $table->name;
+                    DB::statement("DROP TABLE IF EXISTS `{$name}`");
+                }
+                DB::statement('PRAGMA foreign_keys = ON');
+            } else {
+                $tables = DB::select('SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE()');
+                DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+                foreach ($tables as $table) {
+                    $name = $table->table_name;
+                    DB::statement("DROP TABLE IF EXISTS `{$name}`");
+                }
+                DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+            }
+
             // 1. Clear caches first
             Artisan::call('config:clear');
             Artisan::call('cache:clear');
