@@ -160,22 +160,22 @@
         <section id="statistics" class="py-3xl px-lg lg:px-3xl">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2xl">
                 <div class="text-center">
-                    <span class="block font-display-lg text-[56px] text-primary mb-xs">{{ config('system.stat_recovered', '$2.4B+') }}</span>
+                    <span class="block font-display-lg text-[56px] text-primary mb-xs" data-animate-stat="{{ config('system.stat_recovered', '$2.4B+') }}">{{ config('system.stat_recovered', '$2.4B+') }}</span>
                     <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">In Settlements Recovered</span>
                 </div>
                 <div class="w-px h-16 bg-outline-variant hidden md:block"></div>
                 <div class="text-center">
-                    <span class="block font-display-lg text-[56px] text-primary mb-xs">{{ config('system.stat_years', '40+') }}</span>
+                    <span class="block font-display-lg text-[56px] text-primary mb-xs" data-animate-stat="{{ config('system.stat_years', '40+') }}">{{ config('system.stat_years', '40+') }}</span>
                     <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Years of Advocacy</span>
                 </div>
                 <div class="w-px h-16 bg-outline-variant hidden md:block"></div>
                 <div class="text-center">
-                    <span class="block font-display-lg text-[56px] text-primary mb-xs">{{ config('system.stat_retention', '98%') }}</span>
+                    <span class="block font-display-lg text-[56px] text-primary mb-xs" data-animate-stat="{{ config('system.stat_retention', '98%') }}">{{ config('system.stat_retention', '98%') }}</span>
                     <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Client Retention Rate</span>
                 </div>
                 <div class="w-px h-16 bg-outline-variant hidden md:block"></div>
                 <div class="text-center">
-                    <span class="block font-display-lg text-[56px] text-primary mb-xs">{{ config('system.stat_partners', '150+') }}</span>
+                    <span class="block font-display-lg text-[56px] text-primary mb-xs" data-animate-stat="{{ config('system.stat_partners', '150+') }}">{{ config('system.stat_partners', '150+') }}</span>
                     <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Global Partners</span>
                 </div>
             </div>
@@ -365,6 +365,62 @@
                 item.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700');
                 observer.observe(item);
             });
+
+            // Statistics Count-Up Animation
+            const stats = document.querySelectorAll("[data-animate-stat]");
+            
+            const parseStat = (text) => {
+                const regex = /^([^0-9\.]*)([0-9\.]+)(.*)$/;
+                const match = text.trim().match(regex);
+                if (!match) return { prefix: '', value: 0, suffix: text, decimals: 0 };
+                
+                const prefix = match[1];
+                const rawVal = match[2];
+                const suffix = match[3];
+                const decimals = rawVal.includes('.') ? rawVal.split('.')[1].length : 0;
+                
+                return {
+                    prefix,
+                    value: parseFloat(rawVal),
+                    suffix,
+                    decimals
+                };
+            };
+
+            const animateStat = (el) => {
+                const targetText = el.getAttribute("data-animate-stat");
+                const parsed = parseStat(targetText);
+                
+                let startTimestamp = null;
+                const duration = 1800; // 1.8 seconds duration
+                
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const easeProgress = progress * (2 - progress); // easeOutQuad
+                    const currentVal = easeProgress * parsed.value;
+                    
+                    el.textContent = parsed.prefix + currentVal.toFixed(parsed.decimals) + parsed.suffix;
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        el.textContent = targetText;
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStat(entry.target);
+                        statObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            stats.forEach(stat => statObserver.observe(stat));
         });
     </script>
     
