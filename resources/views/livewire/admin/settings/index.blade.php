@@ -195,8 +195,6 @@
                 </div>
             </div>
 
-            </div>
-
             <!-- Elite Leadership CMS settings -->
             <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-6">
                 <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
