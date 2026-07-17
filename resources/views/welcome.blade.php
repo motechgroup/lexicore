@@ -186,8 +186,8 @@
             <div class="max-w-7xl mx-auto">
                 <div class="flex justify-between items-end mb-2xl">
                     <div class="max-w-xl">
-                        <h2 class="font-headline-lg text-headline-lg text-primary mb-md">Elite Leadership</h2>
-                        <p class="font-body-md text-body-md text-on-surface-variant">Our attorneys are recognized leaders in their fields, frequently cited in national media and academic journals.</p>
+                        <h2 class="font-headline-lg text-headline-lg text-primary mb-md">{{ config('system.leader_headline', 'Elite Leadership') }}</h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">{{ config('system.leader_subtitle', 'Our attorneys are recognized leaders in their fields, frequently cited in national media and academic journals.') }}</p>
                     </div>
                     <a class="hidden md:flex items-center gap-sm font-label-md text-label-md text-primary hover:gap-md transition-all" href="#">All Partners <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                 </div>
@@ -195,38 +195,38 @@
                     <!-- Attorney 1 -->
                     <div class="group">
                         <div class="aspect-[4/5] overflow-hidden rounded-xl mb-md">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Julian Thorne Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUSUFnRGzUKW9rQGna9F0Rqx7XiOEeTKZ_ZjFNqpM20c0HpWZ5g3kVDQorJAFkVWElHWzZyyfh9prkVn1SSg9UaRggUQXB--bK3TqGvaMzsByacPZHnyp_W6FqCoCqmoa3ZxCz9rxKq2-LUqvlr56omdaMQaTMIFOBItnzAWDPuEWide7UVsapEIjSbiboOrx8iyOGn23wwr-YYZIbsrtOkpXtgvyLUU7J5xnBafW0eFLAFFGmkbGzxA"/>
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_1_name', 'Julian Thorne') }} Portrait" src="{{ config('system.leader_1_image') }}"/>
                         </div>
-                        <h4 class="font-headline-md text-headline-md text-primary">Julian Thorne</h4>
-                        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">Managing Partner</p>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant">Specializing in Cross-Border M&A and Strategic Advisory.</p>
+                        <h4 class="font-headline-md text-headline-md text-primary">{{ config('system.leader_1_name', 'Julian Thorne') }}</h4>
+                        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">{{ config('system.leader_1_title', 'Managing Partner') }}</p>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">{{ config('system.leader_1_description', 'Specializing in Cross-Border M&A and Strategic Advisory.') }}</p>
                     </div>
                     <!-- Attorney 2 -->
                     <div class="group">
                         <div class="aspect-[4/5] overflow-hidden rounded-xl mb-md">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Sarah Kensington Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8-Hj7QxqJVPkNOzaDbA4X5Wf1-KE7g_R-Rf5q70p2ntTcSo2OPIAqGjuELzZETa5gUzP-ANYtBgyvIfZVQBHgdAzNWOlAHTbz60xse078jAUsXhA-cw2XE3ZcL70H9n0yb9nahYlVr2aILfR5A_mRhrooH4--I2NO_umOcRs70zvxgtoCdMjXsVniz33AJjYVzrPDduA1nbFwCIkxyL6lQ2hfXJHj9lrs3fp1-8Y6xcy_1Ot4SBWDwQ"/>
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_2_name', 'Sarah Kensington') }} Portrait" src="{{ config('system.leader_2_image') }}"/>
                         </div>
-                        <h4 class="font-headline-md text-headline-md text-primary">Sarah Kensington</h4>
-                        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">Senior Partner, IP</p>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant">Recognized as one of the top 50 IP litigators in the country.</p>
+                        <h4 class="font-headline-md text-headline-md text-primary">{{ config('system.leader_2_name', 'Sarah Kensington') }}</h4>
+                        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">{{ config('system.leader_2_title', 'Senior Partner, IP') }}</p>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">{{ config('system.leader_2_description', 'Recognized as one of the top 50 IP litigators in the country.') }}</p>
                     </div>
                     <!-- Attorney 3 -->
                     <div class="group">
                         <div class="aspect-[4/5] overflow-hidden rounded-xl mb-md">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Marcus Vane Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfR2Eho-JK7dkZZ0dl-EpoO3ZRa1r1anOPIV9WwxTZSEPjSLHwPuTXRu8P1Bp1hHxRZZ3WLdW4D7_BiM7aUurMjOnN7WcO8CuefKjQJM0PaSQq7jclmZWLBFvI2QPLnS7GpDNkeh5v-1vUn1lNw1wM1Hqt1QgsG15yXVyo1005jfGb0iFz9_QJKMX15J3lCUN0eEXOzlYQg2NUv2M849uLW--1TlIpwnGChp5BT7PM1KT27Q00xLlMYA"/>
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_3_name', 'Marcus Vane') }} Portrait" src="{{ config('system.leader_3_image') }}"/>
                         </div>
-                        <h4 class="font-headline-md text-headline-md text-primary">Marcus Vane</h4>
-                        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">Litigation Partner</p>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant">Expert in high-stakes white-collar defense and civil litigation.</p>
+                        <h4 class="font-headline-md text-headline-md text-primary">{{ config('system.leader_3_name', 'Marcus Vane') }}</h4>
+                        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">{{ config('system.leader_3_title', 'Litigation Partner') }}</p>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">{{ config('system.leader_3_description', 'Expert in high-stakes white-collar defense and civil litigation.') }}</p>
                     </div>
                     <!-- Attorney 4 -->
                     <div class="group">
                         <div class="aspect-[4/5] overflow-hidden rounded-xl mb-md">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Elena Rodriguez Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1sZwRy7th2uNe38jq37PbLA8AiXzQERTF_96UbTxjJH-y-nNX4IrAbODxzQ9t93Q5yEF4VmUy8R6GKFOtKwMEtdr7t3kdk_0tGFKkcujJKXO-nPxcGp6WCI1hC8YAqkg3pZ-3miR117CpkoR7gqGnnV3ces1Ggu3uiLgreK2c9vAEX5YYmyjNxNuapv57bzedyVRyKNG5tb24tD_0PrNv8lLNe0ykfb6vRV7UTY4Sa88gysZrM-e33Q"/>
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ config('system.leader_4_name', 'Elena Rodriguez') }} Portrait" src="{{ config('system.leader_4_image') }}"/>
                         </div>
-                        <h4 class="font-headline-md text-headline-md text-primary">Elena Rodriguez</h4>
-                        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">Private Wealth Lead</p>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant">Bespoke estate planning for ultra-high-net-worth families.</p>
+                        <h4 class="font-headline-md text-headline-md text-primary">{{ config('system.leader_4_name', 'Elena Rodriguez') }}</h4>
+                        <p class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-xs">{{ config('system.leader_4_title', 'Private Wealth Lead') }}</p>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">{{ config('system.leader_4_description', 'Bespoke estate planning for ultra-high-net-worth families.') }}</p>
                     </div>
                 </div>
             </div>

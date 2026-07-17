@@ -195,6 +195,169 @@
                 </div>
             </div>
 
+            </div>
+
+            <!-- Elite Leadership CMS settings -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-6">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">groups</span>
+                    Elite Leadership (Featured Attorneys CMS)
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="leaderHeadline" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Section Headline</label>
+                        <input wire:model="leaderHeadline" id="leaderHeadline" type="text"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('leaderHeadline')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="leaderSubtitle" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Section Subtitle</label>
+                        <input wire:model="leaderSubtitle" id="leaderSubtitle" type="text"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('leaderSubtitle')" class="mt-1" />
+                    </div>
+                </div>
+
+                <!-- Leader 1 and Leader 2 Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-slate-100 dark:border-slate-800 pt-4">
+                    <!-- Leader 1 -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-[10px] text-primary uppercase tracking-wider">Featured Leader 1</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="leader1Name" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Name</label>
+                                <input wire:model="leader1Name" id="leader1Name" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                                <x-input-error :messages="$errors->get('leader1Name')" class="mt-1" />
+                            </div>
+                            <div>
+                                <label for="leader1Title" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Title</label>
+                                <input wire:model="leader1Title" id="leader1Title" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                                <x-input-error :messages="$errors->get('leader1Title')" class="mt-1" />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="leader1Description" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Brief Description / Specialty</label>
+                            <input wire:model="leader1Description" id="leader1Description" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                            <x-input-error :messages="$errors->get('leader1Description')" class="mt-1" />
+                        </div>
+                        <div>
+                            <label class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Portrait Photo (File Upload)</label>
+                            <input wire:model="leader1File" type="file" class="block w-full text-xs text-slate-500 file:mr-4 file:py-1 file:px-3 file:rounded-xl file:border-0 file:text-[10px] file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20" />
+                            <x-input-error :messages="$errors->get('leader1File')" class="mt-1" />
+                            @if($leader1Image)
+                                <div class="mt-2 flex items-center gap-2">
+                                    <span class="text-[9px] text-slate-400">Current Portrait:</span>
+                                    <img src="{{ $leader1Image }}" class="w-8 h-8 rounded-lg object-cover border border-slate-200" />
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Leader 2 -->
+                    <div class="space-y-4 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800/80 pt-4 md:pt-0 md:pl-6">
+                        <h4 class="font-bold text-[10px] text-primary uppercase tracking-wider">Featured Leader 2</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="leader2Name" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Name</label>
+                                <input wire:model="leader2Name" id="leader2Name" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                                <x-input-error :messages="$errors->get('leader2Name')" class="mt-1" />
+                            </div>
+                            <div>
+                                <label for="leader2Title" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Title</label>
+                                <input wire:model="leader2Title" id="leader2Title" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                                <x-input-error :messages="$errors->get('leader2Title')" class="mt-1" />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="leader2Description" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Brief Description / Specialty</label>
+                            <input wire:model="leader2Description" id="leader2Description" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                            <x-input-error :messages="$errors->get('leader2Description')" class="mt-1" />
+                        </div>
+                        <div>
+                            <label class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Portrait Photo (File Upload)</label>
+                            <input wire:model="leader2File" type="file" class="block w-full text-xs text-slate-500 file:mr-4 file:py-1 file:px-3 file:rounded-xl file:border-0 file:text-[10px] file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20" />
+                            <x-input-error :messages="$errors->get('leader2File')" class="mt-1" />
+                            @if($leader2Image)
+                                <div class="mt-2 flex items-center gap-2">
+                                    <span class="text-[9px] text-slate-400">Current Portrait:</span>
+                                    <img src="{{ $leader2Image }}" class="w-8 h-8 rounded-lg object-cover border border-slate-200" />
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 3 and Leader 4 Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-slate-100 dark:border-slate-800 pt-4">
+                    <!-- Leader 3 -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-[10px] text-primary uppercase tracking-wider">Featured Leader 3</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="leader3Name" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Name</label>
+                                <input wire:model="leader3Name" id="leader3Name" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                                <x-input-error :messages="$errors->get('leader3Name')" class="mt-1" />
+                            </div>
+                            <div>
+                                <label for="leader3Title" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Title</label>
+                                <input wire:model="leader3Title" id="leader3Title" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                                <x-input-error :messages="$errors->get('leader3Title')" class="mt-1" />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="leader3Description" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Brief Description / Specialty</label>
+                            <input wire:model="leader3Description" id="leader3Description" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                            <x-input-error :messages="$errors->get('leader3Description')" class="mt-1" />
+                        </div>
+                        <div>
+                            <label class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Portrait Photo (File Upload)</label>
+                            <input wire:model="leader3File" type="file" class="block w-full text-xs text-slate-500 file:mr-4 file:py-1 file:px-3 file:rounded-xl file:border-0 file:text-[10px] file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20" />
+                            <x-input-error :messages="$errors->get('leader3File')" class="mt-1" />
+                            @if($leader3Image)
+                                <div class="mt-2 flex items-center gap-2">
+                                    <span class="text-[9px] text-slate-400">Current Portrait:</span>
+                                    <img src="{{ $leader3Image }}" class="w-8 h-8 rounded-lg object-cover border border-slate-200" />
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Leader 4 -->
+                    <div class="space-y-4 border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800/80 pt-4 md:pt-0 md:pl-6">
+                        <h4 class="font-bold text-[10px] text-primary uppercase tracking-wider">Featured Leader 4</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="leader4Name" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Name</label>
+                                <input wire:model="leader4Name" id="leader4Name" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                                <x-input-error :messages="$errors->get('leader4Name')" class="mt-1" />
+                            </div>
+                            <div>
+                                <label for="leader4Title" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Title</label>
+                                <input wire:model="leader4Title" id="leader4Title" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                                <x-input-error :messages="$errors->get('leader4Title')" class="mt-1" />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="leader4Description" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Brief Description / Specialty</label>
+                            <input wire:model="leader4Description" id="leader4Description" type="text" class="block w-full px-3 py-1.5 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200" />
+                            <x-input-error :messages="$errors->get('leader4Description')" class="mt-1" />
+                        </div>
+                        <div>
+                            <label class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Portrait Photo (File Upload)</label>
+                            <input wire:model="leader4File" type="file" class="block w-full text-xs text-slate-500 file:mr-4 file:py-1 file:px-3 file:rounded-xl file:border-0 file:text-[10px] file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20" />
+                            <x-input-error :messages="$errors->get('leader4File')" class="mt-1" />
+                            @if($leader4Image)
+                                <div class="mt-2 flex items-center gap-2">
+                                    <span class="text-[9px] text-slate-400">Current Portrait:</span>
+                                    <img src="{{ $leader4Image }}" class="w-8 h-8 rounded-lg object-cover border border-slate-200" />
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- SMTP Server Settings -->
             <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
                 <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">

@@ -55,6 +55,26 @@ class AppServiceProvider extends ServiceProvider
                     'system.cta_title' => $settings['cta_title'] ?? 'Secure your future with proven expertise.',
                     'system.cta_description' => $settings['cta_description'] ?? 'Contact us today for a confidential consultation. Our partners are ready to discuss your matter with the gravity it deserves.',
 
+                    // Elite Leadership configurations
+                    'system.leader_headline' => $settings['leader_headline'] ?? 'Elite Leadership',
+                    'system.leader_subtitle' => $settings['leader_subtitle'] ?? 'Our attorneys are recognized leaders in their fields, frequently cited in national media and academic journals.',
+                    'system.leader_1_name' => $settings['leader_1_name'] ?? 'Julian Thorne',
+                    'system.leader_1_title' => $settings['leader_1_title'] ?? 'Managing Partner',
+                    'system.leader_1_description' => $settings['leader_1_description'] ?? 'Specializing in Cross-Border M&A and Strategic Advisory.',
+                    'system.leader_1_image' => $settings['leader_1_image'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUSUFnRGzUKW9rQGna9F0Rqx7XiOEeTKZ_ZjFNqpM20c0HpWZ5g3kVDQorJAFkVWElHWzZyyfh9prkVn1SSg9UaRggUQXB--bK3TqGvaMzsByacPZHnyp_W6FqCoCqmoa3ZxCz9rxKq2-LUqvlr56omdaMQaTMIFOBItnzAWDPuEWide7UVsapEIjSbiboOrx8iyOGn23wwr-YYZIbsrtOkpXtgvyLUU7J5xnBafW0eFLAFFGmkbGzxA',
+                    'system.leader_2_name' => $settings['leader_2_name'] ?? 'Sarah Kensington',
+                    'system.leader_2_title' => $settings['leader_2_title'] ?? 'Senior Partner, IP',
+                    'system.leader_2_description' => $settings['leader_2_description'] ?? 'Recognized as one of the top 50 IP litigators in the country.',
+                    'system.leader_2_image' => $settings['leader_2_image'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuD8-Hj7QxqJVPkNOzaDbA4X5Wf1-KE7g_R-Rf5q70p2ntTcSo2OPIAqGjuELzZETa5gUzP-ANYtBgyvIfZVQBHgdAzNWOlAHTbz60xse078jAUsXhA-cw2XE3ZcL70H9n0yb9nahYlVr2aILfR5A_mRhrooH4--I2NO_umOcRs70zvxgtoCdMjXsVniz33AJjYVzrPDduA1nbFwCIkxyL6lQ2hfXJHj9lrs3fp1-8Y6xcy_1Ot4SBWDwQ',
+                    'system.leader_3_name' => $settings['leader_3_name'] ?? 'Marcus Vane',
+                    'system.leader_3_title' => $settings['leader_3_title'] ?? 'Litigation Partner',
+                    'system.leader_3_description' => $settings['leader_3_description'] ?? 'Expert in high-stakes white-collar defense and civil litigation.',
+                    'system.leader_3_image' => $settings['leader_3_image'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuCfR2Eho-JK7dkZZ0dl-EpoO3ZRa1r1anOPIV9WwxTZSEPjSLHwPuTXRu8P1Bp1hHxRZZ3WLdW4D7_BiM7aUurMjOnN7WcO8CuefKjQJM0PaSQq7jclmZWLBFvI2QPLnS7GpDNkeh5v-1vUn1lNw1wM1Hqt1QgsG15yXVyo1005jfGb0iFz9_QJKMX15J3lCUN0eEXOzlYQg2NUv2M849uLW--1TlIpwnGChp5BT7PM1KT27Q00xLlMYA',
+                    'system.leader_4_name' => $settings['leader_4_name'] ?? 'Elena Rodriguez',
+                    'system.leader_4_title' => $settings['leader_4_title'] ?? 'Private Wealth Lead',
+                    'system.leader_4_description' => $settings['leader_4_description'] ?? 'Bespoke estate planning for ultra-high-net-worth families.',
+                    'system.leader_4_image' => $settings['leader_4_image'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1sZwRy7th2uNe38jq37PbLA8AiXzQERTF_96UbTxjJH-y-nNX4IrAbODxzQ9t93Q5yEF4VmUy8R6GKFOtKwMEtdr7t3kdk_0tGFKkcujJKXO-nPxcGp6WCI1hC8YAqkg3pZ-3miR117CpkoR7gqGnnV3ces1Ggu3uiLgreK2c9vAEX5YYmyjNxNuapv57bzedyVRyKNG5tb24tD_0PrNv8lLNe0ykfb6vRV7UTY4Sa88gysZrM-e33Q',
+
                     // SMTP configurations
                     'mail.mailers.smtp.host' => $settings['mail_host'] ?? env('MAIL_HOST', 'sandbox.smtp.mailtrap.io'),
                     'mail.mailers.smtp.port' => $settings['mail_port'] ?? env('MAIL_PORT', 2525),

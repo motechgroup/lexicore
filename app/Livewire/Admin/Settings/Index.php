@@ -119,6 +119,51 @@ class Index extends Component
 
     public $smsTemplateCase;
 
+    // Elite Leadership Featured Section properties
+    public $leaderHeadline;
+
+    public $leaderSubtitle;
+
+    public $leader1Name;
+
+    public $leader1Title;
+
+    public $leader1Description;
+
+    public $leader1Image;
+
+    public $leader1File;
+
+    public $leader2Name;
+
+    public $leader2Title;
+
+    public $leader2Description;
+
+    public $leader2Image;
+
+    public $leader2File;
+
+    public $leader3Name;
+
+    public $leader3Title;
+
+    public $leader3Description;
+
+    public $leader3Image;
+
+    public $leader3File;
+
+    public $leader4Name;
+
+    public $leader4Title;
+
+    public $leader4Description;
+
+    public $leader4Image;
+
+    public $leader4File;
+
     protected $rules = [
         'firmName' => 'required|string|max:100',
         'taxRate' => 'required|numeric|min:0|max:100',
@@ -176,6 +221,22 @@ class Index extends Component
         'smsTemplateAppointment' => 'required|string|max:500',
         'smsTemplateInvoice' => 'required|string|max:500',
         'smsTemplateCase' => 'required|string|max:500',
+
+        // Leadership section Validation
+        'leaderHeadline' => 'required|string|max:100',
+        'leaderSubtitle' => 'required|string|max:255',
+        'leader1Name' => 'required|string|max:100',
+        'leader1Title' => 'required|string|max:100',
+        'leader1Description' => 'required|string|max:255',
+        'leader2Name' => 'required|string|max:100',
+        'leader2Title' => 'required|string|max:100',
+        'leader2Description' => 'required|string|max:255',
+        'leader3Name' => 'required|string|max:100',
+        'leader3Title' => 'required|string|max:100',
+        'leader3Description' => 'required|string|max:255',
+        'leader4Name' => 'required|string|max:100',
+        'leader4Title' => 'required|string|max:100',
+        'leader4Description' => 'required|string|max:255',
     ];
 
     /**
@@ -249,6 +310,30 @@ class Index extends Component
         $this->smsTemplateAppointment = $settings['sms_template_appointment'] ?? 'Hi {client_name}, your consultation at LexCore is scheduled for {appointment_date}.';
         $this->smsTemplateInvoice = $settings['sms_template_invoice'] ?? 'Dear {client_name}, a new invoice {invoice_number} has been generated. Total due: {invoice_total}.';
         $this->smsTemplateCase = $settings['sms_template_case'] ?? 'Hello, your case file {case_number} has been updated to: {case_status}.';
+
+        // Mount Elite Leadership defaults
+        $this->leaderHeadline = $settings['leader_headline'] ?? 'Elite Leadership';
+        $this->leaderSubtitle = $settings['leader_subtitle'] ?? 'Our attorneys are recognized leaders in their fields, frequently cited in national media and academic journals.';
+
+        $this->leader1Name = $settings['leader_1_name'] ?? 'Julian Thorne';
+        $this->leader1Title = $settings['leader_1_title'] ?? 'Managing Partner';
+        $this->leader1Description = $settings['leader_1_description'] ?? 'Specializing in Cross-Border M&A and Strategic Advisory.';
+        $this->leader1Image = $settings['leader_1_image'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUSUFnRGzUKW9rQGna9F0Rqx7XiOEeTKZ_ZjFNqpM20c0HpWZ5g3kVDQorJAFkVWElHWzZyyfh9prkVn1SSg9UaRggUQXB--bK3TqGvaMzsByacPZHnyp_W6FqCoCqmoa3ZxCz9rxKq2-LUqvlr56omdaMQaTMIFOBItnzAWDPuEWide7UVsapEIjSbiboOrx8iyOGn23wwr-YYZIbsrtOkpXtgvyLUU7J5xnBafW0eFLAFFGmkbGzxA';
+
+        $this->leader2Name = $settings['leader_2_name'] ?? 'Sarah Kensington';
+        $this->leader2Title = $settings['leader_2_title'] ?? 'Senior Partner, IP';
+        $this->leader2Description = $settings['leader_2_description'] ?? 'Recognized as one of the top 50 IP litigators in the country.';
+        $this->leader2Image = $settings['leader_2_image'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuD8-Hj7QxqJVPkNOzaDbA4X5Wf1-KE7g_R-Rf5q70p2ntTcSo2OPIAqGjuELzZETa5gUzP-ANYtBgyvIfZVQBHgdAzNWOlAHTbz60xse078jAUsXhA-cw2XE3ZcL70H9n0yb9nahYlVr2aILfR5A_mRhrooH4--I2NO_umOcRs70zvxgtoCdMjXsVniz33AJjYVzrPDduA1nbFwCIkxyL6lQ2hfXJHj9lrs3fp1-8Y6xcy_1Ot4SBWDwQ';
+
+        $this->leader3Name = $settings['leader_3_name'] ?? 'Marcus Vane';
+        $this->leader3Title = $settings['leader_3_title'] ?? 'Litigation Partner';
+        $this->leader3Description = $settings['leader_3_description'] ?? 'Expert in high-stakes white-collar defense and civil litigation.';
+        $this->leader3Image = $settings['leader_3_image'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuCfR2Eho-JK7dkZZ0dl-EpoO3ZRa1r1anOPIV9WwxTZSEPjSLHwPuTXRu8P1Bp1hHxRZZ3WLdW4D7_BiM7aUurMjOnN7WcO8CuefKjQJM0PaSQq7jclmZWLBFvI2QPLnS7GpDNkeh5v-1vUn1lNw1wM1Hqt1QgsG15yXVyo1005jfGb0iFz9_QJKMX15J3lCUN0eEXOzlYQg2NUv2M849uLW--1TlIpwnGChp5BT7PM1KT27Q00xLlMYA';
+
+        $this->leader4Name = $settings['leader_4_name'] ?? 'Elena Rodriguez';
+        $this->leader4Title = $settings['leader_4_title'] ?? 'Private Wealth Lead';
+        $this->leader4Description = $settings['leader_4_description'] ?? 'Bespoke estate planning for ultra-high-net-worth families.';
+        $this->leader4Image = $settings['leader_4_image'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1sZwRy7th2uNe38jq37PbLA8AiXzQERTF_96UbTxjJH-y-nNX4IrAbODxzQ9t93Q5yEF4VmUy8R6GKFOtKwMEtdr7t3kdk_0tGFKkcujJKXO-nPxcGp6WCI1hC8YAqkg3pZ-3miR117CpkoR7gqGnnV3ces1Ggu3uiLgreK2c9vAEX5YYmyjNxNuapv57bzedyVRyKNG5tb24tD_0PrNv8lLNe0ykfb6vRV7UTY4Sa88gysZrM-e33Q';
     }
 
     /**
@@ -302,6 +387,47 @@ class Index extends Component
             $this->faviconFile->move(public_path('branding'), $faviconName);
             $faviconPath = '/branding/'.$faviconName;
             $this->faviconUrl = $faviconPath;
+        }
+
+        // Leader Portrait uploads
+        $leader1Path = $this->leader1Image;
+        if ($this->leader1File) {
+            $this->validate(['leader1File' => 'image|max:2048']);
+            $ext = $this->leader1File->getClientOriginalExtension();
+            $name = 'leader_1.'.$ext;
+            $this->leader1File->move(public_path('branding'), $name);
+            $leader1Path = '/branding/'.$name;
+            $this->leader1Image = $leader1Path;
+        }
+
+        $leader2Path = $this->leader2Image;
+        if ($this->leader2File) {
+            $this->validate(['leader2File' => 'image|max:2048']);
+            $ext = $this->leader2File->getClientOriginalExtension();
+            $name = 'leader_2.'.$ext;
+            $this->leader2File->move(public_path('branding'), $name);
+            $leader2Path = '/branding/'.$name;
+            $this->leader2Image = $leader2Path;
+        }
+
+        $leader3Path = $this->leader3Image;
+        if ($this->leader3File) {
+            $this->validate(['leader3File' => 'image|max:2048']);
+            $ext = $this->leader3File->getClientOriginalExtension();
+            $name = 'leader_3.'.$ext;
+            $this->leader3File->move(public_path('branding'), $name);
+            $leader3Path = '/branding/'.$name;
+            $this->leader3Image = $leader3Path;
+        }
+
+        $leader4Path = $this->leader4Image;
+        if ($this->leader4File) {
+            $this->validate(['leader4File' => 'image|max:2048']);
+            $ext = $this->leader4File->getClientOriginalExtension();
+            $name = 'leader_4.'.$ext;
+            $this->leader4File->move(public_path('branding'), $name);
+            $leader4Path = '/branding/'.$name;
+            $this->leader4Image = $leader4Path;
         }
 
         $settings = [
@@ -367,12 +493,36 @@ class Index extends Component
             'sms_template_appointment' => $this->smsTemplateAppointment,
             'sms_template_invoice' => $this->smsTemplateInvoice,
             'sms_template_case' => $this->smsTemplateCase,
+
+            // Persist Elite Leadership settings
+            'leader_headline' => $this->leaderHeadline,
+            'leader_subtitle' => $this->leaderSubtitle,
+            'leader_1_name' => $this->leader1Name,
+            'leader_1_title' => $this->leader1Title,
+            'leader_1_description' => $this->leader1Description,
+            'leader_1_image' => $leader1Path,
+            'leader_2_name' => $this->leader2Name,
+            'leader_2_title' => $this->leader2Title,
+            'leader_2_description' => $this->leader2Description,
+            'leader_2_image' => $leader2Path,
+            'leader_3_name' => $this->leader3Name,
+            'leader_3_title' => $this->leader3Title,
+            'leader_3_description' => $this->leader3Description,
+            'leader_3_image' => $leader3Path,
+            'leader_4_name' => $this->leader4Name,
+            'leader_4_title' => $this->leader4Title,
+            'leader_4_description' => $this->leader4Description,
+            'leader_4_image' => $leader4Path,
         ];
 
         Storage::put('settings.json', json_encode($settings, JSON_PRETTY_PRINT));
 
         $this->logoFile = null;
         $this->faviconFile = null;
+        $this->leader1File = null;
+        $this->leader2File = null;
+        $this->leader3File = null;
+        $this->leader4File = null;
 
         session()->flash('status', 'System configuration saved successfully.');
     }
