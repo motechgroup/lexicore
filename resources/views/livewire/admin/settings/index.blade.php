@@ -329,6 +329,136 @@
                 </div>
             </div>
 
+            </div>
+
+            <!-- Notification Preferences -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">notifications_active</span>
+                    Notification Preferences
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-[10px] text-slate-400 uppercase tracking-wider">Email Channels</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
+                                <input wire:model="notifyCaseUpdateEmail" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                                Case Updates / Status Changes
+                            </label>
+                            <label class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
+                                <input wire:model="notifyAppointmentBookingEmail" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                                Appointment Consultation Bookings
+                            </label>
+                            <label class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
+                                <input wire:model="notifyInvoiceGeneratedEmail" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                                Retainer Invoices Generated
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-[10px] text-slate-400 uppercase tracking-wider">SMS Channels</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
+                                <input wire:model="notifyCaseUpdateSms" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                                Case Updates / Status Changes
+                            </label>
+                            <label class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
+                                <input wire:model="notifyAppointmentBookingSms" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                                Appointment Consultation Bookings
+                            </label>
+                            <label class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
+                                <input wire:model="notifyInvoiceGeneratedSms" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                                Retainer Invoices Generated
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SMS Gateway Configurations -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">sms</span>
+                    SMS Gateway Configurations (Twilio)
+                </h3>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <label for="smsGatewayEnabled" class="font-bold text-[11px] text-slate-550 uppercase tracking-wider flex items-center gap-2 cursor-pointer">
+                            <input wire:model.live="smsGatewayEnabled" id="smsGatewayEnabled" type="checkbox" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 rounded focus:ring-primary" />
+                            Enable Twilio Gateway
+                        </label>
+                    </div>
+
+                    @if($smsGatewayEnabled)
+                        <div class="space-y-4 animate-in fade-in duration-200">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="twilioSid" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Twilio Account SID</label>
+                                    <input wire:model="twilioSid" id="twilioSid" type="text" placeholder="AC..."
+                                           class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                                    <x-input-error :messages="$errors->get('twilioSid')" class="mt-1" />
+                                </div>
+                                <div>
+                                    <label for="twilioAuthToken" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Twilio Auth Token</label>
+                                    <input wire:model="twilioAuthToken" id="twilioAuthToken" type="password"
+                                           class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                                    <x-input-error :messages="$errors->get('twilioAuthToken')" class="mt-1" />
+                                </div>
+                            </div>
+                            <div>
+                                <label for="twilioFromNumber" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Twilio From Number (Sender ID)</label>
+                                <input wire:model="twilioFromNumber" id="twilioFromNumber" type="text" placeholder="+1..."
+                                       class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                                <x-input-error :messages="$errors->get('twilioFromNumber')" class="mt-1" />
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <!-- SMS Templates Manager -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">quick_reference_all</span>
+                    SMS Notification Templates
+                </h3>
+
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="smsTemplateAppointment" class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-[10px]">Appointment Booked Template</label>
+                            <span class="text-[9px] text-slate-400 font-mono">Placeholders: {client_name}, {appointment_date}</span>
+                        </div>
+                        <textarea wire:model="smsTemplateAppointment" id="smsTemplateAppointment" rows="2"
+                                  class="block w-full px-4 py-2.5 text-xs font-mono bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                        <x-input-error :messages="$errors->get('smsTemplateAppointment')" class="mt-1" />
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="smsTemplateInvoice" class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-[10px]">Invoice Generated Template</label>
+                            <span class="text-[9px] text-slate-400 font-mono">Placeholders: {client_name}, {invoice_number}, {invoice_total}</span>
+                        </div>
+                        <textarea wire:model="smsTemplateInvoice" id="smsTemplateInvoice" rows="2"
+                                  class="block w-full px-4 py-2.5 text-xs font-mono bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                        <x-input-error :messages="$errors->get('smsTemplateInvoice')" class="mt-1" />
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="smsTemplateCase" class="font-semibold text-xs text-slate-500 uppercase tracking-wider text-[10px]">Case Updated Template</label>
+                            <span class="text-[9px] text-slate-400 font-mono">Placeholders: {client_name}, {case_number}, {case_status}</span>
+                        </div>
+                        <textarea wire:model="smsTemplateCase" id="smsTemplateCase" rows="2"
+                                  class="block w-full px-4 py-2.5 text-xs font-mono bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                        <x-input-error :messages="$errors->get('smsTemplateCase')" class="mt-1" />
+                    </div>
+                </div>
+            </div>
+
             <!-- 4. Legal pages content -->
             <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
                 <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">

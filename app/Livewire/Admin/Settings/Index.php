@@ -88,6 +88,35 @@ class Index extends Component
 
     public $paypalMode = 'sandbox';
 
+    // Notification Toggles settings properties
+    public $notifyCaseUpdateEmail = true;
+
+    public $notifyCaseUpdateSms = false;
+
+    public $notifyAppointmentBookingEmail = true;
+
+    public $notifyAppointmentBookingSms = false;
+
+    public $notifyInvoiceGeneratedEmail = true;
+
+    public $notifyInvoiceGeneratedSms = false;
+
+    // SMS Gateway settings properties
+    public $smsGatewayEnabled = false;
+
+    public $twilioSid;
+
+    public $twilioAuthToken;
+
+    public $twilioFromNumber;
+
+    // SMS Templates settings properties
+    public $smsTemplateAppointment;
+
+    public $smsTemplateInvoice;
+
+    public $smsTemplateCase;
+
     protected $rules = [
         'firmName' => 'required|string|max:100',
         'taxRate' => 'required|numeric|min:0|max:100',
@@ -129,6 +158,21 @@ class Index extends Component
         'paypalClientId' => 'nullable|string|max:255',
         'paypalSecret' => 'nullable|string|max:255',
         'paypalMode' => 'required|string|in:sandbox,live',
+
+        // Notifications & SMS Validation
+        'notifyCaseUpdateEmail' => 'boolean',
+        'notifyCaseUpdateSms' => 'boolean',
+        'notifyAppointmentBookingEmail' => 'boolean',
+        'notifyAppointmentBookingSms' => 'boolean',
+        'notifyInvoiceGeneratedEmail' => 'boolean',
+        'notifyInvoiceGeneratedSms' => 'boolean',
+        'smsGatewayEnabled' => 'boolean',
+        'twilioSid' => 'nullable|string|max:255',
+        'twilioAuthToken' => 'nullable|string|max:255',
+        'twilioFromNumber' => 'nullable|string|max:50',
+        'smsTemplateAppointment' => 'required|string|max:500',
+        'smsTemplateInvoice' => 'required|string|max:500',
+        'smsTemplateCase' => 'required|string|max:500',
     ];
 
     /**
@@ -182,6 +226,25 @@ class Index extends Component
         $this->paypalClientId = $settings['paypal_client_id'] ?? '';
         $this->paypalSecret = $settings['paypal_secret'] ?? '';
         $this->paypalMode = $settings['paypal_mode'] ?? 'sandbox';
+
+        // Mount Notification defaults
+        $this->notifyCaseUpdateEmail = (bool) ($settings['notify_case_update_email'] ?? true);
+        $this->notifyCaseUpdateSms = (bool) ($settings['notify_case_update_sms'] ?? false);
+        $this->notifyAppointmentBookingEmail = (bool) ($settings['notify_appointment_booking_email'] ?? true);
+        $this->notifyAppointmentBookingSms = (bool) ($settings['notify_appointment_booking_sms'] ?? false);
+        $this->notifyInvoiceGeneratedEmail = (bool) ($settings['notify_invoice_generated_email'] ?? true);
+        $this->notifyInvoiceGeneratedSms = (bool) ($settings['notify_invoice_generated_sms'] ?? false);
+
+        // Mount SMS Gateway defaults
+        $this->smsGatewayEnabled = (bool) ($settings['sms_gateway_enabled'] ?? false);
+        $this->twilioSid = $settings['twilio_sid'] ?? '';
+        $this->twilioAuthToken = $settings['twilio_auth_token'] ?? '';
+        $this->twilioFromNumber = $settings['twilio_from_number'] ?? '';
+
+        // Mount SMS Templates defaults
+        $this->smsTemplateAppointment = $settings['sms_template_appointment'] ?? 'Hi {client_name}, your consultation at LexCore is scheduled for {appointment_date}.';
+        $this->smsTemplateInvoice = $settings['sms_template_invoice'] ?? 'Dear {client_name}, a new invoice {invoice_number} has been generated. Total due: {invoice_total}.';
+        $this->smsTemplateCase = $settings['sms_template_case'] ?? 'Hello, your case file {case_number} has been updated to: {case_status}.';
     }
 
     /**
@@ -280,6 +343,25 @@ class Index extends Component
             'paypal_client_id' => $this->paypalClientId,
             'paypal_secret' => $this->paypalSecret,
             'paypal_mode' => $this->paypalMode,
+
+            // Persist Notification Preferences settings
+            'notify_case_update_email' => $this->notifyCaseUpdateEmail,
+            'notify_case_update_sms' => $this->notifyCaseUpdateSms,
+            'notify_appointment_booking_email' => $this->notifyAppointmentBookingEmail,
+            'notify_appointment_booking_sms' => $this->notifyAppointmentBookingSms,
+            'notify_invoice_generated_email' => $this->notifyInvoiceGeneratedEmail,
+            'notify_invoice_generated_sms' => $this->notifyInvoiceGeneratedSms,
+
+            // Persist SMS Gateway settings
+            'sms_gateway_enabled' => $this->smsGatewayEnabled,
+            'twilio_sid' => $this->twilioSid,
+            'twilio_auth_token' => $this->twilioAuthToken,
+            'twilio_from_number' => $this->twilioFromNumber,
+
+            // Persist SMS Templates settings
+            'sms_template_appointment' => $this->smsTemplateAppointment,
+            'sms_template_invoice' => $this->smsTemplateInvoice,
+            'sms_template_case' => $this->smsTemplateCase,
         ];
 
         Storage::put('settings.json', json_encode($settings, JSON_PRETTY_PRINT));
