@@ -44,10 +44,12 @@
                     {{ config('system.firm_name', 'Lexis & Co.') }}
                 </a>
                 <div class="hidden md:flex items-center gap-md">
-                    <a class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary py-sm" href="#practice-areas">Practice Areas</a>
-                    <a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-primary transition-colors py-sm" href="#statistics">Statistics</a>
-                    <a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-primary transition-colors py-sm" href="#attorneys">Attorneys</a>
-                    <a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-primary transition-colors py-sm" href="#testimonials">Testimonials</a>
+                    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-sm" href="#about">About</a>
+                    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-sm" href="#practice-areas">Practice Areas</a>
+                    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-sm" href="#statistics">Statistics</a>
+                    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-sm" href="#attorneys">Attorneys</a>
+                    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-sm" href="#faq">FAQ</a>
+                    <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-sm" href="#contact">Contact</a>
                 </div>
             </div>
             <div class="flex items-center gap-md">
@@ -95,6 +97,54 @@
                 <p class="font-body-sm text-body-sm text-on-surface-variant">"Unparalleled strategic insight and a relentless commitment to our corporate interests."</p>
                 <div class="mt-md border-t border-outline-variant pt-md">
                     <span class="font-label-sm text-label-sm font-bold">Fortune 500 General Counsel</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Mission / Values Section -->
+        <section id="about" class="py-3xl px-lg lg:px-3xl bg-white">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
+                <div class="lg:col-span-5 space-y-md">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Our Heritage</span>
+                    <h2 class="font-display-lg text-headline-lg text-primary leading-tight">Elite counsel built on trust and strategic agility.</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Founded in 1984, LexCore has built a legacy of uncompromising advocacy. We protect your enterprise, your innovations, and your generational assets through rigorous diligence.</p>
+                    <div class="flex items-center gap-md pt-sm">
+                        <div class="flex flex-col">
+                            <span class="font-display-md text-primary font-bold text-[28px]">1984</span>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest text-[9px]">Year Founded</span>
+                        </div>
+                        <div class="w-px h-10 bg-outline-variant"></div>
+                        <div class="flex flex-col">
+                            <span class="font-display-md text-primary font-bold text-[28px]">98%</span>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest text-[9px]">Success Rate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-lg">
+                    <!-- Mission Card -->
+                    <div class="p-xl bg-surface-container-low rounded-2xl border border-outline-variant space-y-sm">
+                        <span class="material-symbols-outlined text-primary text-3xl">explore</span>
+                        <h4 class="font-headline-md text-base text-primary font-bold">Our Mission</h4>
+                        <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">To deliver sophisticated, result-oriented legal counsel that safeguards client assets, fosters commercial innovation, and upholds justice with absolute integrity.</p>
+                    </div>
+                    <!-- Vision Card -->
+                    <div class="p-xl bg-surface-container-low rounded-2xl border border-outline-variant space-y-sm">
+                        <span class="material-symbols-outlined text-primary text-3xl">visibility</span>
+                        <h4 class="font-headline-md text-base text-primary font-bold">Our Vision</h4>
+                        <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">To remain the global benchmark for professional legal excellence, pioneering adaptive strategies for complex commercial and private client affairs.</p>
+                    </div>
+                    <!-- Value 1 -->
+                    <div class="p-xl bg-surface-container-low rounded-2xl border border-outline-variant space-y-sm">
+                        <span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+                        <h4 class="font-headline-md text-base text-primary font-bold">Absolute Integrity</h4>
+                        <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">Upholding strict attorney-client privilege, professional transparency, and ethical standards across all dockets and advisory roles.</p>
+                    </div>
+                    <!-- Value 2 -->
+                    <div class="p-xl bg-surface-container-low rounded-2xl border border-outline-variant space-y-sm">
+                        <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+                        <h4 class="font-headline-md text-base text-primary font-bold">Strategic Agility</h4>
+                        <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">Combining cross-disciplinary legal foresight with modern technological agility to resolve complex multi-jurisdictional matters.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -274,6 +324,139 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-3xl px-lg lg:px-3xl bg-white border-t border-outline-variant">
+            <div class="max-w-4xl mx-auto space-y-xl">
+                <div class="text-center space-y-sm">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Answers to your queries</span>
+                    <h2 class="font-display-lg text-headline-lg text-primary">Frequently Asked Questions</h2>
+                    <p class="font-body-sm text-xs text-on-surface-variant max-w-md mx-auto">Get answers to the most common queries regarding our representation, client onboarding, and billing processes.</p>
+                </div>
+
+                <div class="space-y-sm">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item border border-outline-variant rounded-2xl overflow-hidden bg-surface-container-lowest">
+                        <button class="w-full flex justify-between items-center p-xl font-headline-md text-sm text-primary text-left focus:outline-none select-none transition-all">
+                            <span>How do I establish representation with LexCore?</span>
+                            <span class="material-symbols-outlined faq-icon transition-transform">add</span>
+                        </button>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-xl pt-0 font-body-sm text-xs text-on-surface-variant leading-relaxed border-t border-slate-50 dark:border-slate-800">
+                                Representation is established solely after a formal conflict-of-interest check is conducted and a written retainer agreement is executed by an authorized partner of LexCore. Booking an initial consultation does not form an attorney-client relationship.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item border border-outline-variant rounded-2xl overflow-hidden bg-surface-container-lowest">
+                        <button class="w-full flex justify-between items-center p-xl font-headline-md text-sm text-primary text-left focus:outline-none select-none transition-all">
+                            <span>What are your billing rates and fee structures?</span>
+                            <span class="material-symbols-outlined faq-icon transition-transform">add</span>
+                        </button>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-xl pt-0 font-body-sm text-xs text-on-surface-variant leading-relaxed border-t border-slate-50 dark:border-slate-800">
+                                We offer hourly billing, flat-fee retainers, and structured contingency fee schedules depending on the scope of the matter. All billings are managed and tracked transparently through our secure Client Portal.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item border border-outline-variant rounded-2xl overflow-hidden bg-surface-container-lowest">
+                        <button class="w-full flex justify-between items-center p-xl font-headline-md text-sm text-primary text-left focus:outline-none select-none transition-all">
+                            <span>Is the data uploaded to the Client Portal secure?</span>
+                            <span class="material-symbols-outlined faq-icon transition-transform">add</span>
+                        </button>
+                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-xl pt-0 font-body-sm text-xs text-on-surface-variant leading-relaxed border-t border-slate-50 dark:border-slate-800">
+                                Yes. All client matter files, hearing schedules, and communication dockets are protected by state-of-the-art SSL/TLS encryption and strict database access controls, ensuring absolute confidentiality and attorney-client privilege.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Inquiry Section -->
+        <section id="contact" class="py-3xl px-lg lg:px-3xl bg-surface-container-low border-t border-outline-variant">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-xl">
+                <!-- Info Column -->
+                <div class="lg:col-span-5 space-y-lg">
+                    <div class="space-y-sm">
+                        <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Reach Out</span>
+                        <h2 class="font-display-lg text-headline-lg text-primary">Contact Our Offices</h2>
+                        <p class="font-body-sm text-xs text-on-surface-variant">Speak directly with our intake coordinators to discuss scheduling parameters or matter escalations.</p>
+                    </div>
+
+                    <div class="space-y-md text-xs">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">pin_drop</span>
+                            <div>
+                                <h5 class="font-bold text-slate-700">Global Headquarters</h5>
+                                <p class="text-on-surface-variant">{{ config('system.firm_address', '100 Legal Way, Suite 400, New York, NY') }}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">phone_in_talk</span>
+                            <div>
+                                <h5 class="font-bold text-slate-700">Intake Hotline</h5>
+                                <p class="text-on-surface-variant">{{ config('system.firm_phone', '+1 (555) 019-2834') }}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">mail</span>
+                            <div>
+                                <h5 class="font-bold text-slate-700">General Inquiries</h5>
+                                <p class="text-on-surface-variant">{{ config('system.firm_email', 'admin@lexcore.test') }}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">schedule</span>
+                            <div>
+                                <h5 class="font-bold text-slate-700">Office Hours</h5>
+                                <p class="text-on-surface-variant">Monday – Friday: 8:00 AM – 6:00 PM EST</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inquiry Form Column -->
+                <div class="lg:col-span-7 bg-white p-xl rounded-2xl border border-outline-variant shadow-sm space-y-4">
+                    <h3 class="font-headline-md text-base text-primary font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">chat_bubble</span>
+                        Send a Message
+                    </h3>
+                    <form id="inquiry-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="inquiry-name" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Your Name</label>
+                                <input type="text" id="inquiry-name" required class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/20 text-slate-800" />
+                            </div>
+                            <div>
+                                <label for="inquiry-email" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Email Address</label>
+                                <input type="email" id="inquiry-email" required class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/20 text-slate-800" />
+                            </div>
+                        </div>
+                        <div>
+                            <label for="inquiry-subject" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Subject</label>
+                            <input type="text" id="inquiry-subject" required class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/20 text-slate-800" />
+                        </div>
+                        <div>
+                            <label for="inquiry-message" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Message Details</label>
+                            <textarea id="inquiry-message" rows="4" required class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary/20 text-slate-800"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-2.5 bg-primary text-white hover:opacity-90 font-semibold text-xs rounded-xl transition-all shadow-md shadow-indigo-900/10 flex items-center justify-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">send</span>
+                            Submit Inquiry
+                        </button>
+                        <div id="inquiry-success" class="hidden p-3 bg-emerald-50 text-emerald-800 text-[10px] rounded-xl flex items-center gap-2 border border-emerald-150">
+                            <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                            Thank you! Your inquiry has been logged successfully. Our intake coordinators will contact you shortly.
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -551,6 +734,61 @@
                     closePracticeModal();
                 }
             });
+
+            // Cookie Consent Banner Logic
+            const cookieBanner = document.getElementById("cookie-consent");
+            const acceptCookiesBtn = document.getElementById("accept-cookies");
+
+            if (cookieBanner && !localStorage.getItem("cookie_consent_accepted")) {
+                cookieBanner.classList.remove("hidden");
+                setTimeout(() => {
+                    cookieBanner.classList.remove("translate-y-20", "opacity-0");
+                }, 1000);
+            }
+
+            if (acceptCookiesBtn) {
+                acceptCookiesBtn.addEventListener("click", () => {
+                    localStorage.setItem("cookie_consent_accepted", "true");
+                    cookieBanner.classList.add("translate-y-20", "opacity-0");
+                    setTimeout(() => {
+                        cookieBanner.classList.add("hidden");
+                    }, 300);
+                });
+            }
+
+            // FAQ Accordion Logic
+            const faqItems = document.querySelectorAll(".faq-item");
+            faqItems.forEach(item => {
+                const btn = item.querySelector("button");
+                const answer = item.querySelector(".faq-answer");
+                const icon = item.querySelector(".faq-icon");
+
+                btn.addEventListener("click", () => {
+                    const isOpen = answer.style.maxHeight && answer.style.maxHeight !== "0px";
+                    
+                    document.querySelectorAll(".faq-answer").forEach(ans => ans.style.maxHeight = "0px");
+                    document.querySelectorAll(".faq-icon").forEach(ic => ic.textContent = "add");
+
+                    if (!isOpen) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        icon.textContent = "remove";
+                    }
+                });
+            });
+
+            // Contact Inquiry Form Logic
+            const inquiryForm = document.getElementById("inquiry-form");
+            const inquirySuccess = document.getElementById("inquiry-success");
+
+            if (inquiryForm) {
+                inquiryForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    inquirySuccess.classList.remove("hidden");
+                    inquiryForm.querySelectorAll("input, textarea, button").forEach(el => {
+                        if (el.id !== "inquiry-success") el.style.display = "none";
+                    });
+                });
+            }
         });
     </script>
 
@@ -589,6 +827,25 @@
                     <span class="material-symbols-outlined text-[16px]">calendar_month</span>
                     Book Consultation
                 </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="fixed bottom-4 left-4 right-4 md:left-6 md:right-auto md:max-w-md bg-slate-900 text-slate-100 p-4 rounded-2xl border border-slate-800 shadow-2xl z-50 transition-all transform translate-y-20 opacity-0 duration-300 hidden">
+        <div class="flex flex-col gap-3">
+            <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-secondary text-[24px]">cookie</span>
+                <div class="space-y-1">
+                    <h4 class="font-bold text-xs">We value your privacy</h4>
+                    <p class="text-[10px] text-slate-400 leading-relaxed">
+                        We use essential cookies to maintain your login session and theme preferences. By clicking "Accept All", you agree to our policies.
+                    </p>
+                </div>
+            </div>
+            <div class="flex justify-end gap-2 text-[10px] font-semibold">
+                <a href="/privacy" class="px-3 py-1.5 text-slate-400 hover:text-slate-200 transition-colors">Privacy Policy</a>
+                <button id="accept-cookies" class="px-4 py-1.5 bg-primary text-white hover:opacity-90 rounded-lg transition-all">Accept All</button>
             </div>
         </div>
     </div>
