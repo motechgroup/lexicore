@@ -10,7 +10,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
-#[Layout('layouts.guest')]
+#[Layout('layouts.installer')]
 class Installer extends Component
 {
     public int $step = 1;
