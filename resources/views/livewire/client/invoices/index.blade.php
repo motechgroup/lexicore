@@ -99,6 +99,10 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Pagination Controls -->
+            <div class="px-6 py-4 border-t border-slate-100 dark:border-slate-800/80">
+                {{ $invoices->links() }}
+            </div>
         @endif
     </div>
 </div>

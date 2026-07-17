@@ -5,9 +5,12 @@ namespace App\Livewire\Admin\Appointments;
 use App\Models\Consultation;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
     public $search = '';
 
     // Create Appointment Form Fields
@@ -31,6 +34,14 @@ class Index extends Component
         'status' => 'required|string',
         'notes' => 'nullable|string',
     ];
+
+    /**
+     * Reset pagination on search updates.
+     */
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     /**
      * Schedule a new appointment.
@@ -71,7 +82,7 @@ class Index extends Component
             });
         }
 
-        $appointments = $query->get();
+        $appointments = $query->paginate(10);
         $clients = User::role('client')->orderBy('name', 'asc')->get();
         $attorneys = User::role(['staff', 'admin'])->orderBy('name', 'asc')->get();
 

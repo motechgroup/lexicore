@@ -131,6 +131,9 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="mt-6">
+                    {{ $appointments->links() }}
+                </div>
             @endif
         </div>
 

@@ -4,10 +4,13 @@ namespace App\Livewire\Admin\Staff;
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
 
 class Index extends Component
 {
+    use WithPagination;
+
     public $search = '';
 
     // Modal and edit form state
@@ -35,6 +38,14 @@ class Index extends Component
         'editExperienceYears' => 'required|integer|min:0',
         'editBio' => 'nullable|string',
     ];
+
+    /**
+     * Reset pagination on search updates.
+     */
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     /**
      * Open the edit modal and populate state.
@@ -100,7 +111,7 @@ class Index extends Component
             $query->where('name', 'like', '%'.$this->search.'%');
         }
 
-        $members = $query->orderBy('name', 'asc')->get();
+        $members = $query->orderBy('name', 'asc')->paginate(10);
         $roles = Role::whereIn('name', ['admin', 'staff'])->get();
 
         return view('livewire.admin.staff.index', compact('members', 'roles'))

@@ -4,9 +4,12 @@ namespace App\Livewire\Client\Invoices;
 
 use App\Models\Invoice;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
     /**
      * Render the Livewire component.
      */
@@ -16,7 +19,7 @@ class Index extends Component
         $invoices = Invoice::where('client_id', $clientId)
             ->with(['matter'])
             ->orderBy('due_date', 'asc')
-            ->get();
+            ->paginate(10);
 
         // Calculate total outstanding balance
         $outstandingBalance = Invoice::where('client_id', $clientId)
