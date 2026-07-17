@@ -113,13 +113,18 @@
                             <div class="min-w-0 flex-1 text-xs">
                                 <div class="flex items-center justify-between gap-4 mb-1">
                                     <h4 class="font-bold text-slate-850 dark:text-white truncate">Client: {{ $app->client ? $app->client->name : $app->name }}</h4>
-                                    <span class="px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-wider
-                                        {{ $app->status === 'completed' ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30' : '' }}
-                                        {{ $app->status === 'cancelled' ? 'bg-slate-100 text-slate-500 dark:bg-slate-800' : '' }}
-                                        {{ $app->status === 'scheduled' ? 'bg-blue-50 text-blue-600 dark:bg-blue-950/30' : '' }}
-                                    ">
-                                        {{ $app->status }}
-                                    </span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-wider
+                                            {{ $app->status === 'completed' ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30' : '' }}
+                                            {{ $app->status === 'cancelled' ? 'bg-slate-100 text-slate-500 dark:bg-slate-800' : '' }}
+                                            {{ $app->status === 'scheduled' ? 'bg-blue-50 text-blue-600 dark:bg-blue-950/30' : '' }}
+                                        ">
+                                            {{ $app->status }}
+                                        </span>
+                                        <button wire:click="editAppointment({{ $app->id }})" class="text-slate-400 hover:text-primary dark:hover:text-blue-400 transition-colors flex" title="Manage Consultation">
+                                            <span class="material-symbols-outlined text-[16px]">edit</span>
+                                        </button>
+                                    </div>
                                 </div>
                                 <p class="text-[10px] font-semibold text-slate-450 dark:text-slate-400 uppercase tracking-wider mb-2">
                                     Attorney: {{ $app->attorney ? $app->attorney->name : 'Pending Assignment' }} &bull; Time: {{ $app->scheduled_at->format('g:i A') }} ({{ $app->duration_minutes }} Mins)
@@ -138,4 +143,91 @@
         </div>
 
     </div>
+
+    <!-- Edit/Manage Appointment Modal -->
+    @if($showEditModal)
+        <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm transition-all" wire:key="edit-appointment-modal">
+            <div class="w-full max-w-lg bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
+                <div class="flex justify-between items-center pb-3 border-b border-slate-100 dark:border-slate-800">
+                    <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-primary text-[20px]">calendar_month</span>
+                        Manage Consultation Details
+                    </h3>
+                    <button wire:click="$set('showEditModal', false)" class="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <form wire:submit="saveAppointment" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Client -->
+                        <div>
+                            <label for="editClientId" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Client / Guest</label>
+                            <select wire:model="editClientId" id="editClientId"
+                                    class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-slate-850 dark:text-slate-250">
+                                <option value="">External / Guest Client</option>
+                                @foreach($clients as $c)
+                                    <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('editClientId')" class="mt-1" />
+                        </div>
+                        <!-- Attorney -->
+                        <div>
+                            <label for="editAttorneyId" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Assigned Attorney</label>
+                            <select wire:model="editAttorneyId" id="editAttorneyId"
+                                    class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-slate-850 dark:text-slate-250">
+                                <option value="">Unassigned (Pending)</option>
+                                @foreach($attorneys as $at)
+                                    <option value="{{ $at->id }}">{{ $at->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('editAttorneyId')" class="mt-1" />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Date -->
+                        <div>
+                            <label for="editScheduledAt" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Scheduled Date & Time</label>
+                            <input wire:model="editScheduledAt" id="editScheduledAt" type="datetime-local"
+                                   class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-slate-800 dark:text-slate-200" />
+                            <x-input-error :messages="$errors->get('editScheduledAt')" class="mt-1" />
+                        </div>
+                        <!-- Status -->
+                        <div>
+                            <label for="editStatus" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Status</label>
+                            <select wire:model="editStatus" id="editStatus"
+                                    class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none text-slate-800 dark:text-slate-200">
+                                <option value="pending">Pending</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            <x-input-error :messages="$errors->get('editStatus')" class="mt-1" />
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div>
+                        <label for="editNotes" class="font-semibold text-xs text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">Consultation Agenda / Purpose</label>
+                        <textarea wire:model="editNotes" id="editNotes" rows="4" placeholder="Agenda notes..."
+                                  class="block w-full px-3.5 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                        <x-input-error :messages="$errors->get('editNotes')" class="mt-1" />
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <button type="button" wire:click="$set('showEditModal', false)" class="px-4 py-2 bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700/85 text-slate-700 dark:text-slate-300 font-semibold text-xs rounded-xl transition-all">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-primary text-white hover:opacity-90 font-semibold text-xs rounded-xl transition-all shadow-md shadow-indigo-900/10 flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">save</span>
+                            Save Consultation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endif
 </div>

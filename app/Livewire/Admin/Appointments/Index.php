@@ -26,9 +26,26 @@ class Index extends Component
 
     public $notes;
 
+    // Edit/Manage Appointment Form Fields
+    public $showEditModal = false;
+
+    public $selectedAppointmentId;
+
+    public $editClientId;
+
+    public $editAttorneyId;
+
+    public $editScheduledAt;
+
+    public $editDurationMinutes = 60;
+
+    public $editStatus = 'scheduled';
+
+    public $editNotes;
+
     protected $rules = [
         'client_id' => 'required|exists:users,id',
-        'attorney_id' => 'required|exists:users,id',
+        'attorney_id' => 'nullable|exists:users,id',
         'scheduled_at' => 'required|date',
         'duration_minutes' => 'required|integer|min:15',
         'status' => 'required|string',
@@ -52,15 +69,58 @@ class Index extends Component
 
         Consultation::create([
             'client_id' => $this->client_id,
-            'attorney_id' => $this->attorney_id,
-            'scheduled_at' => $this->scheduled_at,
-            'duration_minutes' => $this->duration_minutes,
-            'status' => $this->status,
+            'assigned_attorney_id' => $this->attorney_id,
+            'appointment_date' => $this->scheduled_at,
             'notes' => $this->notes,
+            'status' => $this->status,
         ]);
 
         $this->reset(['client_id', 'attorney_id', 'scheduled_at', 'duration_minutes', 'status', 'notes']);
         session()->flash('status', 'Consultation scheduled successfully.');
+    }
+
+    /**
+     * Open manage appointment modal.
+     */
+    public function editAppointment($id)
+    {
+        $app = Consultation::findOrFail($id);
+
+        $this->selectedAppointmentId = $app->id;
+        $this->editClientId = $app->client_id;
+        $this->editAttorneyId = $app->assigned_attorney_id;
+        $this->editScheduledAt = $app->appointment_date ? $app->appointment_date->format('Y-m-d\TH:i') : '';
+        $this->editStatus = $app->status;
+        $this->editNotes = $app->notes;
+
+        $this->showEditModal = true;
+    }
+
+    /**
+     * Save managed appointment changes.
+     */
+    public function saveAppointment()
+    {
+        $this->validate([
+            'editClientId' => 'nullable|exists:users,id',
+            'editAttorneyId' => 'nullable|exists:users,id',
+            'editScheduledAt' => 'required|date',
+            'editStatus' => 'required|string',
+            'editNotes' => 'nullable|string',
+        ]);
+
+        $app = Consultation::findOrFail($this->selectedAppointmentId);
+
+        $app->update([
+            'client_id' => $this->editClientId ?: null,
+            'assigned_attorney_id' => $this->editAttorneyId ?: null,
+            'appointment_date' => $this->editScheduledAt,
+            'status' => $this->editStatus,
+            'notes' => $this->editNotes,
+        ]);
+
+        $this->showEditModal = false;
+        session()->flash('status', 'Consultation details updated successfully.');
     }
 
     /**
@@ -70,7 +130,7 @@ class Index extends Component
     {
         $query = Consultation::query()
             ->with(['client', 'attorney'])
-            ->orderBy('scheduled_at', 'asc');
+            ->orderBy('appointment_date', 'asc');
 
         if ($this->search) {
             $query->where(function ($q) {
@@ -78,7 +138,7 @@ class Index extends Component
                     $cq->where('name', 'like', '%'.$this->search.'%');
                 })->orWhereHas('attorney', function ($aq) {
                     $aq->where('name', 'like', '%'.$this->search.'%');
-                });
+                })->orWhere('name', 'like', '%'.$this->search.'%');
             });
         }
 
