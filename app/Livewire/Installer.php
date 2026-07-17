@@ -210,8 +210,10 @@ class Installer extends Component
             // 4. Create custom admin account
             $adminRole = Role::firstOrCreate(['name' => 'admin']);
 
-            // Delete seeded default admin if exists
+            // Delete seeded default admin and any phone/email conflicts if they exist
             User::where('email', $this->adminEmail)->delete();
+            User::where('email', 'admin@lexcore.test')->delete();
+            User::where('phone', '+15550192835')->delete();
 
             $admin = User::create([
                 'name' => $this->adminName,
