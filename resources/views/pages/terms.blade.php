@@ -33,7 +33,7 @@
 
     <main class="flex-1 max-w-4xl mx-auto px-6 py-12 w-full">
         <div class="prose prose-invert max-w-none bg-slate-950/40 border border-slate-850 p-8 rounded-2xl shadow-xl">
-            {!! nl2br(e(config('system.terms_conditions', 'Terms & Conditions are under construction.'))) !!}
+            {!! \Illuminate\Support\Str::markdown(config('system.terms_conditions', "# Terms & Conditions\nTerms & Conditions are under construction.")) !!}
         </div>
     </main>
 
