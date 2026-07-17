@@ -11,6 +11,7 @@ use App\Livewire\Admin\Dashboard as AdminDashboard;
 use App\Livewire\Client\Cases\Index;
 use App\Livewire\Client\Cases\Show;
 use App\Livewire\Client\Dashboard as ClientDashboard;
+use App\Livewire\Installer;
 
 Route::get('dashboard', function () {
     $user = auth()->user();
@@ -85,5 +86,7 @@ Route::view('profile', 'profile')
 Route::view('privacy', 'pages.privacy')->name('privacy');
 Route::view('terms', 'pages.terms')->name('terms');
 Route::view('accessibility', 'pages.accessibility')->name('accessibility');
+
+Route::get('install', Installer::class)->name('install.welcome');
 
 require __DIR__.'/auth.php';
