@@ -67,16 +67,28 @@
                         <x-input-error :messages="$errors->get('siteTheme')" class="mt-1" />
                     </div>
                     <div>
-                        <label for="logoUrl" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Logo Resource URL</label>
-                        <input wire:model="logoUrl" id="logoUrl" type="text" placeholder="e.g. /images/logo.png"
-                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
-                        <x-input-error :messages="$errors->get('logoUrl')" class="mt-1" />
+                        <label for="logoFile" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Upload Logo Image</label>
+                        <input wire:model="logoFile" id="logoFile" type="file" accept="image/*"
+                               class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:opacity-90 transition-all" />
+                        <x-input-error :messages="$errors->get('logoFile')" class="mt-1" />
+                        @if($logoUrl)
+                            <div class="mt-2 flex items-center gap-2">
+                                <span class="text-[10px] text-slate-400">Current Logo:</span>
+                                <img src="{{ $logoUrl }}" class="h-6 object-contain bg-slate-900/10 p-0.5 rounded" />
+                            </div>
+                        @endif
                     </div>
                     <div>
-                        <label for="faviconUrl" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Favicon URL</label>
-                        <input wire:model="faviconUrl" id="faviconUrl" type="text" placeholder="e.g. /favicon.ico"
-                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
-                        <x-input-error :messages="$errors->get('faviconUrl')" class="mt-1" />
+                        <label for="faviconFile" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Upload Favicon (.ico/.png)</label>
+                        <input wire:model="faviconFile" id="faviconFile" type="file" accept=".ico,.png,.jpg,.jpeg"
+                               class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:opacity-90 transition-all" />
+                        <x-input-error :messages="$errors->get('faviconFile')" class="mt-1" />
+                        @if($faviconUrl)
+                            <div class="mt-2 flex items-center gap-2">
+                                <span class="text-[10px] text-slate-400">Current Favicon:</span>
+                                <img src="{{ $faviconUrl }}" class="w-5 h-5 object-contain bg-slate-900/10 p-0.5 rounded" />
+                            </div>
+                        @endif
                     </div>
                 </div>
 

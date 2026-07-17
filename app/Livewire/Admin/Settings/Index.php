@@ -4,9 +4,12 @@ namespace App\Livewire\Admin\Settings;
 
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Index extends Component
 {
+    use WithFileUploads;
+
     public $firmName;
 
     public $taxRate;
@@ -25,6 +28,11 @@ class Index extends Component
     public $termsConditions;
 
     public $footerText;
+
+    // Livewire file uploads
+    public $logoFile;
+
+    public $faviconFile;
 
     // Homepage CMS settings properties
     public $heroTitle;
@@ -50,8 +58,6 @@ class Index extends Component
         'taxRate' => 'required|numeric|min:0|max:100',
         'paymentTerms' => 'nullable|string',
         'siteTheme' => 'required|string|in:dark,light,system',
-        'logoUrl' => 'nullable|string|max:255',
-        'faviconUrl' => 'nullable|string|max:255',
         'privacyPolicy' => 'nullable|string',
         'termsConditions' => 'nullable|string',
         'footerText' => 'nullable|string|max:255',
@@ -117,13 +123,47 @@ class Index extends Component
     {
         $this->validate();
 
+        $logoPath = $this->logoUrl;
+        if ($this->logoFile) {
+            $this->validate([
+                'logoFile' => 'image|max:2048', // 2MB Max
+            ]);
+            $ext = $this->logoFile->getClientOriginalExtension();
+            $logoName = 'logo.'.$ext;
+
+            if (! file_exists(public_path('branding'))) {
+                mkdir(public_path('branding'), 0755, true);
+            }
+
+            $this->logoFile->move(public_path('branding'), $logoName);
+            $logoPath = '/branding/'.$logoName;
+            $this->logoUrl = $logoPath;
+        }
+
+        $faviconPath = $this->faviconUrl;
+        if ($this->faviconFile) {
+            $this->validate([
+                'faviconFile' => 'mimes:ico,png,jpg,jpeg|max:1024', // 1MB Max
+            ]);
+            $ext = $this->faviconFile->getClientOriginalExtension();
+            $faviconName = 'favicon.'.$ext;
+
+            if (! file_exists(public_path('branding'))) {
+                mkdir(public_path('branding'), 0755, true);
+            }
+
+            $this->faviconFile->move(public_path('branding'), $faviconName);
+            $faviconPath = '/branding/'.$faviconName;
+            $this->faviconUrl = $faviconPath;
+        }
+
         $settings = [
             'firm_name' => $this->firmName,
             'tax_rate' => $this->taxRate,
             'payment_terms' => $this->paymentTerms,
             'site_theme' => $this->siteTheme,
-            'logo_url' => $this->logoUrl,
-            'favicon_url' => $this->faviconUrl,
+            'logo_url' => $logoPath,
+            'favicon_url' => $faviconPath,
             'privacy_policy' => $this->privacyPolicy,
             'terms_conditions' => $this->termsConditions,
             'footer_text' => $this->footerText,
@@ -141,6 +181,11 @@ class Index extends Component
         ];
 
         Storage::put('settings.json', json_encode($settings, JSON_PRETTY_PRINT));
+
+        // Reset file upload fields to clear inputs
+        $this->logoFile = null;
+        $this->faviconFile = null;
+
         session()->flash('status', 'System configuration saved successfully.');
     }
 
