@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Dotenv\Dotenv;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -199,7 +200,6 @@ class Installer extends Component
 
         try {
             // Read config directly from .env file to bypass any cached configs or state losses
-            $envPath = base_path('.env');
             $dbConfig = [
                 'connection' => 'mysql',
                 'host' => '127.0.0.1',
@@ -209,27 +209,39 @@ class Installer extends Component
                 'password' => '',
             ];
 
-            if (file_exists($envPath)) {
-                $lines = explode("\n", file_get_contents($envPath));
-                foreach ($lines as $line) {
-                    $line = trim($line);
-                    if (str_starts_with($line, 'DB_CONNECTION=')) {
-                        $dbConfig['connection'] = trim(explode('DB_CONNECTION=', $line)[1] ?? 'mysql', '"\' ');
-                    }
-                    if (str_starts_with($line, 'DB_HOST=')) {
-                        $dbConfig['host'] = trim(explode('DB_HOST=', $line)[1] ?? '127.0.0.1', '"\' ');
-                    }
-                    if (str_starts_with($line, 'DB_PORT=')) {
-                        $dbConfig['port'] = trim(explode('DB_PORT=', $line)[1] ?? '3306', '"\' ');
-                    }
-                    if (str_starts_with($line, 'DB_DATABASE=')) {
-                        $dbConfig['database'] = trim(explode('DB_DATABASE=', $line)[1] ?? '', '"\' ');
-                    }
-                    if (str_starts_with($line, 'DB_USERNAME=')) {
-                        $dbConfig['username'] = trim(explode('DB_USERNAME=', $line)[1] ?? '', '"\' ');
-                    }
-                    if (str_starts_with($line, 'DB_PASSWORD=')) {
-                        $dbConfig['password'] = trim(explode('DB_PASSWORD=', $line)[1] ?? '', '"\' ');
+            if (file_exists(base_path('.env'))) {
+                try {
+                    $dotenv = Dotenv::createMutable(base_path());
+                    $envData = $dotenv->load();
+
+                    $dbConfig['connection'] = $envData['DB_CONNECTION'] ?? 'mysql';
+                    $dbConfig['host'] = $envData['DB_HOST'] ?? '127.0.0.1';
+                    $dbConfig['port'] = $envData['DB_PORT'] ?? '3306';
+                    $dbConfig['database'] = $envData['DB_DATABASE'] ?? '';
+                    $dbConfig['username'] = $envData['DB_USERNAME'] ?? '';
+                    $dbConfig['password'] = $envData['DB_PASSWORD'] ?? '';
+                } catch (\Exception $e) {
+                    $lines = explode("\n", file_get_contents(base_path('.env')));
+                    foreach ($lines as $line) {
+                        $line = trim($line);
+                        if (str_starts_with($line, 'DB_CONNECTION=')) {
+                            $dbConfig['connection'] = trim(explode('DB_CONNECTION=', $line)[1] ?? 'mysql', '"\' ');
+                        }
+                        if (str_starts_with($line, 'DB_HOST=')) {
+                            $dbConfig['host'] = trim(explode('DB_HOST=', $line)[1] ?? '127.0.0.1', '"\' ');
+                        }
+                        if (str_starts_with($line, 'DB_PORT=')) {
+                            $dbConfig['port'] = trim(explode('DB_PORT=', $line)[1] ?? '3306', '"\' ');
+                        }
+                        if (str_starts_with($line, 'DB_DATABASE=')) {
+                            $dbConfig['database'] = trim(explode('DB_DATABASE=', $line)[1] ?? '', '"\' ');
+                        }
+                        if (str_starts_with($line, 'DB_USERNAME=')) {
+                            $dbConfig['username'] = trim(explode('DB_USERNAME=', $line)[1] ?? '', '"\' ');
+                        }
+                        if (str_starts_with($line, 'DB_PASSWORD=')) {
+                            $dbConfig['password'] = trim(explode('DB_PASSWORD=', $line)[1] ?? '', '"\' ');
+                        }
                     }
                 }
             }
