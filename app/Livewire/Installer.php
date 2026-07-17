@@ -197,6 +197,25 @@ class Installer extends Component
         ]);
 
         try {
+            // Apply database settings to active config in-memory before running migrations
+            if ($this->dbConnection === 'sqlite') {
+                config([
+                    'database.default' => 'sqlite',
+                    'database.connections.sqlite.database' => $this->dbDatabase,
+                ]);
+            } else {
+                config([
+                    'database.default' => 'mysql',
+                    'database.connections.mysql.host' => $this->dbHost,
+                    'database.connections.mysql.port' => $this->dbPort,
+                    'database.connections.mysql.database' => $this->dbDatabase,
+                    'database.connections.mysql.username' => $this->dbUsername,
+                    'database.connections.mysql.password' => $this->dbPassword,
+                ]);
+            }
+            DB::purge();
+            DB::reconnect();
+
             // 1. Clear caches first
             Artisan::call('config:clear');
             Artisan::call('cache:clear');
