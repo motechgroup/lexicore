@@ -74,13 +74,12 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
             </div>
             <div class="relative z-10 max-w-4xl">
-                <span class="inline-block py-xs px-md mb-md bg-secondary-container text-on-secondary-container font-label-sm text-label-sm rounded-full tracking-wider">ESTABLISHED 1984</span>
+                <span class="inline-block py-xs px-md mb-md bg-secondary-container text-on-secondary-container font-label-sm text-label-sm rounded-full tracking-wider">{{ config('system.hero_subtitle', 'ESTABLISHED 1984') }}</span>
                 <h1 class="font-display-lg text-display-lg text-primary mb-lg leading-tight">
-                    Sophisticated counsel for <br/>
-                    <span class="italic text-secondary">complex</span> legal landscapes.
+                    {!! nl2br(e(config('system.hero_title', 'Sophisticated counsel for complex legal landscapes.'))) !!}
                 </h1>
                 <p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-2xl">
-                    {{ config('system.firm_name', 'Lexis & Co.') }} provides elite representation across corporate, intellectual property, and high-stakes litigation matters. We combine heritage with modern agility to protect your legacy.
+                    {{ config('system.hero_description', 'LexCore Law Firm provides elite representation across corporate, intellectual property, and high-stakes litigation matters. We combine heritage with modern agility to protect your legacy.') }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-md">
                     <button class="bg-primary text-on-primary font-label-md text-label-md px-3xl py-md rounded-lg shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all">Book Consultation</button>
@@ -161,22 +160,22 @@
         <section id="statistics" class="py-3xl px-lg lg:px-3xl">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2xl">
                 <div class="text-center">
-                    <span class="block font-display-lg text-[56px] text-primary mb-xs">$2.4B+</span>
+                    <span class="block font-display-lg text-[56px] text-primary mb-xs">{{ config('system.stat_recovered', '$2.4B+') }}</span>
                     <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">In Settlements Recovered</span>
                 </div>
                 <div class="w-px h-16 bg-outline-variant hidden md:block"></div>
                 <div class="text-center">
-                    <span class="block font-display-lg text-[56px] text-primary mb-xs">40+</span>
+                    <span class="block font-display-lg text-[56px] text-primary mb-xs">{{ config('system.stat_years', '40+') }}</span>
                     <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Years of Advocacy</span>
                 </div>
                 <div class="w-px h-16 bg-outline-variant hidden md:block"></div>
                 <div class="text-center">
-                    <span class="block font-display-lg text-[56px] text-primary mb-xs">98%</span>
+                    <span class="block font-display-lg text-[56px] text-primary mb-xs">{{ config('system.stat_retention', '98%') }}</span>
                     <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Client Retention Rate</span>
                 </div>
                 <div class="w-px h-16 bg-outline-variant hidden md:block"></div>
                 <div class="text-center">
-                    <span class="block font-display-lg text-[56px] text-primary mb-xs">150+</span>
+                    <span class="block font-display-lg text-[56px] text-primary mb-xs">{{ config('system.stat_partners', '150+') }}</span>
                     <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Global Partners</span>
                 </div>
             </div>
@@ -293,8 +292,8 @@
                     </svg>
                 </div>
                 <div class="relative z-10">
-                    <h2 class="font-headline-lg text-[42px] text-on-primary mb-md leading-tight">Secure your future with <br/>proven expertise.</h2>
-                    <p class="font-body-lg text-body-lg text-on-primary/70 mb-xl max-w-2xl mx-auto">Contact us today for a confidential consultation. Our partners are ready to discuss your matter with the gravity it deserves.</p>
+                    <h2 class="font-headline-lg text-[42px] text-on-primary mb-md leading-tight">{{ config('system.cta_title', 'Secure your future with proven expertise.') }}</h2>
+                    <p class="font-body-lg text-body-lg text-on-primary/70 mb-xl max-w-2xl mx-auto">{{ config('system.cta_description', 'Contact us today for a confidential consultation. Our partners are ready to discuss your matter with the gravity it deserves.') }}</p>
                     <div class="flex flex-col sm:flex-row justify-center gap-md">
                         <button class="bg-on-primary text-primary font-label-md text-label-md px-3xl py-md rounded-lg hover:bg-surface-container transition-all">Book Consultation</button>
                         <a href="#contact" class="inline-flex items-center justify-center bg-transparent border border-on-primary/30 text-on-primary font-label-md text-label-md px-3xl py-md rounded-lg hover:bg-white/10 transition-all text-center">Contact Us</a>

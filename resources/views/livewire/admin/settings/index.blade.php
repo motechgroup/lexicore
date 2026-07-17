@@ -88,7 +88,79 @@
                 </div>
             </div>
 
-            <!-- 3. Legal pages content -->
+            <!-- 3. Homepage Content Manager -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">home</span>
+                    Homepage Sections & Hero CMS
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="heroSubtitle" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Hero Subtitle / Establish Tag</label>
+                        <input wire:model="heroSubtitle" id="heroSubtitle" type="text"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('heroSubtitle')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="heroTitle" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Hero Main Title</label>
+                        <input wire:model="heroTitle" id="heroTitle" type="text"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('heroTitle')" class="mt-1" />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="heroDescription" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Hero Subtext / Description</label>
+                    <textarea wire:model="heroDescription" id="heroDescription" rows="2"
+                              class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                    <x-input-error :messages="$errors->get('heroDescription')" class="mt-1" />
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-slate-100 dark:border-slate-800 pt-4">
+                    <div>
+                        <label for="statRecovered" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Settlements</label>
+                        <input wire:model="statRecovered" id="statRecovered" type="text"
+                               class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('statRecovered')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="statYears" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Advocacy Years</label>
+                        <input wire:model="statYears" id="statYears" type="text"
+                               class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('statYears')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="statRetention" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Retention Rate</label>
+                        <input wire:model="statRetention" id="statRetention" type="text"
+                               class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('statRetention')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="statPartners" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Global Partners</label>
+                        <input wire:model="statPartners" id="statPartners" type="text"
+                               class="block w-full px-3 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('statPartners')" class="mt-1" />
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-100 dark:border-slate-800 pt-4 space-y-4">
+                    <div>
+                        <label for="ctaTitle" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">CTA Card Title</label>
+                        <input wire:model="ctaTitle" id="ctaTitle" type="text"
+                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('ctaTitle')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="ctaDescription" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">CTA Card Description</label>
+                        <textarea wire:model="ctaDescription" id="ctaDescription" rows="2"
+                                  class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                        <x-input-error :messages="$errors->get('ctaDescription')" class="mt-1" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Legal pages content -->
             <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
                 <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
                     <span class="material-symbols-outlined text-[18px]">gavel</span>
