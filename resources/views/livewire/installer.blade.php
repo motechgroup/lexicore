@@ -228,9 +228,9 @@
                     </p>
                 </div>
 
-                <x-primary-button wire:click="completeInstallation" class="w-full justify-center bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5">
+                <a href="{{ route('login') }}" class="inline-flex items-center justify-center w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl transition-all shadow-md text-xs uppercase tracking-widest">
                     Go to Portal Login
-                </x-primary-button>
+                </a>
             </div>
         @endif
     </div>
