@@ -376,7 +376,7 @@ class DatabaseSeeder extends Seeder
             $pa = $faker->randomElement($practiceAreas);
 
             $m = Matter::create([
-                'case_number' => '2026-CV-'.rand(1000, 9999),
+                'case_number' => '2026-CV-'.(1000 + $i),
                 'title' => $faker->randomElement([
                     'Estate of '.$faker->lastName,
                     $faker->lastName.' v. '.$faker->company,
@@ -429,7 +429,7 @@ class DatabaseSeeder extends Seeder
             for ($k = 0; $k < rand(1, 2); $k++) {
                 $subtotal = rand(500, 15000);
                 $inv = Invoice::create([
-                    'invoice_number' => 'INV-2026-'.rand(10000, 99999),
+                    'invoice_number' => 'INV-2026-'.(10000 + ($i * 10) + $k),
                     'client_id' => $c->id,
                     'matter_id' => $m->id,
                     'status' => $faker->randomElement(['paid', 'unpaid']),
