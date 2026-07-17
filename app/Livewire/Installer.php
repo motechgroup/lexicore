@@ -276,10 +276,10 @@ class Installer extends Component
                 }
                 DB::statement('PRAGMA foreign_keys = ON');
             } else {
-                $tables = DB::select('SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE()');
+                $tables = DB::select('SELECT table_name AS name FROM information_schema.tables WHERE table_schema = DATABASE()');
                 DB::statement('SET FOREIGN_KEY_CHECKS = 0');
                 foreach ($tables as $table) {
-                    $name = $table->table_name;
+                    $name = $table->name;
                     DB::statement("DROP TABLE IF EXISTS `{$name}`");
                 }
                 DB::statement('SET FOREIGN_KEY_CHECKS = 1');
