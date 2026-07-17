@@ -11,6 +11,7 @@ use App\Models\Matter;
 use App\Models\PracticeArea;
 use App\Models\Task;
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -321,5 +322,132 @@ class DatabaseSeeder extends Seeder
             'matter_id' => $matter->id,
             'completed_at' => now()->subDays(1),
         ]);
+
+        // 10. Seed 50+ entries of high-fidelity demo data for scalability testing
+        $faker = Factory::create();
+
+        // Seed 10 mock staff attorneys
+        $attorneys = [$attorney];
+        for ($i = 0; $i < 10; $i++) {
+            $staff = User::create([
+                'name' => $faker->name,
+                'email' => "attorney{$i}@lexcore.test",
+                'phone' => '+15550'.rand(100000, 999999),
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]);
+            $staff->assignRole($staffRole);
+
+            AttorneyProfile::create([
+                'user_id' => $staff->id,
+                'title' => $faker->randomElement(['Senior Litigation Partner', 'Associate Attorney', 'M&A Specialist', 'IP Counsel', 'Managing Partner']),
+                'bio' => $faker->paragraph,
+                'education' => ['J.D., Harvard Law School', 'B.A., Yale University', 'J.D., Columbia Law School'],
+                'bar_admissions' => ['State Bar of New York', 'State Bar of California'],
+                'experience_years' => rand(3, 25),
+                'is_active' => true,
+                'order' => $i + 2,
+            ]);
+            $attorneys[] = $staff;
+        }
+
+        // Seed 50 clients (corporate and individual)
+        $clients = [$client];
+        for ($i = 1; $i <= 50; $i++) {
+            $clientUser = User::create([
+                'name' => $faker->randomElement([$faker->company, $faker->name]),
+                'email' => "client{$i}@lexcore.test",
+                'phone' => '+1555'.rand(1000000, 9999999),
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]);
+            $clientUser->assignRole($clientRole);
+            $clients[] = $clientUser;
+        }
+
+        // Seed 50 matters (cases) distributed across clients & attorneys
+        $practiceAreas = PracticeArea::all();
+        $statuses = ['Lead/Inquiry', 'Pre-Litigation', 'Discovery', 'Trial', 'Appeal', 'In Progress', 'Completed'];
+        $priorities = ['low', 'medium', 'high', 'critical'];
+
+        for ($i = 1; $i <= 50; $i++) {
+            $c = $faker->randomElement($clients);
+            $att = $faker->randomElement($attorneys);
+            $pa = $faker->randomElement($practiceAreas);
+
+            $m = Matter::create([
+                'case_number' => '2026-CV-'.rand(1000, 9999),
+                'title' => $faker->randomElement([
+                    'Estate of '.$faker->lastName,
+                    $faker->lastName.' v. '.$faker->company,
+                    $faker->company.' Restructuring',
+                    $faker->company.' Patent Acquisition',
+                    'Re: '.$faker->lastName.' Family Trust',
+                ]),
+                'description' => $faker->paragraph,
+                'client_id' => $c->id,
+                'practice_area_id' => $pa->id,
+                'lead_attorney_id' => $att->id,
+                'status' => $faker->randomElement($statuses),
+                'priority' => $faker->randomElement($priorities),
+                'court' => $faker->randomElement(['U.S. District Court, Southern District of NY', 'State Supreme Court', 'Delaware Court of Chancery', 'N/A (Transactional)']),
+                'judge' => 'Hon. '.$faker->lastName,
+                'opposing_party' => $faker->company,
+                'opposing_counsel' => $faker->name.', Esq. ('.$faker->lastName.' & Partners)',
+                'start_date' => $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d'),
+                'case_value' => rand(50000, 5000000),
+            ]);
+
+            // Seed hearings
+            if (rand(0, 1)) {
+                Hearing::create([
+                    'matter_id' => $m->id,
+                    'title' => $faker->randomElement(['Discovery Status Conference', 'Motion to Dismiss Hearing', 'Sanctions Review', 'Pre-Trial Motion Review']),
+                    'hearing_date' => $faker->dateTimeBetween('now', '+6 months'),
+                    'location' => 'Courtroom '.rand(100, 900),
+                    'notes' => $faker->sentence,
+                    'status' => 'scheduled',
+                ]);
+            }
+
+            // Seed tasks
+            for ($j = 0; $j < rand(1, 3); $j++) {
+                Task::create([
+                    'title' => $faker->randomElement(['Review document production', 'Draft response brief', 'Conduct deposition prep', 'Schedule mediator', 'Verify discovery checklist']),
+                    'description' => $faker->sentence,
+                    'due_date' => $faker->dateTimeBetween('-1 month', '+2 months'),
+                    'status' => $faker->randomElement(['pending', 'completed']),
+                    'priority' => $faker->randomElement(['low', 'medium', 'high']),
+                    'assignee_id' => $att->id,
+                    'creator_id' => $admin->id,
+                    'matter_id' => $m->id,
+                    'completed_at' => rand(0, 1) ? $faker->dateTimeBetween('-1 month', 'now') : null,
+                ]);
+            }
+
+            // Seed invoices
+            for ($k = 0; $k < rand(1, 2); $k++) {
+                $subtotal = rand(500, 15000);
+                $inv = Invoice::create([
+                    'invoice_number' => 'INV-2026-'.rand(10000, 99999),
+                    'client_id' => $c->id,
+                    'matter_id' => $m->id,
+                    'status' => $faker->randomElement(['paid', 'unpaid']),
+                    'due_date' => $faker->dateTimeBetween('now', '+1 month'),
+                    'subtotal' => $subtotal,
+                    'tax_rate' => 0.00,
+                    'total' => $subtotal,
+                    'notes' => 'Invoice for professional legal services rendered.',
+                ]);
+
+                InvoiceItem::create([
+                    'invoice_id' => $inv->id,
+                    'description' => 'Professional Legal Services - '.$pa->name,
+                    'qty' => 1,
+                    'unit_price' => $subtotal,
+                    'total' => $subtotal,
+                ]);
+            }
+        }
     }
 }
