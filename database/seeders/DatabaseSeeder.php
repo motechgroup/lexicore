@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'admin@lexcore.test'],
             [
                 'name' => 'Lexis Admin',
+                'phone' => '+15550192835',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'attorney@lexcore.test'],
             [
                 'name' => 'Robert J. Sterling',
+                'phone' => '+15550192836',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]
@@ -52,6 +54,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'client@lexcore.test'],
             [
                 'name' => 'John Smith',
+                'phone' => '+15550192834',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]

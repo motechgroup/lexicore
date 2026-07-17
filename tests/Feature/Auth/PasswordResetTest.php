@@ -5,6 +5,8 @@ namespace Tests\Feature\Auth;
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Volt\Volt;
 use Tests\TestCase;
@@ -80,5 +82,50 @@ class PasswordResetTest extends TestCase
 
             return true;
         });
+    }
+
+    public function test_password_verification_code_can_be_sent_via_sms(): void
+    {
+        $user = User::factory()->create([
+            'phone' => '+15551234567',
+        ]);
+
+        Volt::test('pages.auth.forgot-password')
+            ->set('method', 'sms')
+            ->set('phone', '+15551234567')
+            ->call('sendSmsVerificationCode')
+            ->assertSet('codeSent', true)
+            ->assertHasNoErrors();
+
+        $this->assertNotNull(Cache::get('sms_reset_+15551234567'));
+    }
+
+    public function test_password_can_be_reset_via_sms_with_valid_verification_code(): void
+    {
+        $user = User::factory()->create([
+            'phone' => '+15551234567',
+        ]);
+
+        $component = Volt::test('pages.auth.forgot-password')
+            ->set('method', 'sms')
+            ->set('phone', '+15551234567');
+
+        $component->call('sendSmsVerificationCode')
+            ->assertSet('codeSent', true)
+            ->assertHasNoErrors();
+
+        $cached = Cache::get('sms_reset_+15551234567');
+        $this->assertNotNull($cached);
+
+        $component->set('code', $cached['code'])
+            ->set('password', 'new-password')
+            ->set('password_confirmation', 'new-password')
+            ->call('resetPasswordViaSms')
+            ->assertRedirect('/login')
+            ->assertHasNoErrors();
+
+        $this->assertTrue(
+            Hash::check('new-password', $user->fresh()->password)
+        );
     }
 }
