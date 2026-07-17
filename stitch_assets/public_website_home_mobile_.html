@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lexis &amp; Co. | Professional Legal Excellence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e7e8e9",
+                    "tertiary-fixed": "#e4e2e1",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "surface-variant": "#e1e3e4",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#edeeef",
+                    "background": "#f8f9fa",
+                    "surface": "#f8f9fa",
+                    "on-tertiary-container": "#939292",
+                    "surface-bright": "#f8f9fa",
+                    "tertiary-container": "#2b2b2b",
+                    "secondary-fixed-dim": "#e9c176",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary-fixed": "#081b3a",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#191c1d",
+                    "on-secondary-container": "#785a1a",
+                    "primary": "#031635",
+                    "on-secondary-fixed": "#261900",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#161717",
+                    "surface-dim": "#d9dadb",
+                    "outline-variant": "#c5c6cf",
+                    "inverse-surface": "#2e3132",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "primary-container": "#1a2b4b",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "on-surface-variant": "#44474e",
+                    "secondary-fixed": "#ffdea5",
+                    "outline": "#75777f",
+                    "on-primary-fixed-variant": "#364768",
+                    "primary-fixed": "#d8e2ff",
+                    "secondary-container": "#fed488",
+                    "secondary": "#775a19",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-primary-container": "#8293b8",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "on-background": "#191c1d",
+                    "primary-fixed-dim": "#b6c6ef",
+                    "surface-tint": "#4e5e81",
+                    "inverse-primary": "#b6c6ef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        /* Mobile menu transition */
+        #mobile-menu {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #mobile-menu.hidden-menu {
+            transform: translateX(100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation (Mobile Optimized) -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant">
+<div class="flex justify-between items-center px-lg py-md max-w-7xl mx-auto">
+<span class="font-headline-md text-headline-md font-bold text-primary">Lexis &amp; Co.</span>
+<button class="p-2 text-primary focus:outline-none transition-all active:scale-90" id="menu-toggle">
+<span class="material-symbols-outlined text-[32px]">menu</span>
+</button>
+</div>
+</nav>
+<!-- Mobile Navigation Drawer Overlay -->
+<div class="fixed inset-0 z-[60] bg-surface flex flex-col hidden-menu" id="mobile-menu">
+<div class="flex justify-between items-center px-lg py-md border-b border-outline-variant">
+<span class="font-headline-md text-headline-md font-bold text-primary">Lexis &amp; Co.</span>
+<button class="p-2 text-primary focus:outline-none transition-all active:scale-90" id="menu-close">
+<span class="material-symbols-outlined text-[32px]">close</span>
+</button>
+</div>
+<div class="flex-1 flex flex-col py-xl px-lg space-y-md">
+<a class="font-headline-md text-headline-md text-primary py-sm border-b border-outline-variant" href="#">Practice Areas</a>
+<a class="font-headline-md text-headline-md text-primary py-sm border-b border-outline-variant" href="#">Case Results</a>
+<a class="font-headline-md text-headline-md text-primary py-sm border-b border-outline-variant" href="#">Attorney Listings</a>
+<a class="font-headline-md text-headline-md text-primary py-sm border-b border-outline-variant" href="#">Blog</a>
+<a class="font-headline-md text-headline-md text-primary py-sm border-b border-outline-variant" href="#">FAQ</a>
+</div>
+<div class="p-lg space-y-md border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary py-md px-lg rounded-lg font-label-md text-label-md shadow-sm active:opacity-80 transition-all">Book Consultation</button>
+<button class="w-full border border-primary text-primary py-md px-lg rounded-lg font-label-md text-label-md active:bg-surface-variant transition-all">Client Login</button>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="relative pt-[120px] pb-3xl px-lg overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-10">
+
+</div>
+<div class="relative z-10 space-y-md">
+<span class="inline-block bg-primary-container text-on-primary-container px-md py-xs rounded-full font-label-sm text-label-sm uppercase tracking-wider">Premier Legal Solutions</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Prestige. Precision. Performance.</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm leading-relaxed">
+                Elevating high-stakes legal advocacy through sophisticated strategy and a commitment to unrivaled excellence in corporate law.
+            </p>
+<div class="flex flex-col gap-md pt-md">
+<button class="w-full bg-primary text-on-primary py-md px-lg rounded-lg font-label-md text-label-md shadow-lg active:scale-95 transition-all">Start Your Consultation</button>
+<div class="flex items-center gap-sm text-primary font-label-md text-label-md">
+<span>Explore Our Areas</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Stat Highlights (Bento Pattern) -->
+<section class="px-lg pb-3xl">
+<div class="bento-grid">
+<div class="bg-surface-container-low p-lg rounded-xl flex flex-col justify-between border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[32px] mb-md" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<h3 class="font-headline-md text-headline-md text-primary">$2B+</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Settlement Recovered</p>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-primary p-lg rounded-xl text-on-primary">
+<h3 class="font-headline-md text-headline-md">15+</h3>
+<p class="font-label-sm text-label-sm opacity-80">Years Excellence</p>
+</div>
+<div class="bg-surface-container-highest p-lg rounded-xl">
+<h3 class="font-headline-md text-headline-md text-primary">98%</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Success Rate</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Anchor Section -->
+<section class="px-lg pb-3xl">
+<div class="relative h-[400px] rounded-2xl overflow-hidden shadow-xl">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent z-10"></div>
+<div class="absolute inset-0 w-full h-full" data-alt="A cinematic, high-end photograph of a modern, glass-walled skyscraper office overlooking a twilight city skyline. The interior is minimalist with dark wood accents and soft, warm amber lighting. The atmosphere is professional, quiet, and executive, reflecting legal prestige and urban power. The color palette is dominated by deep navy blues and sophisticated grays." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6696gYdws3gdliPQLSiRWDAnnqW6gkQ3Q9iWqgCaKZokfOmC9dgZ6e2v_-DwuDhU8zKu9V-2mztOtkrGUCrftQbsXi1Thk8QshBDprz8Ogw8W8QXSKMvrE82gyTmRCOSZG26vtRNhHSqht_jYA7BR4W34xGWZtKBPkdTZy1T3-VXvHp6y7inLphZLrF8a0wayU9dDkCNbniglsUsEEEur4KNl6FVSOgVD2FXz_IajyLrHgvofshAP-g')"></div>
+<div class="absolute bottom-lg left-lg right-lg z-20">
+<h2 class="font-headline-md text-headline-md text-on-primary mb-xs">Navigating Complexity</h2>
+<p class="font-body-sm text-body-sm text-on-primary/80">Tailored corporate strategies for the global marketplace.</p>
+</div>
+</div>
+</section>
+<!-- Service Cards -->
+<section class="px-lg pb-3xl space-y-xl">
+<div class="text-center space-y-xs">
+<h2 class="font-headline-md text-headline-md text-primary">Practice Areas</h2>
+<div class="w-12 h-1 bg-secondary mx-auto rounded-full"></div>
+</div>
+<div class="space-y-md">
+<!-- Service 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm">
+<div class="flex items-start justify-between mb-md">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">account_balance</span>
+</div>
+<span class="material-symbols-outlined text-outline">north_east</span>
+</div>
+<h3 class="font-label-md text-label-md text-primary mb-xs">Corporate Litigation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Aggressive and strategic representation in complex commercial disputes and arbitration.</p>
+</div>
+<!-- Service 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm">
+<div class="flex items-start justify-between mb-md">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">handshake</span>
+</div>
+<span class="material-symbols-outlined text-outline">north_east</span>
+</div>
+<h3 class="font-label-md text-label-md text-primary mb-xs">Mergers &amp; Acquisitions</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Expert guidance through the intricacies of structural transactions and buyouts.</p>
+</div>
+<!-- Service 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm">
+<div class="flex items-start justify-between mb-md">
+<div class="w-12 h-12 bg-surface-container-high rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">shield_person</span>
+</div>
+<span class="material-symbols-outlined text-outline">north_east</span>
+</div>
+<h3 class="font-label-md text-label-md text-primary mb-xs">Intellectual Property</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Securing and defending your firm's most valuable intangible assets globally.</p>
+</div>
+</div>
+</section>
+<!-- Trust Banner -->
+<section class="bg-primary py-2xl px-lg text-center space-y-md">
+<h2 class="font-headline-md text-headline-md text-on-primary">Trusted by Fortune 500</h2>
+<div class="flex flex-wrap justify-center gap-xl opacity-50 grayscale invert">
+<span class="material-symbols-outlined text-[40px]">token</span>
+<span class="material-symbols-outlined text-[40px]">vital_signs</span>
+<span class="material-symbols-outlined text-[40px]">interests</span>
+<span class="material-symbols-outlined text-[40px]">potted_plant</span>
+</div>
+</section>
+<!-- Testimonial Section -->
+<section class="px-lg py-3xl bg-surface-container-low">
+<div class="glass-card p-xl rounded-2xl relative">
+<span class="material-symbols-outlined text-secondary text-[48px] absolute top-md left-md opacity-20">format_quote</span>
+<div class="relative z-10 space-y-md">
+<p class="font-body-lg text-body-lg text-primary italic leading-relaxed">
+                    "Lexis &amp; Co. provided the surgical precision we needed during our international restructuring. Their insight is unmatched."
+                </p>
+<div class="flex items-center gap-md pt-md">
+<div class="w-12 h-12 rounded-full border-2 border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged female executive with a confident, serene expression. She is wearing a tailored navy blue blazer. The background is a soft-focus corporate office environment with clean, modern lines. The lighting is flattering and professional, embodying high-end corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb7ooDDtysUaYVSpQdc83AcvHuA4Gke4Dv0JdnJHC500Won8zYQwa58VLg_e4sRsbCdeSk_e3RZvDYJohnFud1HgG8jzpf5GMBWf6Q5eYxe22zrfAZmyyE2E0_ZDf4cFAMpQgsemUqcxyx4FfADxlnnOznldp59oxjbut6lAxWBFpnQeOtuS6fndTTf6u9S5J8mT0NhpnztKNRBBkMwrvTrT7ggbOHHIS5L3ry5A5tdDqYGgmTLJRzHQ"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary">Eleanor Vance</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">CEO, Global FinTech</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Component -->
+<footer class="w-full py-2xl px-lg bg-surface-container-highest flex flex-col items-center max-w-7xl mx-auto border-t border-outline-variant space-y-xl">
+<div class="text-center space-y-md">
+<span class="font-headline-md text-headline-md text-primary block">Lexis &amp; Co.</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs mx-auto">
+                Professional Legal Excellence. Providing top-tier advocacy and advisory for the modern era.
+            </p>
+</div>
+<div class="flex flex-col items-center gap-md w-full">
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Careers</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<div class="pt-lg border-t border-outline-variant w-full text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant">
+                © 2024 Lexis &amp; Co. All rights reserved. Professional Legal Excellence.
+            </p>
+</div>
+</footer>
+<!-- FAB (Suppressed on Home according to shell logic, but added for contextual UX on mobile if user scrolls deep) -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-all z-40">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_add_on</span>
+</button>
+<script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden-menu');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden-menu');
+            document.body.style.overflow = '';
+        });
+
+        // Simple scroll reveal effect
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+            observer.observe(section);
+        });
+    </script>
+</body></html>
