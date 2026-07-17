@@ -477,6 +477,13 @@
                               class="block w-full px-4 py-2.5 text-xs font-mono bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
                     <x-input-error :messages="$errors->get('termsConditions')" class="mt-1" />
                 </div>
+
+                <div>
+                    <label for="accessibilityPolicy" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Accessibility Statement Page (Markdown/HTML)</label>
+                    <textarea wire:model="accessibilityPolicy" id="accessibilityPolicy" rows="5"
+                              class="block w-full px-4 py-2.5 text-xs font-mono bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                    <x-input-error :messages="$errors->get('accessibilityPolicy')" class="mt-1" />
+                </div>
             </div>
         </div>
 

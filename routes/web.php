@@ -84,5 +84,6 @@ Route::view('profile', 'profile')
 
 Route::view('privacy', 'pages.privacy')->name('privacy');
 Route::view('terms', 'pages.terms')->name('terms');
+Route::view('accessibility', 'pages.accessibility')->name('accessibility');
 
 require __DIR__.'/auth.php';

@@ -375,6 +375,7 @@
             <div class="flex gap-4">
                 <a href="{{ route('privacy') }}" target="_blank" class="hover:underline">Privacy Policy</a>
                 <a href="{{ route('terms') }}" target="_blank" class="hover:underline">Terms & Conditions</a>
+                <a href="{{ route('accessibility') }}" target="_blank" class="hover:underline">Accessibility Statement</a>
             </div>
         </footer>
     </div>

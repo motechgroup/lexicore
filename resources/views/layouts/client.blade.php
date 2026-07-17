@@ -232,8 +232,9 @@
         <footer class="h-14 flex items-center justify-between px-6 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/20 dark:bg-slate-900/10 text-xs text-slate-400 dark:text-slate-500">
             <div>&copy; {{ date('Y') }} {{ config('system.firm_name', 'LexCore') }}. All rights reserved.</div>
             <div class="flex gap-4">
-                <a href="#" class="hover:underline">Support</a>
-                <a href="#" class="hover:underline">Terms</a>
+                <a href="{{ route('privacy') }}" target="_blank" class="hover:underline">Privacy Policy</a>
+                <a href="{{ route('terms') }}" target="_blank" class="hover:underline">Terms & Conditions</a>
+                <a href="{{ route('accessibility') }}" target="_blank" class="hover:underline">Accessibility Statement</a>
             </div>
         </footer>
     </div>

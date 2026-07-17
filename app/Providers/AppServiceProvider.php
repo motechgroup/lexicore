@@ -41,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
                     'system.favicon_url' => $settings['favicon_url'] ?? '',
                     'system.privacy_policy' => $settings['privacy_policy'] ?? '',
                     'system.terms_conditions' => $settings['terms_conditions'] ?? '',
+                    'system.accessibility_policy' => $settings['accessibility_policy'] ?? '',
                     'system.footer_text' => $settings['footer_text'] ?? '',
 
                     // Dynamic Homepage CMS config bindings

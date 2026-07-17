@@ -324,9 +324,9 @@
                 </div>
                 <div class="flex flex-col gap-sm">
                     <h5 class="font-label-md text-label-md text-primary mb-sm uppercase tracking-widest">Resources</h5>
-                    <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
-                    <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
-                    <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Accessibility</a>
+                    <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="{{ route('privacy') }}">Privacy Policy</a>
+                    <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="{{ route('terms') }}">Terms of Service</a>
+                    <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="{{ route('accessibility') }}">Accessibility</a>
                 </div>
                 <div class="hidden lg:flex flex-col gap-sm">
                     <h5 class="font-label-md text-label-md text-primary mb-sm uppercase tracking-widest">Offices</h5>

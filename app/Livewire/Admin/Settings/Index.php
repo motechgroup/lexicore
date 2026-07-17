@@ -27,6 +27,8 @@ class Index extends Component
 
     public $termsConditions;
 
+    public $accessibilityPolicy;
+
     public $footerText;
 
     // Livewire file uploads
@@ -124,6 +126,7 @@ class Index extends Component
         'siteTheme' => 'required|string|in:dark,light,system',
         'privacyPolicy' => 'nullable|string',
         'termsConditions' => 'nullable|string',
+        'accessibilityPolicy' => 'nullable|string',
         'footerText' => 'nullable|string|max:255',
 
         // CMS validation rules
@@ -191,6 +194,7 @@ class Index extends Component
         $this->faviconUrl = $settings['favicon_url'] ?? '';
         $this->privacyPolicy = $settings['privacy_policy'] ?? "# Privacy Policy\n*Last updated: July 17, 2026*\n\nLexCore Law Firm (\"we\", \"us\", or \"our\") operates the LexCore Client Portal. We are committed to protecting the privacy, confidentiality, and security of the personal data of our clients, staff, and website visitors.\n\n## 1. Information We Collect\nWe collect information that you provide directly to us when using our services:\n- **Client Profile Information**: Name, email, phone number, address, billing details, and identification credentials.\n- **Matter Details**: Sensitive case files, documents, and communications relevant to the legal services we perform.\n- **Consultation Bookings**: Appointment scheduling times, dates, case notes, and assignment requests.\n\n## 2. Attorney-Client Privilege & Confidentiality\nAll legal files, notes, and case materials uploaded to the LexCore Portal are protected by strict attorney-client privilege guidelines and professional rules of conduct. We do not disclose client case files to any third party except as authorized by the client or required by law.\n\n## 3. Data Protection & Security\nWe use industry-standard encryption protocols (including SSL/TLS connections and secure storage) to guard against unauthorized access, alteration, disclosure, or destruction of your personal data.\n\n## 4. Cookies & Tracking\nWe use essential cookies to maintain your login session and store theme preferences. You may disable cookies in your browser settings, but some features of the Client Portal may become unavailable.";
         $this->termsConditions = $settings['terms_conditions'] ?? "# Terms & Conditions\n*Last updated: July 17, 2026*\n\nWelcome to LexCore Law Firm. By accessing the LexCore Portal, you agree to be bound by the following Terms & Conditions.\n\n## 1. Legal Representation & Scope\nUse of this portal or booking a consultation does not establish an attorney-client relationship. A formal relationship is only established once a written retainer agreement is signed by both an authorized attorney of LexCore and the client.\n\n## 2. Retainer Billings & Payments\n- **Invoices**: Client billing statement totals are calculated based on hourly attorney rates or flat-fee arrangements as specified in your retainer agreement.\n- **Late Payments**: Outstanding balances must be paid within the term threshold (standard net-30).\n- **Payment Processing**: Online card payments and express checkouts are processed securely through Stripe or PayPal gateways.\n\n## 3. Portal Access & Use\nClients and staff must maintain secure passwords and are solely responsible for all activities conducted under their accounts. LexCore reserves the right to suspend portal access at any time for security violations or unpaid retainers.\n\n## 4. Uploaded Documentation\nYou represent and warrant that you own or have the necessary rights to all files and case documents uploaded to the LexCore Portal. Uploading malicious software, viruses, or illegal material is strictly prohibited.";
+        $this->accessibilityPolicy = $settings['accessibility_policy'] ?? "# Accessibility Statement\n*Last updated: July 17, 2026*\n\nLexCore Law Firm is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone, and applying the relevant accessibility standards to our Client Portal and website.\n\n## 1. Conformance Status\nThe Web Content Accessibility Guidelines (WCAG) defines requirements for designers and developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA. LexCore strives to conform with WCAG 2.1 Level AA standards.\n\n## 2. Accessibility Features on our Portal\nOur website and portal incorporate several features to make them accessible:\n- **Keyboard Navigation**: All interactive forms and menu buttons can be navigated completely using keyboard controls.\n- **Contrast & Styling**: High contrast modes are integrated natively via our dark/light theme systems.\n- **Alt Text**: Descriptive alt text is provided for all essential media and logo files.\n- **Semantic HTML**: Standard HTML5 landmark elements are used to assist screen reader software.\n\n## 3. Feedback & Contact\nWe welcome your feedback on the accessibility of the LexCore Portal. Please let us know if you encounter accessibility barriers:\n- **Email**: accessibility@lexicore.test\n- **Phone**: +1 (555) 019-2834\nWe try to respond to feedback within 3 business days.";
         $this->footerText = $settings['footer_text'] ?? '© '.date('Y').' LexCore Law Firm. All rights reserved. Registered Bar Association Council.';
 
         // Mount Homepage CMS defaults
@@ -309,6 +313,7 @@ class Index extends Component
             'favicon_url' => $faviconPath,
             'privacy_policy' => $this->privacyPolicy,
             'terms_conditions' => $this->termsConditions,
+            'accessibility_policy' => $this->accessibilityPolicy,
             'footer_text' => $this->footerText,
 
             // Persist Homepage CMS fields
