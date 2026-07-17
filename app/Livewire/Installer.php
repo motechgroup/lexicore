@@ -316,23 +316,26 @@ class Installer extends Component
         }
 
         $content = file_get_contents($path);
+        $lines = explode("\n", $content);
 
         foreach ($data as $key => $value) {
-            $keyPosition = strpos($content, "{$key}=");
             $valueStr = (str_contains($value, ' ') || str_contains($value, '#')) ? "\"{$value}\"" : $value;
+            $found = false;
 
-            if ($keyPosition !== false) {
-                $endOfLinePosition = strpos($content, "\n", $keyPosition);
-                if ($endOfLinePosition === false) {
-                    $endOfLinePosition = strlen($content);
+            foreach ($lines as $i => $line) {
+                $trimmed = trim($line);
+                if (preg_match("/^(#\s*)?{$key}=/", $trimmed)) {
+                    $lines[$i] = "{$key}={$valueStr}";
+                    $found = true;
+                    break;
                 }
-                $oldLine = substr($content, $keyPosition, $endOfLinePosition - $keyPosition);
-                $content = str_replace($oldLine, "{$key}={$valueStr}", $content);
-            } else {
-                $content .= "\n{$key}={$valueStr}";
+            }
+
+            if (! $found) {
+                $lines[] = "{$key}={$valueStr}";
             }
         }
 
-        file_put_contents($path, $content);
+        file_put_contents($path, implode("\n", $lines));
     }
 }
