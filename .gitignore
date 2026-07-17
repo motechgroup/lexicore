@@ -26,3 +26,4 @@ Homestead.json
 Homestead.yaml
 *.sqlite
 /database/*.sqlite
+vendor.zip
