@@ -112,7 +112,7 @@
                             </div>
                             <div class="min-w-0 flex-1 text-xs">
                                 <div class="flex items-center justify-between gap-4 mb-1">
-                                    <h4 class="font-bold text-slate-850 dark:text-white truncate">Client: {{ $app->client->name }}</h4>
+                                    <h4 class="font-bold text-slate-850 dark:text-white truncate">Client: {{ $app->client ? $app->client->name : $app->name }}</h4>
                                     <span class="px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-wider
                                         {{ $app->status === 'completed' ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30' : '' }}
                                         {{ $app->status === 'cancelled' ? 'bg-slate-100 text-slate-500 dark:bg-slate-800' : '' }}
@@ -122,7 +122,7 @@
                                     </span>
                                 </div>
                                 <p class="text-[10px] font-semibold text-slate-450 dark:text-slate-400 uppercase tracking-wider mb-2">
-                                    Attorney: {{ $app->attorney->name }} &bull; Time: {{ $app->scheduled_at->format('g:i A') }} ({{ $app->duration_minutes }} Mins)
+                                    Attorney: {{ $app->attorney ? $app->attorney->name : 'Pending Assignment' }} &bull; Time: {{ $app->scheduled_at->format('g:i A') }} ({{ $app->duration_minutes }} Mins)
                                 </p>
                                 @if($app->notes)
                                     <p class="text-slate-500 dark:text-slate-450 leading-relaxed border-t border-slate-50 dark:border-slate-800/60 pt-2">{{ $app->notes }}</p>
