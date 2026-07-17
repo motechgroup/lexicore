@@ -197,20 +197,56 @@ class Installer extends Component
         ]);
 
         try {
+            // Read config directly from .env file to bypass any cached configs or state losses
+            $envPath = base_path('.env');
+            $dbConfig = [
+                'connection' => 'mysql',
+                'host' => '127.0.0.1',
+                'port' => '3306',
+                'database' => '',
+                'username' => '',
+                'password' => '',
+            ];
+
+            if (file_exists($envPath)) {
+                $lines = explode("\n", file_get_contents($envPath));
+                foreach ($lines as $line) {
+                    $line = trim($line);
+                    if (str_starts_with($line, 'DB_CONNECTION=')) {
+                        $dbConfig['connection'] = trim(explode('DB_CONNECTION=', $line)[1] ?? 'mysql', '"\' ');
+                    }
+                    if (str_starts_with($line, 'DB_HOST=')) {
+                        $dbConfig['host'] = trim(explode('DB_HOST=', $line)[1] ?? '127.0.0.1', '"\' ');
+                    }
+                    if (str_starts_with($line, 'DB_PORT=')) {
+                        $dbConfig['port'] = trim(explode('DB_PORT=', $line)[1] ?? '3306', '"\' ');
+                    }
+                    if (str_starts_with($line, 'DB_DATABASE=')) {
+                        $dbConfig['database'] = trim(explode('DB_DATABASE=', $line)[1] ?? '', '"\' ');
+                    }
+                    if (str_starts_with($line, 'DB_USERNAME=')) {
+                        $dbConfig['username'] = trim(explode('DB_USERNAME=', $line)[1] ?? '', '"\' ');
+                    }
+                    if (str_starts_with($line, 'DB_PASSWORD=')) {
+                        $dbConfig['password'] = trim(explode('DB_PASSWORD=', $line)[1] ?? '', '"\' ');
+                    }
+                }
+            }
+
             // Apply database settings to active config in-memory before running migrations
-            if ($this->dbConnection === 'sqlite') {
+            if ($dbConfig['connection'] === 'sqlite') {
                 config([
                     'database.default' => 'sqlite',
-                    'database.connections.sqlite.database' => $this->dbDatabase,
+                    'database.connections.sqlite.database' => $dbConfig['database'],
                 ]);
             } else {
                 config([
                     'database.default' => 'mysql',
-                    'database.connections.mysql.host' => $this->dbHost,
-                    'database.connections.mysql.port' => $this->dbPort,
-                    'database.connections.mysql.database' => $this->dbDatabase,
-                    'database.connections.mysql.username' => $this->dbUsername,
-                    'database.connections.mysql.password' => $this->dbPassword,
+                    'database.connections.mysql.host' => $dbConfig['host'],
+                    'database.connections.mysql.port' => $dbConfig['port'],
+                    'database.connections.mysql.database' => $dbConfig['database'],
+                    'database.connections.mysql.username' => $dbConfig['username'],
+                    'database.connections.mysql.password' => $dbConfig['password'],
                 ]);
             }
             DB::purge();
