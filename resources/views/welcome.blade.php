@@ -114,7 +114,7 @@
                             <h3 class="font-headline-md text-headline-md text-primary mb-sm">Corporate & M&A</h3>
                             <p class="font-body-md text-body-md text-on-surface-variant max-w-md">Guiding multi-billion dollar transactions with rigorous due diligence and sophisticated deal structures.</p>
                         </div>
-                        <a class="flex items-center gap-sm font-label-md text-label-md text-primary group-hover:gap-md transition-all" href="#">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                        <a class="flex items-center gap-sm font-label-md text-label-md text-primary group-hover:gap-md transition-all cursor-pointer" data-learn-more="corporate" href="javascript:void(0)">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                     </div>
                     <!-- Intellectual Property -->
                     <div class="bento-item bg-primary text-on-primary p-2xl rounded-2xl flex flex-col justify-between h-[340px] group">
@@ -123,7 +123,7 @@
                             <h3 class="font-headline-md text-headline-md mb-sm">Intellectual Property</h3>
                             <p class="font-body-sm text-body-sm opacity-80">Global portfolio management and aggressive patent protection for innovators.</p>
                         </div>
-                        <a class="flex items-center gap-sm font-label-md text-label-md group-hover:gap-md transition-all" href="#">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                        <a class="flex items-center gap-sm font-label-md text-label-md group-hover:gap-md transition-all cursor-pointer" data-learn-more="ip" href="javascript:void(0)">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                     </div>
                     <!-- Litigation -->
                     <div class="bento-item bg-surface-container-lowest p-2xl rounded-2xl border border-outline-variant flex flex-col justify-between group">
@@ -132,7 +132,7 @@
                             <h3 class="font-headline-md text-headline-md text-primary mb-sm">High-Stakes Litigation</h3>
                             <p class="font-body-sm text-body-sm text-on-surface-variant">Uncompromising advocacy in state and federal courts across the country.</p>
                         </div>
-                        <a class="flex items-center gap-sm font-label-md text-label-md text-primary group-hover:gap-md transition-all" href="#">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                        <a class="flex items-center gap-sm font-label-md text-label-md text-primary group-hover:gap-md transition-all cursor-pointer" data-learn-more="litigation" href="javascript:void(0)">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                     </div>
                     <!-- Estate Planning -->
                     <div class="bento-item bg-surface-container-lowest p-2xl rounded-2xl border border-outline-variant flex flex-col justify-between group">
@@ -141,7 +141,7 @@
                             <h3 class="font-headline-md text-headline-md text-primary mb-sm">Private Wealth</h3>
                             <p class="font-body-sm text-body-sm text-on-surface-variant">Discreet asset protection and multi-generational legacy planning.</p>
                         </div>
-                        <a class="flex items-center gap-sm font-label-md text-label-md text-primary group-hover:gap-md transition-all" href="#">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                        <a class="flex items-center gap-sm font-label-md text-label-md text-primary group-hover:gap-md transition-all cursor-pointer" data-learn-more="wealth" href="javascript:void(0)">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                     </div>
                     <!-- Real Estate -->
                     <div class="bento-item bg-surface-container-lowest p-2xl rounded-2xl border border-outline-variant flex flex-col justify-between group">
@@ -150,7 +150,7 @@
                             <h3 class="font-headline-md text-headline-md text-primary mb-sm">Commercial Real Estate</h3>
                             <p class="font-body-sm text-body-sm text-on-surface-variant">Navigating complex zoning, financing, and development challenges.</p>
                         </div>
-                        <a class="flex items-center gap-sm font-label-md text-label-md text-primary group-hover:gap-md transition-all" href="#">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                        <a class="flex items-center gap-sm font-label-md text-label-md text-primary group-hover:gap-md transition-all cursor-pointer" data-learn-more="realestate" href="javascript:void(0)">Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                     </div>
                 </div>
             </div>
@@ -421,8 +421,177 @@
             }, { threshold: 0.1 });
 
             stats.forEach(stat => statObserver.observe(stat));
+            // Practice Area Modal Logic
+            const practiceModal = document.getElementById("practice-modal");
+            const modalTitle = document.getElementById("modal-title");
+            const modalIcon = document.getElementById("modal-icon");
+            const modalDescription = document.getElementById("modal-description");
+            const modalBullets = document.getElementById("modal-bullets");
+            const closeBtn = document.getElementById("close-modal");
+            const cancelBtn = document.getElementById("modal-cancel");
+            const bookBtn = document.getElementById("modal-book");
+            
+            const practiceDetails = {
+                'corporate': {
+                    title: 'Corporate & M&A',
+                    icon: 'business_center',
+                    description: 'Guiding multi-billion dollar transactions with rigorous due diligence, advanced risk mitigations, and sophisticated deal structures.',
+                    details: [
+                        'Cross-Border Mergers & Acquisitions',
+                        'Joint Ventures & Strategic Alliances',
+                        'Corporate Governance & SEC Compliance',
+                        'Private Equity & Venture Capital Financing',
+                        'Corporate Restructuring & Shareholder Agreements'
+                    ]
+                },
+                'ip': {
+                    title: 'Intellectual Property',
+                    icon: 'lightbulb',
+                    description: 'Global portfolio management and aggressive patent, trademark, and copyright protection for innovators.',
+                    details: [
+                        'Patent Prosecution & Portfolio Strategy',
+                        'Trademark Registration & Brand Protection',
+                        'IP Licensing & Technology Transfers',
+                        'Copyright Enforcement & Digital Media Law',
+                        'Trade Secret Protection Programs'
+                    ]
+                },
+                'litigation': {
+                    title: 'High-Stakes Litigation',
+                    icon: 'gavel',
+                    description: 'Uncompromising advocacy in state and federal courts across the country for complex business disputes.',
+                    details: [
+                        'Commercial & Securities Litigation',
+                        'Class Action Defense Representation',
+                        'White-Collar Criminal Defense & Investigations',
+                        'Appellate Advocacy & Supreme Court Filings',
+                        'International Arbitration & Dispute Resolution'
+                    ]
+                },
+                'wealth': {
+                    title: 'Private Wealth & Trust',
+                    icon: 'family_history',
+                    description: 'Discreet asset protection, tax minimization, and multi-generational legacy planning for high-net-worth families.',
+                    details: [
+                        'Family Trust & Estate Administration',
+                        'Asset Protection & Wealth Transfer Structuring',
+                        'Charitable Foundations & Philanthropy Strategy',
+                        'Business Succession & Transition Planning',
+                        'Estate & Gift Tax Minimization'
+                    ]
+                },
+                'realestate': {
+                    title: 'Commercial Real Estate',
+                    icon: 'apartment',
+                    description: 'Navigating complex zoning, land use, structured financing, and development challenges for developers and investors.',
+                    details: [
+                        'Acquisitions, Dispositions & Syndications',
+                        'Commercial Leasing & Landlord-Tenant Work',
+                        'Real Estate Finance & Joint Venture Equity',
+                        'Zoning, Land Use & Environmental Approvals',
+                        'Construction Contracts & Dispute Mediation'
+                    ]
+                }
+            };
+
+            const openPracticeModal = (key) => {
+                const data = practiceDetails[key];
+                if (!data) return;
+                
+                modalTitle.childNodes[2].textContent = ' ' + data.title;
+                modalIcon.textContent = data.icon;
+                modalDescription.textContent = data.description;
+                
+                modalBullets.innerHTML = "";
+                data.details.forEach(item => {
+                    const li = document.createElement("li");
+                    li.className = "flex items-center gap-2";
+                    li.innerHTML = `<span class="material-symbols-outlined text-[14px] text-emerald-500 font-bold">check</span> ${item}`;
+                    modalBullets.appendChild(li);
+                });
+                
+                practiceModal.classList.remove("hidden");
+                setTimeout(() => {
+                    practiceModal.classList.remove("opacity-0");
+                    practiceModal.querySelector(".transform").classList.remove("scale-95");
+                    practiceModal.querySelector(".transform").classList.add("scale-100");
+                }, 20);
+            };
+
+            const closePracticeModal = () => {
+                practiceModal.classList.add("opacity-0");
+                practiceModal.querySelector(".transform").classList.remove("scale-100");
+                practiceModal.querySelector(".transform").classList.add("scale-95");
+                setTimeout(() => {
+                    practiceModal.classList.add("hidden");
+                }, 200);
+            };
+
+            document.querySelectorAll("[data-learn-more]").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const key = btn.getAttribute("data-learn-more");
+                    openPracticeModal(key);
+                });
+            });
+
+            closeBtn.addEventListener("click", closePracticeModal);
+            cancelBtn.addEventListener("click", closePracticeModal);
+            
+            bookBtn.addEventListener("click", () => {
+                closePracticeModal();
+                setTimeout(() => {
+                    if (window.Livewire) {
+                        Livewire.dispatch('triggerConsultationModal');
+                    }
+                }, 250);
+            });
+
+            practiceModal.addEventListener("click", (e) => {
+                if (e.target === practiceModal) {
+                    closePracticeModal();
+                }
+            });
         });
     </script>
+
+    <!-- Practice Area Detail Modal -->
+    <div id="practice-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm transition-all hidden opacity-0">
+        <div class="w-full max-w-lg bg-white rounded-2xl border border-slate-200 p-6 shadow-2xl space-y-5 transition-all transform scale-95 duration-200">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-100">
+                <h3 id="modal-title" class="text-base font-bold text-slate-800 flex items-center gap-1.5">
+                    <span id="modal-icon" class="material-symbols-outlined text-primary text-[20px]">gavel</span>
+                    Practice Area Title
+                </h3>
+                <button id="close-modal" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <p id="modal-description" class="text-xs text-slate-650 leading-relaxed">
+                    Detailed practice description...
+                </p>
+
+                <div class="space-y-2">
+                    <h4 class="font-bold text-[10px] text-slate-400 uppercase tracking-wider">Key Specializations</h4>
+                    <ul id="modal-bullets" class="space-y-2 text-xs text-slate-700">
+                        <!-- Bullets go here -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer / Book CTA -->
+            <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
+                <button id="modal-cancel" class="px-4 py-2 bg-slate-100 hover:bg-slate-200/80 text-slate-700 font-semibold text-xs rounded-xl transition-all">
+                    Close
+                </button>
+                <button id="modal-book" class="px-4 py-2 bg-primary text-white hover:opacity-90 font-semibold text-xs rounded-xl transition-all shadow-md shadow-indigo-900/10 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+                    Book Consultation
+                </button>
+            </div>
+        </div>
+    </div>
     
     @livewire('welcome-book-consultation')
 </body>
