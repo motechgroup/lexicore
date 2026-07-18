@@ -67,7 +67,7 @@
                                 </td>
                                 <!-- Amount -->
                                 <td class="px-6 py-4 font-bold text-slate-850 dark:text-white">
-                                    ${{ number_format($invoice->total, 2) }}
+                                    {{ config('system.site_currency_symbol', '$') }}{{ number_format($invoice->total, 2) }}
                                 </td>
                                 <!-- Status Badge -->
                                 <td class="px-6 py-4">

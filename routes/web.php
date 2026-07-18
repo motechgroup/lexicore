@@ -66,6 +66,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('admin/staff', App\Livewire\Admin\Staff\Index::class)->name('admin.staff.index');
     Route::get('admin/logs', App\Livewire\Admin\Logs\Index::class)->name('admin.logs.index');
     Route::get('admin/settings', App\Livewire\Admin\Settings\Index::class)->name('admin.settings.index');
+    Route::get('admin/roles', App\Livewire\Admin\Roles\Index::class)->name('admin.roles.index');
 });
 
 // Invoices PDF Download Route
