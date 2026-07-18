@@ -101,6 +101,7 @@ class Index extends Component
     public function render()
     {
         $query = Role::query()
+            ->with(['permissions'])
             ->withCount('users')
             ->orderBy('name', 'asc');
 
