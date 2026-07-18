@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexCore | System Setup & User Documentation</title>
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Menu Navigation -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <span class="logo-icon">gavel</span>
+                <span class="logo-title">LexCore</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#intro" class="nav-link active">
+                        <span class="icon">info</span>
+                        <span>Introduction</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#requirements" class="nav-link">
+                        <span class="icon">list_alt</span>
+                        <span>Requirements</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#installation" class="nav-link">
+                        <span class="icon">download</span>
+                        <span>Installation Guide</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#modules" class="nav-link">
+                        <span class="icon">grid_view</span>
+                        <span>System Modules</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#configuration" class="nav-link">
+                        <span class="icon">settings</span>
+                        <span>Core Configuration</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#seeding" class="nav-link">
+                        <span class="icon">database</span>
+                        <span>Demo Data Seeder</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#troubleshooting" class="nav-link">
+                        <span class="icon">build</span>
+                        <span>Troubleshooting</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Documentation Content -->
+        <main class="content">
+            <header>
+                <h1 class="main-title">LexCore Documentation</h1>
+                <p class="subtitle">Complete guide to installing, configuring, and operating the LexCore Law Firm Portal.</p>
+            </header>
+
+            <!-- Introduction Section -->
+            <section id="intro">
+                <h2>Introduction</h2>
+                <p><strong>LexCore</strong> is a professional law firm management system and client intake portal designed for solo attorneys, medium-sized firms, and corporate legal departments. Built on top of the modern Laravel and Livewire frameworks, it integrates premium aesthetics, real-time client billing, interactive case folders, staff dockets, and instant notification alerts into a single cohesive platform.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">folder_shared</span>
+                        <h4 class="feature-title">Interactive Matter Dockets</h4>
+                        <p>Detailed tracking of lawsuit details, court jurisdictions, presiding judges, opposing counsels, and real-time case states.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">receipt_long</span>
+                        <h4 class="feature-title">Legal Billing & Invoices</h4>
+                        <p>Generate, itemize, and issue client statements. Complete with express online checkouts using Stripe or PayPal Express.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">sms</span>
+                        <h4 class="feature-title">Multi-Channel Alerts</h4>
+                        <p>Notify clients and attorneys instantly regarding case filings, hearing schedules, or billing notices via Twilio SMS and SMTP Email.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">verified_user</span>
+                        <h4 class="feature-title">Role-Based Access</h4>
+                        <p>Strict access boundaries separating administrative managers, assigned attorney staff, and registered client profiles.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Requirements Section -->
+            <section id="requirements">
+                <h2>System Requirements</h2>
+                <p>Ensure your hosting environment meets the following specifications to run LexCore cleanly:</p>
+                <div class="alert alert-info">
+                    <span class="alert-icon">info</span>
+                    <div>
+                        <strong>Shared Hosting Compatibility:</strong> LexCore has been optimized to execute perfectly on restrictive cPanel, Plesk, and CloudLinux environments without needing CLI or SSH server access.
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>PHP Version:</strong> PHP 8.2 or 8.3</li>
+                    <li><strong>Database Server:</strong> MySQL 5.7+ / MariaDB 10.3+ or SQLite 3</li>
+                    <li><strong>Required Extensions:</strong> OpenSSL, PDO, BCrypt/Mbstring, Tokenizer, XML, Ctype, JSON, GD (image processing), ZipArchive</li>
+                    <li><strong>Server Directives:</strong> Apache (with mod_rewrite enabled) or Nginx</li>
+                </ul>
+            </section>
+
+            <!-- Installation Section -->
+            <section id="installation">
+                <h2>Installation Guide</h2>
+                <p>Deploying LexCore is straightforward. Choose the setup method that matches your environment:</p>
+                
+                <div class="steps">
+                    <div class="step-item">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Upload & Unzip</h4>
+                            <p>Upload the root project archives onto your public directory (e.g. <code>public_html</code> or your target subfolder) and extract the contents.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Bootstrap Environments</h4>
+                            <p>Verify that your document root is directed to the <code>/public</code> directory, or visit:
+                               <br><code>https://yourdomain.com/setup.php</code>
+                               <br>Running this deployment tool creates a default <code>.env</code> file, establishes safe sessions/cache parameters, creates standard folder structures, clears old configs, and resets the OPCache compiledbytecode memory.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h4>Run Web Installer Wizard</h4>
+                            <p>Navigate to <code>https://yourdomain.com/install</code> in your web browser. Follow the 5-step installer wizard:</p>
+                            <ul>
+                                <li><strong>License Verification:</strong> Enter your Envato username and valid purchase key.</li>
+                                <li><strong>Server Checks:</strong> Confirms required PHP modules and folder writable permissions.</li>
+                                <li><strong>Database Settings:</strong> Select your database driver, enter cPanel database name, database username, and password. Clicking "Test Connection" will write the uncommented variables directly to your active configuration.</li>
+                                <li><strong>Admin Profile:</strong> Register your super-administrator username, email, and password.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Emergency Direct Installer</h3>
+                <p>In highly restrictive shared hosting domains (such as when Livewire AJAX requests are blocked by ModSecurity or if configuration cache locks prevent normal setup), you can trigger the **One-Click Standalone Installer** by calling the setup script with query parameters:</p>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">URL String Query</span>
+                        <button class="copy-btn">
+                            <span class="material-symbols-outlined text-[14px]">content_copy</span>
+                            <span>Copy URL</span>
+                        </button>
+                    </div>
+                    <pre><code>https://yourdomain.com/setup.php?action=install&email=your_email@gmail.com&password=your_secure_password&name=YourName</code></pre>
+                </div>
+                <p>This script runs independently from Laravel's routing system to bypass caching. It purges existing schemas, runs migrations and seeds, registers your admin profile, and locks the installer automatically.</p>
+            </section>
+
+            <!-- System Modules Section -->
+            <section id="modules">
+                <h2>System Modules & User Guide</h2>
+                <p>Explore the three primary entry views of the LexCore system:</p>
+
+                <h3>1. Super-Administrator Console</h3>
+                <p>Provides complete operational control over the legal platform:</p>
+                <ul>
+                    <li><strong>Dashboard:</strong> Aggregated analytical statistics (active matters, monthly billings, invoice collections, client distributions, upcoming dockets).</li>
+                    <li><strong>Cases/Matters:</strong> Full CRUD options to create lawsuit portfolios, add evidence documents, assign lead attorneys, and schedule court hearings.</li>
+                    <li><strong>Clients/CRM:</strong> Directory of corporate and individual clients. Edit profile credentials, search case attachments, and trace billing ledgers.</li>
+                    <li><strong>Staff:</strong> Register attorneys, set billing rates, assign Spatie roles/permissions, and view attorney calendars.</li>
+                </ul>
+
+                <h3>2. Attorney/Staff Portal</h3>
+                <p>A specialized dashboard focused on case management and file updates. Attorneys can view their assigned client matters, complete assigned tasks, view upcoming court hearing dockets, and upload legal pleadings.</p>
+
+                <h3>3. Client Portal</h3>
+                <p>A secure portal for clients to access their cases:</p>
+                <ul>
+                    <li><strong>Matter Files:</strong> View active litigation statuses, upcoming hearing dates, and task lists.</li>
+                    <li><strong>Pleadings & Files:</strong> Upload case files or photos, and download documents uploaded by their legal team.</li>
+                    <li><strong>Billing:</strong> View outstanding balances, download PDF invoices, and checkout securely using integrated payment gateways.</li>
+                </ul>
+            </section>
+
+            <!-- Core Configuration Section -->
+            <section id="configuration">
+                <h2>Core Configuration & Integration</h2>
+                <p>Configure third-party services in your Admin Panel under <strong>System Settings</strong>:</p>
+
+                <h3>Mail Settings (SMTP)</h3>
+                <p>Required for sending automated emails. Enter your mail provider's credentials:</p>
+                <ul>
+                    <li><strong>Mail Host:</strong> e.g., <code>smtp.mailgun.org</code> or <code>smtp.gmail.com</code></li>
+                    <li><strong>Port:</strong> e.g., <code>587</code> (TLS) or <code>465</code> (SSL)</li>
+                    <li><strong>Authentication:</strong> Username and password</li>
+                </ul>
+
+                <h3>Payment Gateways</h3>
+                <p>Enable Stripe and/or PayPal to collect retainer payments online:</p>
+                <ul>
+                    <li><strong>Stripe:</strong> Enter your Stripe Publishable Key and Secret Key.</li>
+                    <li><strong>PayPal:</strong> Toggle sandbox or live mode, and input your client ID and client secret.</li>
+                </ul>
+
+                <h3>Real-Time SMS Alerts (Twilio)</h3>
+                <p>Notify clients of case updates automatically: Toggle Twilio SMS gateway, and input your Twilio SID, Auth Token, and From Number.</p>
+
+                <h3>Dynamic SEO & Analytics</h3>
+                <p>Configure search engine variables dynamically on the fly:</p>
+                <ul>
+                    <li><strong>SEO Title:</strong> Renders as browser tab title. Keep under 60 characters.</li>
+                    <li><strong>Keywords & Description:</strong> Target keywords and site snippets for Google search listings.</li>
+                    <li><strong>Google Analytics:</strong> Enter your Measurement ID (e.g. <code>G-XXXXXXXXXX</code>) to inject tracking scripts on public pages.</li>
+                </ul>
+            </section>
+
+            <!-- Seeding Section -->
+            <section id="seeding">
+                <h2>Demo Data Seeder</h2>
+                <p>LexCore includes a high-fidelity seeder to populate the database with mock records for evaluation and training:</p>
+                <ul>
+                    <li><strong>Seeded Data:</strong> 50 corporate/individual clients, 10 staff attorneys, 50 matters/case dockets, 50 scheduled court hearings, 100+ tasks, and 100+ billing invoices.</li>
+                    <li><strong>Access:</strong> Seeder details can be accessed using the following pre-configured credentials:</li>
+                </ul>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Demo User Credentials</span>
+                    </div>
+                    <pre><code>Default Administrator: admin@lexcore.test / password
+Default Attorney Profile: attorney@lexcore.test / password
+Default Client Account: client@lexcore.test / password</code></pre>
+                </div>
+            </section>
+
+            <!-- Troubleshooting Section -->
+            <section id="troubleshooting">
+                <h2>Troubleshooting & Support</h2>
+                
+                <h3>1. Empty Username or Database in Connection Error</h3>
+                <p><strong>Cause:</strong> Laravel's configuration is cached on the server, or the <code>.env</code> file database credentials are commented out with leading <code>#</code> symbols.</p>
+                <p><strong>Solution:</strong> Run <code>https://yourdomain.com/setup.php</code>. This physically deletes all files inside <code>bootstrap/cache/</code> to clear cached data, and resets memory caches.</p>
+
+                <h3>2. Writable Permissions Issues</h3>
+                <p><strong>Cause:</strong> Storage directories do not have write access.</p>
+                <p><strong>Solution:</strong> Log in to your cPanel File Manager and set permissions for <code>storage/</code> and <code>bootstrap/cache/</code> to <code>775</code> or <code>755</code>.</p>
+
+                <h3>3. Livewire AJAX Requests Blocked</h3>
+                <p><strong>Cause:</strong> Some shared hosting Web Application Firewalls (such as ModSecurity) block Livewire POST requests.</p>
+                <p><strong>Solution:</strong> Ask your host to whitelist Livewire routes, or add the following directive to your root <code>.htaccess</code> file to disable ModSecurity:</p>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">.htaccess Directive</span>
+                        <button class="copy-btn">
+                            <span class="material-symbols-outlined text-[14px]">content_copy</span>
+                            <span>Copy Directive</span>
+                        </button>
+                    </div>
+                    <pre><code>&lt;IfModule mod_security.c&gt;
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+&lt;/IfModule&gt;</code></pre>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/script.js"></script>
+</body>
+</html>
