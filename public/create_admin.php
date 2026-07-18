@@ -23,14 +23,11 @@ require __DIR__.'/../vendor/autoload.php';
 // Bootstrap Laravel Application
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-$kernel = $app->make(Kernel::class);
-$response = $kernel->handle(
-    $request = Request::capture()
-);
+// Boot the application container
+$app->make(Kernel::class)->bootstrap();
 
 use App\Models\User;
-use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
