@@ -1,5 +1,10 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+
 /**
  * LexCore Admin Recovery / Creation Script for Shared Hosting
  *
@@ -15,27 +20,28 @@ if (empty($_GET['secret']) || $_GET['secret'] !== $securitySecret) {
     exit('Forbidden: Invalid or missing security token.');
 }
 
-define('LARAVEL_START', microtime(true));
-
-// Load Composer Autoloader
-require __DIR__.'/../vendor/autoload.php';
-
-// Bootstrap Laravel Application
-$app = require_once __DIR__.'/../bootstrap/app.php';
-
-// Boot the application container
-$app->make(Kernel::class)->bootstrap();
-
-use App\Models\User;
-use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
-
-$email = $_GET['email'] ?? 'admin@lexcore.test';
-$password = $_GET['password'] ?? 'password';
-$name = $_GET['name'] ?? 'System Administrator';
-
 try {
+    define('LARAVEL_START', microtime(true));
+
+    // Load Composer Autoloader
+    if (! file_exists(__DIR__.'/../vendor/autoload.php')) {
+        throw new Exception("Autoloader not found. Run 'composer install' or make sure the folder structure is correct.");
+    }
+    require __DIR__.'/../vendor/autoload.php';
+
+    // Bootstrap Laravel Application
+    if (! file_exists(__DIR__.'/../bootstrap/app.php')) {
+        throw new Exception('bootstrap/app.php not found. Make sure the folder structure is correct.');
+    }
+    $app = require_once __DIR__.'/../bootstrap/app.php';
+
+    // Boot the application container
+    $app->make(Kernel::class)->bootstrap();
+
+    $email = $_GET['email'] ?? 'admin@lexcore.test';
+    $password = $_GET['password'] ?? 'password';
+    $name = $_GET['name'] ?? 'System Administrator';
+
     $user = User::firstOrCreate(
         ['email' => $email],
         [
@@ -68,9 +74,12 @@ try {
     echo "<p style='font-size: 12px; color: #dc2626; font-weight: bold;'>CRITICAL SECURITY WARNING: Delete this 'create_admin.php' file from your public directory immediately!</p>";
     echo '</div>';
 
-} catch (Exception $e) {
-    echo "<div style='font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; border: 1px solid #fecaca; background-color: #fef2f2; border-radius: 12px;'>";
-    echo "<h2 style='color: #dc2626; margin-top: 0;'>Database Setup Error</h2>";
-    echo "<p style='font-size: 13px;'>".htmlspecialchars($e->getMessage()).'</p>';
+} catch (Throwable $e) {
+    echo "<div style='font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; border: 1px solid #fecaca; background-color: #fef2f2; border-radius: 12px;'>";
+    echo "<h2 style='color: #dc2626; margin-top: 0;'>Setup Error</h2>";
+    echo "<p style='font-size: 13px; font-weight: bold;'>Error Message:</p>";
+    echo "<pre style='font-size: 12px; background: #fff; padding: 10px; border: 1px solid #fda4af; border-radius: 6px; overflow-x: auto;'>".htmlspecialchars($e->getMessage()).'</pre>';
+    echo "<p style='font-size: 13px; font-weight: bold;'>Stack Trace:</p>";
+    echo "<pre style='font-size: 11px; background: #fff; padding: 10px; border: 1px solid #fda4af; border-radius: 6px; overflow-x: auto; max-height: 250px;'>".htmlspecialchars($e->getTraceAsString()).'</pre>';
     echo '</div>';
 }
