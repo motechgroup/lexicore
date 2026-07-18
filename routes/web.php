@@ -8,6 +8,7 @@ use App\Http\Controllers\InvoicePdfController;
 use App\Livewire\Admin\Cases\Create;
 use App\Livewire\Admin\Cases\Edit;
 use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\Client\Appointments;
 use App\Livewire\Client\Cases\Index;
 use App\Livewire\Client\Cases\Show;
 use App\Livewire\Client\Dashboard as ClientDashboard;
@@ -34,6 +35,7 @@ Route::middleware(['auth', 'verified', 'role:client'])->group(function () {
     Route::get('client/dashboard', ClientDashboard::class)->name('client.dashboard');
     Route::get('client/cases', Index::class)->name('client.cases.index');
     Route::get('client/cases/{matter}', Show::class)->name('client.cases.show');
+    Route::get('client/appointments', Appointments::class)->name('client.appointments.index');
     Route::get('client/invoices', App\Livewire\Client\Invoices\Index::class)->name('client.invoices.index');
     Route::get('client/invoices/{invoice}', App\Livewire\Client\Invoices\Show::class)->name('client.invoices.show');
 });

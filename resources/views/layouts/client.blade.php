@@ -97,7 +97,7 @@
                 $navItems = [
                     ['route' => route('client.dashboard'), 'label' => 'Overview', 'active' => request()->routeIs('client.dashboard'), 'icon' => 'dashboard'],
                     ['route' => route('client.cases.index'), 'label' => 'Case Management', 'active' => request()->routeIs('client.cases.*'), 'icon' => 'gavel'],
-                    ['route' => '#', 'label' => 'Calendar', 'active' => false, 'icon' => 'calendar_today'],
+                    ['route' => route('client.appointments.index'), 'label' => 'Calendar', 'active' => request()->routeIs('client.appointments.*'), 'icon' => 'calendar_today'],
                     ['route' => route('client.invoices.index'), 'label' => 'Billing', 'active' => request()->routeIs('client.invoices.*'), 'icon' => 'payments'],
                 ];
             @endphp
@@ -124,8 +124,8 @@
 
         <!-- Sidebar Profile and Bottom Settings -->
         <div class="p-4 border-t border-slate-200/80 dark:border-slate-800/80 space-y-3">
-            <a href="#" 
-               class="group flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-[14px] text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/40 dark:hover:text-slate-200"
+            <a href="{{ route('profile') }}" 
+               class="group flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-[14px] {{ request()->routeIs('profile') ? 'bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400' : 'text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/40 dark:hover:text-slate-200' }}"
                :class="{ 'justify-center px-0': sidebarCollapsed }">
                 <span class="material-symbols-outlined w-5 h-5 shrink-0 flex items-center justify-center">settings</span>
                 <span class="truncate transition-opacity duration-300"
@@ -208,6 +208,12 @@
                         <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-800">
                             <p class="text-xs text-slate-400">Client Portal</p>
                             <p class="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate">{{ auth()->user()->email }}</p>
+                        </div>
+                        <div class="py-1">
+                            <a href="{{ route('profile') }}" class="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                <span class="material-symbols-outlined text-[18px] text-slate-400">person</span>
+                                My Profile
+                            </a>
                         </div>
                         <div class="border-t border-slate-100 dark:border-slate-800 py-1">
                             <form method="POST" action="{{ route('logout') }}">
