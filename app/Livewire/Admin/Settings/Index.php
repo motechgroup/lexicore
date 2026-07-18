@@ -84,6 +84,31 @@ class Index extends Component
 
     public $siteCurrencySymbol;
 
+    public $currenciesList = [
+        ['code' => 'USD', 'symbol' => '$', 'name' => 'US Dollar ($)'],
+        ['code' => 'EUR', 'symbol' => '€', 'name' => 'Euro (€)'],
+        ['code' => 'GBP', 'symbol' => '£', 'name' => 'British Pound (£)'],
+        ['code' => 'JPY', 'symbol' => '¥', 'name' => 'Japanese Yen (¥)'],
+        ['code' => 'CAD', 'symbol' => 'CA$', 'name' => 'Canadian Dollar (CA$)'],
+        ['code' => 'AUD', 'symbol' => 'A$', 'name' => 'Australian Dollar (A$)'],
+        ['code' => 'CHF', 'symbol' => 'CHF', 'name' => 'Swiss Franc (CHF)'],
+        ['code' => 'CNY', 'symbol' => 'CN¥', 'name' => 'Chinese Yuan (CN¥)'],
+        ['code' => 'INR', 'symbol' => '₹', 'name' => 'Indian Rupee (₹)'],
+        ['code' => 'KES', 'symbol' => 'KSh', 'name' => 'Kenyan Shilling (KSh)'],
+        ['code' => 'NGN', 'symbol' => '₦', 'name' => 'Nigerian Naira (₦)'],
+        ['code' => 'ZAR', 'symbol' => 'R', 'name' => 'South African Rand (R)'],
+        ['code' => 'BRL', 'symbol' => 'R$', 'name' => 'Brazilian Real (R$)'],
+        ['code' => 'MXN', 'symbol' => 'Mex$', 'name' => 'Mexican Peso (Mex$)'],
+        ['code' => 'SGD', 'symbol' => 'S$', 'name' => 'Singapore Dollar (S$)'],
+        ['code' => 'NZD', 'symbol' => 'NZ$', 'name' => 'New Zealand Dollar (NZ$)'],
+        ['code' => 'HKD', 'symbol' => 'HK$', 'name' => 'Hong Kong Dollar (HK$)'],
+        ['code' => 'SEK', 'symbol' => 'kr', 'name' => 'Swedish Krona (kr)'],
+        ['code' => 'NOK', 'symbol' => 'kr', 'name' => 'Norwegian Krone (kr)'],
+        ['code' => 'AED', 'symbol' => 'AED', 'name' => 'UAE Dirham (AED)'],
+        ['code' => 'SAR', 'symbol' => 'SR', 'name' => 'Saudi Riyal (SR)'],
+        ['code' => 'TRY', 'symbol' => '₺', 'name' => 'Turkish Lira (₺)'],
+    ];
+
     // Payment Gateways settings properties
     public $stripeEnabled = false;
 
@@ -556,6 +581,19 @@ class Index extends Component
     public function triggerBackup()
     {
         session()->flash('status', 'System database and file archive backup completed successfully.');
+    }
+
+    /**
+     * Auto-sync currency symbol when site currency code is selected.
+     */
+    public function updatedSiteCurrency($value)
+    {
+        foreach ($this->currenciesList as $curr) {
+            if ($curr['code'] === $value) {
+                $this->siteCurrencySymbol = $curr['symbol'];
+                break;
+            }
+        }
     }
 
     /**

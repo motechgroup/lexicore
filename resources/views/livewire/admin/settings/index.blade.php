@@ -57,9 +57,13 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="siteCurrency" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Site Currency (e.g. USD, EUR, KES)</label>
-                        <input wire:model="siteCurrency" id="siteCurrency" type="text" placeholder="USD"
-                               class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <label for="siteCurrency" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Site Currency</label>
+                        <select wire:model.live="siteCurrency" id="siteCurrency" 
+                                class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250">
+                            @foreach($currenciesList as $curr)
+                                <option value="{{ $curr['code'] }}">{{ $curr['name'] }}</option>
+                            @endforeach
+                        </select>
                         <x-input-error :messages="$errors->get('siteCurrency')" class="mt-1" />
                     </div>
                     <div>
