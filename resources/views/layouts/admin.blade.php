@@ -117,12 +117,15 @@
                     ['route' => route('admin.invoices.index'), 'label' => 'Billing & Invoices', 'active' => request()->routeIs('admin.invoices.*'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />'],
                     ['route' => route('admin.appointments.index'), 'label' => 'Appointments', 'active' => request()->routeIs('admin.appointments.*'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />'],
                     ['route' => route('admin.documents.index'), 'label' => 'Documents', 'active' => request()->routeIs('admin.documents.*'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />'],
-                    ['route' => route('admin.staff.index'), 'label' => 'Team Members', 'active' => request()->routeIs('admin.staff.*'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />'],
-                    ['route' => route('admin.logs.index'), 'label' => 'System Logs', 'active' => request()->routeIs('admin.logs.*'), 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />'],
+                    ['route' => route('admin.staff.index'), 'label' => 'Team Members', 'active' => request()->routeIs('admin.staff.*'), 'admin_only' => true, 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />'],
+                    ['route' => route('admin.logs.index'), 'label' => 'System Logs', 'active' => request()->routeIs('admin.logs.*'), 'admin_only' => true, 'icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />'],
                 ];
             @endphp
 
             @foreach ($navItems as $item)
+                @if(isset($item['admin_only']) && $item['admin_only'] && !auth()->user()->hasRole('admin'))
+                    @continue
+                @endif
                 <a href="{{ $item['route'] }}" 
                    class="group flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-[14px] transition-all duration-200 
                           {{ $item['active'] 
@@ -151,6 +154,7 @@
         </nav>
 
         <!-- Sidebar Footer -->
+        @role('admin')
         <div class="p-4 border-t border-slate-200/80 dark:border-slate-800/80">
             <a href="{{ route('admin.settings.index') }}" 
                class="group flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-[14px] {{ request()->routeIs('admin.settings.*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400' : 'text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/40 dark:hover:text-slate-200' }}"
@@ -165,6 +169,7 @@
                 </span>
             </a>
         </div>
+        @endrole
     </aside>
 
     <!-- Sidebar Overlay for mobile -->
@@ -338,12 +343,14 @@
                                 </svg>
                                 My Profile
                             </a>
+                            @role('admin')
                             <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                                 <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                                 </svg>
                                 Firm Settings
                             </a>
+                            @endrole
                         </div>
 
                         <!-- Logout Action -->

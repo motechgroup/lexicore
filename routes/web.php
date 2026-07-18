@@ -29,46 +29,38 @@ Route::get('dashboard', function () {
     return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('admin/dashboard', AdminDashboard::class)
-    ->middleware(['auth', 'verified'])
-    ->name('admin.dashboard');
-
-Route::get('client/dashboard', ClientDashboard::class)
-    ->middleware(['auth', 'verified'])
-    ->name('client.dashboard');
-
-// Client Portal Cases Routes
-Route::middleware(['auth', 'verified'])->group(function () {
+// Client Portal Group
+Route::middleware(['auth', 'verified', 'role:client'])->group(function () {
+    Route::get('client/dashboard', ClientDashboard::class)->name('client.dashboard');
     Route::get('client/cases', Index::class)->name('client.cases.index');
     Route::get('client/cases/{matter}', Show::class)->name('client.cases.show');
-});
-
-// Admin Practice Management Cases Routes
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('admin/cases', App\Livewire\Admin\Cases\Index::class)->name('admin.cases.index');
-    Route::get('admin/cases/create', Create::class)->name('admin.cases.create');
-    Route::get('admin/cases/{matter}', App\Livewire\Admin\Cases\Show::class)->name('admin.cases.show');
-    Route::get('admin/cases/{matter}/edit', Edit::class)->name('admin.cases.edit');
-});
-
-// Client Portal Invoices Routes
-Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('client/invoices', App\Livewire\Client\Invoices\Index::class)->name('client.invoices.index');
     Route::get('client/invoices/{invoice}', App\Livewire\Client\Invoices\Show::class)->name('client.invoices.show');
 });
 
-// Admin Practice Management Invoices Routes
-Route::middleware(['auth', 'verified'])->group(function () {
+// Admin & Staff Group
+Route::middleware(['auth', 'verified', 'role:admin|staff'])->group(function () {
+    Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
+
+    // Admin Cases
+    Route::get('admin/cases', App\Livewire\Admin\Cases\Index::class)->name('admin.cases.index');
+    Route::get('admin/cases/create', Create::class)->name('admin.cases.create');
+    Route::get('admin/cases/{matter}', App\Livewire\Admin\Cases\Show::class)->name('admin.cases.show');
+    Route::get('admin/cases/{matter}/edit', Edit::class)->name('admin.cases.edit');
+
+    // Admin Invoices
     Route::get('admin/invoices', App\Livewire\Admin\Invoices\Index::class)->name('admin.invoices.index');
     Route::get('admin/invoices/create', App\Livewire\Admin\Invoices\Create::class)->name('admin.invoices.create');
     Route::get('admin/invoices/{invoice}', App\Livewire\Admin\Invoices\Show::class)->name('admin.invoices.show');
-});
 
-// Admin Practice Management Extended Routes
-Route::middleware(['auth', 'verified'])->group(function () {
+    // General CRM & Dockets
     Route::get('admin/clients', App\Livewire\Admin\Clients\Index::class)->name('admin.clients.index');
     Route::get('admin/appointments', App\Livewire\Admin\Appointments\Index::class)->name('admin.appointments.index');
     Route::get('admin/documents', App\Livewire\Admin\Documents\Index::class)->name('admin.documents.index');
+});
+
+// Admin Only Settings & Staff Management Group
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('admin/staff', App\Livewire\Admin\Staff\Index::class)->name('admin.staff.index');
     Route::get('admin/logs', App\Livewire\Admin\Logs\Index::class)->name('admin.logs.index');
     Route::get('admin/settings', App\Livewire\Admin\Settings\Index::class)->name('admin.settings.index');
