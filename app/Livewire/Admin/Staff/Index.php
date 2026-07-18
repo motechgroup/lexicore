@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Staff;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
@@ -30,14 +31,20 @@ class Index extends Component
 
     public $editBio;
 
-    protected $rules = [
-        'editName' => 'required|string|max:255',
-        'editEmail' => 'required|email|max:255',
-        'editRole' => 'required|string|in:admin,staff',
-        'editTitle' => 'nullable|string|max:100',
-        'editExperienceYears' => 'required|integer|min:0',
-        'editBio' => 'nullable|string',
-    ];
+    public $editPassword;
+
+    protected function rules()
+    {
+        return [
+            'editName' => 'required|string|max:255',
+            'editEmail' => 'required|email|max:255|unique:users,email,'.($this->selectedUserId ?: 'NULL'),
+            'editRole' => 'required|string|in:admin,staff',
+            'editTitle' => 'nullable|string|max:100',
+            'editExperienceYears' => 'required|integer|min:0',
+            'editBio' => 'nullable|string',
+            'editPassword' => $this->selectedUserId ? 'nullable|string|min:6' : 'required|string|min:6',
+        ];
+    }
 
     /**
      * Reset pagination on search updates.
@@ -45,6 +52,23 @@ class Index extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+    /**
+     * Open modal to register a new staff member.
+     */
+    public function openCreateModal()
+    {
+        $this->resetErrorBag();
+        $this->selectedUserId = null;
+        $this->editName = '';
+        $this->editEmail = '';
+        $this->editRole = 'staff';
+        $this->editTitle = '';
+        $this->editExperienceYears = 0;
+        $this->editBio = '';
+        $this->editPassword = '';
+        $this->showEditModal = true;
     }
 
     /**
@@ -63,27 +87,44 @@ class Index extends Component
         $this->editTitle = $profile->title ?? '';
         $this->editExperienceYears = $profile->experience_years ?? 0;
         $this->editBio = $profile->bio ?? '';
+        $this->editPassword = '';
 
         $this->showEditModal = true;
     }
 
     /**
-     * Save the edited user profile.
+     * Save/Create the user profile.
      */
     public function saveUser()
     {
         $this->validate();
 
-        $user = User::findOrFail($this->selectedUserId);
+        if ($this->selectedUserId) {
+            $user = User::findOrFail($this->selectedUserId);
+            $user->update([
+                'name' => $this->editName,
+                'email' => $this->editEmail,
+            ]);
 
-        // Update user details
-        $user->update([
-            'name' => $this->editName,
-            'email' => $this->editEmail,
-        ]);
+            if ($this->editPassword) {
+                $user->update([
+                    'password' => Hash::make($this->editPassword),
+                ]);
+            }
 
-        // Sync roles
-        $user->syncRoles([$this->editRole]);
+            $user->syncRoles([$this->editRole]);
+            session()->flash('status', 'Staff profile updated successfully.');
+        } else {
+            $user = User::create([
+                'name' => $this->editName,
+                'email' => $this->editEmail,
+                'password' => Hash::make($this->editPassword),
+                'email_verified_at' => now(),
+            ]);
+            $user->assignRole($this->editRole);
+
+            session()->flash('status', 'New staff profile registered successfully.');
+        }
 
         // Update or create attorney profile record
         $user->attorneyProfile()->updateOrCreate(
@@ -96,7 +137,26 @@ class Index extends Component
         );
 
         $this->showEditModal = false;
-        session()->flash('status', 'Staff profile updated successfully.');
+    }
+
+    /**
+     * Delete a staff user profile.
+     */
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->id === auth()->id()) {
+            session()->flash('error', 'You cannot delete your own account.');
+
+            return;
+        }
+
+        $user->attorneyProfile()->delete();
+        $user->attorneyMatters()->update(['lead_attorney_id' => null]);
+        $user->delete();
+
+        session()->flash('status', 'Staff profile deleted successfully.');
     }
 
     /**

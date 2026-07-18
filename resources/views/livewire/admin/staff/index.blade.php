@@ -1,10 +1,14 @@
 <div>
     <!-- Page Header -->
-    <div class="mb-8 flex justify-between items-center">
+    <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
             <h1 class="font-display-lg text-3xl text-primary dark:text-white mb-1 font-bold">Team Members & Counselors</h1>
             <p class="text-slate-500 dark:text-slate-400 text-sm">Manage roles, titles, credentials, and biographies of your legal staff.</p>
         </div>
+        <button wire:click="openCreateModal" class="px-4 py-2.5 bg-primary hover:opacity-90 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-2 self-start sm:self-auto">
+            <span class="material-symbols-outlined text-[16px]">person_add</span>
+            Add Staff Member
+        </button>
     </div>
 
     <!-- Alert Notifications -->
@@ -78,10 +82,17 @@
                                 </td>
                                 <!-- Action -->
                                 <td class="px-6 py-4 text-right">
-                                    <button wire:click="editUser({{ $m->id }})" class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-200/50 dark:border-slate-850 font-bold text-[10px] rounded-lg text-slate-700 dark:text-slate-300 transition-colors flex items-center gap-1 ml-auto">
-                                        <span class="material-symbols-outlined text-[14px]">edit</span>
-                                        Manage
-                                    </button>
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button wire:click="editUser({{ $m->id }})" class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-200/50 dark:border-slate-850 font-bold text-[10px] rounded-lg text-slate-700 dark:text-slate-300 transition-colors flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[14px]">edit</span>
+                                            Manage
+                                        </button>
+                                        @if($m->id !== auth()->id())
+                                            <button onclick="confirm('Are you sure you want to remove this team member? All their assigned matters will remain but will be unassigned.') || event.stopImmediatePropagation()" wire:click="deleteUser({{ $m->id }})" class="p-1.5 hover:text-rose-500 transition-all text-slate-400" title="Remove Member">
+                                                <span class="material-symbols-outlined text-[18px]">delete</span>
+                                            </button>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -102,7 +113,7 @@
                 <div class="flex justify-between items-center pb-3 border-b border-slate-100 dark:border-slate-800">
                     <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-primary text-[20px]">manage_accounts</span>
-                        Manage Staff Profile
+                        {{ $selectedUserId ? 'Manage Staff Profile' : 'Register New Staff Member' }}
                     </h3>
                     <button wire:click="$set('showEditModal', false)" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-250 transition-colors">
                         <span class="material-symbols-outlined">close</span>
@@ -125,6 +136,14 @@
                                    class="block w-full px-3.5 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
                             <x-input-error :messages="$errors->get('editEmail')" class="mt-1" />
                         </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label for="editPassword" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">{{ $selectedUserId ? 'Password (Leave blank to keep current)' : 'Account Password' }}</label>
+                        <input wire:model="editPassword" id="editPassword" type="password" placeholder="••••••••"
+                               class="block w-full px-3.5 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                        <x-input-error :messages="$errors->get('editPassword')" class="mt-1" />
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
