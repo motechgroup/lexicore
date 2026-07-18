@@ -84,6 +84,14 @@ Route::view('accessibility', 'pages.accessibility')->name('accessibility');
 
 Route::get('install', Installer::class)->name('install.welcome');
 
+Route::get('admin', function () {
+    if (auth()->check()) {
+        return redirect()->route('admin.dashboard');
+    }
+
+    return redirect()->route('admin.login');
+});
+
 Route::get('admin/login', function () {
     return redirect()->route('login');
 })->name('admin.login');
