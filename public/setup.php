@@ -122,6 +122,9 @@ $kernel->bootstrap();
 
 // Check for one-click direct installation action parameter
 if (isset($_GET['action']) && $_GET['action'] === 'install') {
+    @set_time_limit(300);
+    @ini_set('max_execution_time', 300);
+
     $email = $_GET['email'] ?? 'admin@admin.com';
     $password = $_GET['password'] ?? 'password';
     $name = $_GET['name'] ?? 'Admin';

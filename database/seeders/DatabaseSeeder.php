@@ -23,6 +23,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        @set_time_limit(300);
+        @ini_set('max_execution_time', 300);
+
+        $passwordHash = Hash::make('password');
+
         // 1. Create Roles
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $staffRole = Role::firstOrCreate(['name' => 'staff']);
@@ -34,7 +39,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Lexis Admin',
                 'phone' => '+15550192835',
-                'password' => Hash::make('password'),
+                'password' => $passwordHash,
                 'email_verified_at' => now(),
             ]
         );
@@ -45,7 +50,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Robert J. Sterling',
                 'phone' => '+15550192836',
-                'password' => Hash::make('password'),
+                'password' => $passwordHash,
                 'email_verified_at' => now(),
             ]
         );
@@ -56,7 +61,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'John Smith',
                 'phone' => '+15550192834',
-                'password' => Hash::make('password'),
+                'password' => $passwordHash,
                 'email_verified_at' => now(),
             ]
         );
@@ -333,7 +338,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => "attorney{$i}@lexcore.test",
                 'phone' => '+15550'.rand(100000, 999999),
-                'password' => Hash::make('password'),
+                'password' => $passwordHash,
                 'email_verified_at' => now(),
             ]);
             $staff->assignRole($staffRole);
@@ -358,7 +363,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $faker->randomElement([$faker->company, $faker->name]),
                 'email' => "client{$i}@lexcore.test",
                 'phone' => '+1555'.rand(1000000, 9999999),
-                'password' => Hash::make('password'),
+                'password' => $passwordHash,
                 'email_verified_at' => now(),
             ]);
             $clientUser->assignRole($clientRole);
