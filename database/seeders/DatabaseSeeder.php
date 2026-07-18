@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AttorneyProfile;
+use App\Models\Consultation;
 use App\Models\Document;
 use App\Models\Hearing;
 use App\Models\Invoice;
@@ -453,6 +454,24 @@ class DatabaseSeeder extends Seeder
                     'total' => $subtotal,
                 ]);
             }
+        }
+
+        // 11. Seed 50 Consultation bookings (appointments)
+        $bookingStatuses = ['pending', 'approved', 'completed', 'cancelled'];
+        for ($i = 1; $i <= 50; $i++) {
+            $c = rand(0, 1) ? $faker->randomElement($clients) : null;
+            $att = $faker->randomElement($attorneys);
+
+            Consultation::create([
+                'client_id' => $c ? $c->id : null,
+                'name' => $c ? $c->name : $faker->name,
+                'email' => $c ? $c->email : $faker->unique()->safeEmail,
+                'phone' => $c ? $c->phone : '+1555'.rand(1000000, 9999999),
+                'appointment_date' => $faker->dateTimeBetween('-1 month', '+2 months'),
+                'notes' => $faker->optional(0.8)->sentence,
+                'status' => $faker->randomElement($bookingStatuses),
+                'assigned_attorney_id' => $att->id,
+            ]);
         }
     }
 }
