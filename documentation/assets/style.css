@@ -313,30 +313,12 @@ code {
 }
 
 /* Responsive Styles */
-    @media (max-width: 991px) {
-        .sidebar {
-            display: none;
-        }
-        .content {
-            margin-left: 0;
-            padding: 2rem 1.5rem;
-        }
+@media (max-width: 991px) {
+    .sidebar {
+        display: none;
     }
-
-/* Image Gallery & Captions */
-.doc-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border);
-    margin: 1.5rem 0 0.5rem 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    display: block;
-}
-
-.img-caption {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    font-style: italic;
+    .content {
+        margin-left: 0;
+        padding: 2rem 1.5rem;
+    }
 }

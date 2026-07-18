@@ -103,26 +103,19 @@
 
             <!-- Requirements Section -->
             <section id="requirements">
-                <h2>System Requirements & Hosting Recommendations</h2>
+                <h2>System Requirements</h2>
                 <p>Ensure your hosting environment meets the following specifications to run LexCore cleanly:</p>
-                
-                <div class="features-grid" style="margin-bottom: 2rem;">
-                    <div class="feature-card" style="border-left: 4px solid var(--success);">
-                        <h4 class="feature-title">Preferred: Cloud VPS (Virtual Private Server)</h4>
-                        <p>Deploying on Ubuntu with Laravel Forge, RunCloud, or Plesk is highly recommended. Offers absolute file ownership permissions, daemon workers (for Twilio queues), and OPCache tune-up controls.</p>
-                    </div>
-                    <div class="feature-card" style="border-left: 4px solid var(--primary);">
-                        <h4 class="feature-title">Fully Compatible: Shared Hosting (cPanel)</h4>
-                        <p>Fully compatible with Namecheap Stellar Plus, Hostinger, FastComet, and Bluehost. Bypasses terminal/SSH requirements using the built-in <code>setup.php</code> installer module.</p>
+                <div class="alert alert-info">
+                    <span class="alert-icon">info</span>
+                    <div>
+                        <strong>Shared Hosting Compatibility:</strong> LexCore has been optimized to execute perfectly on restrictive cPanel, Plesk, and CloudLinux environments without needing CLI or SSH server access.
                     </div>
                 </div>
-
                 <ul>
                     <li><strong>PHP Version:</strong> PHP 8.2 or 8.3</li>
                     <li><strong>Database Server:</strong> MySQL 5.7+ / MariaDB 10.3+ or SQLite 3</li>
-                    <li><strong>Required Extensions:</strong> OpenSSL, PDO, BCrypt/Mbstring, Tokenizer, XML, Ctype, JSON, GD, ZipArchive</li>
+                    <li><strong>Required Extensions:</strong> OpenSSL, PDO, BCrypt/Mbstring, Tokenizer, XML, Ctype, JSON, GD (image processing), ZipArchive</li>
                     <li><strong>Server Directives:</strong> Apache (with mod_rewrite enabled) or Nginx</li>
-                    <li><strong>PHP Directives:</strong> <code>memory_limit = 256M</code>, <code>upload_max_filesize = 50M</code>, <code>post_max_size = 50M</code> (optimized for large document uploads)</li>
                 </ul>
             </section>
 
@@ -160,20 +153,6 @@
                                 <li><strong>Database Settings:</strong> Select your database driver, enter cPanel database name, database username, and password. Clicking "Test Connection" will write the uncommented variables directly to your active configuration.</li>
                                 <li><strong>Admin Profile:</strong> Register your super-administrator username, email, and password.</li>
                             </ul>
-                            
-                            <div style="margin-top: 1.5rem;">
-                                <img src="assets/images/media__1784306693417.png" alt="Installer Step 1: License Verification" class="doc-img">
-                                <p class="img-caption">Step 1: Enter your Envato Username and Purchase Key to verify licensing.</p>
-                                
-                                <img src="assets/images/media__1784306855884.png" alt="Installer Step 2: Requirements Audit" class="doc-img">
-                                <p class="img-caption">Step 2: Automated server audits validating extensions and folder permissions.</p>
-                                
-                                <img src="assets/images/media__1784307012870.png" alt="Installer Step 3: Database setup" class="doc-img">
-                                <p class="img-caption">Step 3: Direct connection testing and automatic uncommenting of environment keys.</p>
-                                
-                                <img src="assets/images/media__1784307140046.png" alt="Installer Step 4: Admin account creation" class="doc-img">
-                                <p class="img-caption">Step 4: Setting up super-admin credentials, executing migrations, and seeding records.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -207,8 +186,6 @@
                     <li><strong>Clients/CRM:</strong> Directory of corporate and individual clients. Edit profile credentials, search case attachments, and trace billing ledgers.</li>
                     <li><strong>Staff:</strong> Register attorneys, set billing rates, assign Spatie roles/permissions, and view attorney calendars.</li>
                 </ul>
-                <img src="assets/images/media__1784312536573.png" alt="Admin Dashboard Overview" class="doc-img">
-                <p class="img-caption">The Super-Administrator Dashboard presenting case volumes, financial statistics, and upcoming docket logs.</p>
 
                 <h3>2. Attorney/Staff Portal</h3>
                 <p>A specialized dashboard focused on case management and file updates. Attorneys can view their assigned client matters, complete assigned tasks, view upcoming court hearing dockets, and upload legal pleadings.</p>
@@ -220,8 +197,6 @@
                     <li><strong>Pleadings & Files:</strong> Upload case files or photos, and download documents uploaded by their legal team.</li>
                     <li><strong>Billing:</strong> View outstanding balances, download PDF invoices, and checkout securely using integrated payment gateways.</li>
                 </ul>
-                <img src="assets/images/media__1784323715452.png" alt="Client Portal Dashboard" class="doc-img">
-                <p class="img-caption">The secure Client Portal offering direct access to lawsuit files, hearing calendars, and retainer billing.</p>
             </section>
 
             <!-- Core Configuration Section -->
