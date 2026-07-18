@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
 
 class Index extends Component
 {
@@ -27,6 +26,8 @@ class Index extends Component
 
     public $password = '';
 
+    public $role = 'client';
+
     protected function rules()
     {
         return [
@@ -34,6 +35,7 @@ class Index extends Component
             'email' => 'required|email|max:255|unique:users,email,'.($this->clientId ?: 'NULL'),
             'phone' => 'nullable|string|max:50',
             'password' => $this->clientId ? 'nullable|string|min:6' : 'required|string|min:6',
+            'role' => 'required|string|in:admin,staff,client',
         ];
     }
 
@@ -56,6 +58,7 @@ class Index extends Component
         $this->email = '';
         $this->phone = '';
         $this->password = '';
+        $this->role = 'client';
         $this->showModal = true;
     }
 
@@ -70,6 +73,7 @@ class Index extends Component
         $this->name = $user->name;
         $this->email = $user->email;
         $this->phone = $user->phone;
+        $this->role = $user->roles->first()->name ?? 'client';
         $this->password = '';
         $this->showModal = true;
     }
@@ -95,6 +99,8 @@ class Index extends Component
                 ]);
             }
 
+            $user->syncRoles([$this->role]);
+
             session()->flash('status', 'Client updated successfully.');
         } else {
             $user = User::create([
@@ -104,8 +110,7 @@ class Index extends Component
                 'password' => Hash::make($this->password),
                 'email_verified_at' => now(),
             ]);
-            $clientRole = Role::firstOrCreate(['name' => 'client']);
-            $user->assignRole($clientRole);
+            $user->assignRole($this->role);
 
             session()->flash('status', 'New client registered successfully.');
         }

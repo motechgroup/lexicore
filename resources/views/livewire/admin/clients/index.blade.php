@@ -138,6 +138,18 @@
                         <x-input-error :messages="$errors->get('phone')" class="mt-1" />
                     </div>
 
+                    <!-- Access Role -->
+                    <div>
+                        <label for="role" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Access Role</label>
+                        <select wire:model="role" id="role" 
+                                class="block w-full px-2.5 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250">
+                            <option value="client">Client</option>
+                            <option value="staff">Staff Counsel</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('role')" class="mt-1" />
+                    </div>
+
                     <!-- Password -->
                     <div>
                         <label for="password" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">{{ $clientId ? 'Password (Leave blank to keep current)' : 'Account Password' }}</label>

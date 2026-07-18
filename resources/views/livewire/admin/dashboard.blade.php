@@ -26,6 +26,7 @@
             </div>
         </div>
 
+        @role('admin')
         <!-- Revenue -->
         <div class="bg-white dark:bg-[#1e293b] p-6 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800/80 hover:shadow-md transition-all duration-300">
             <div class="flex justify-between items-start mb-4">
@@ -44,6 +45,7 @@
                 <div class="bg-blue-500 w-full h-full rounded-t-sm"></div>
             </div>
         </div>
+        @endrole
 
         <!-- Billable Hours -->
         <div class="bg-white dark:bg-[#1e293b] p-6 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800/80 hover:shadow-md transition-all duration-300">

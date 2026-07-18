@@ -154,6 +154,7 @@
                                     class="block w-full px-2.5 py-2 text-xs bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250">
                                 <option value="admin">Admin</option>
                                 <option value="staff">Staff</option>
+                                <option value="client">Client</option>
                             </select>
                             <x-input-error :messages="$errors->get('editRole')" class="mt-1" />
                         </div>

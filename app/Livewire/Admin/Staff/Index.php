@@ -38,7 +38,7 @@ class Index extends Component
         return [
             'editName' => 'required|string|max:255',
             'editEmail' => 'required|email|max:255|unique:users,email,'.($this->selectedUserId ?: 'NULL'),
-            'editRole' => 'required|string|in:admin,staff',
+            'editRole' => 'required|string|in:admin,staff,client',
             'editTitle' => 'nullable|string|max:100',
             'editExperienceYears' => 'required|integer|min:0',
             'editBio' => 'nullable|string',
