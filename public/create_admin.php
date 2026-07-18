@@ -11,6 +11,29 @@ use Spatie\Permission\Models\Role;
  * For security reasons, please delete this file from your public folder immediately after running it.
  */
 
+// File-based rate limiter to protect create_admin.php
+$ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+$rateLimitFile = sys_get_temp_dir().'/create_admin_limit_'.md5($ip);
+$now = time();
+$maxRequests = 5;
+$timeWindow = 60; // 1 minute
+
+if (file_exists($rateLimitFile)) {
+    $data = json_decode(file_get_contents($rateLimitFile), true);
+    if ($data && $now - $data['start'] < $timeWindow) {
+        if ($data['count'] >= $maxRequests) {
+            http_response_code(429);
+            exit('Too many requests. Please wait before trying again.');
+        }
+        $data['count']++;
+        file_put_contents($rateLimitFile, json_encode($data));
+    } else {
+        file_put_contents($rateLimitFile, json_encode(['start' => $now, 'count' => 1]));
+    }
+} else {
+    file_put_contents($rateLimitFile, json_encode(['start' => $now, 'count' => 1]));
+}
+
 // Define a secret key to prevent unauthorized access.
 // Access the script via: https://yourdomain.com/create_admin.php?secret=lexcore_admin_9938_recovery&email=admin@lexcore.test&password=YourNewPassword
 $securitySecret = 'lexcore_admin_9938_recovery';

@@ -104,7 +104,7 @@
 
     <main class="max-w-[1440px] mx-auto overflow-hidden">
         <!-- Hero Section -->
-        <section class="relative min-h-[870px] flex items-center px-lg lg:px-3xl py-2xl overflow-hidden">
+        <section class="relative min-h-[650px] flex items-center px-lg lg:px-3xl py-2xl overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <div class="w-full h-full bg-cover bg-center opacity-40" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0npYWLc0BRq2c5_9S8R0fyxRZRakl0e0DEpiKPuIQDiQLJkEGvYl5EQ75H3OtgOQcrsXxspcAQ6ibQP0V1QujTB29hsvFahGZzo58Oe9p1SXwg2M7CPeStKMXEcijpBm5LqPV9jikPKWhcS-V9UUeOH1fYi8ft7pOjMYikgTaS0ji88E0e2EAPThpDLqWzWYFfI6MehZc5y6lX8ae_qahSHWKRKX7ivg0ZZwhHT0YJiU7cPRa1wh_WA')"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
