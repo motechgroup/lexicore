@@ -3,7 +3,41 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>{{ config('system.firm_name', 'Lexis & Co.') }} | Professional Legal Excellence</title>
+    <title>{{ config('system.seo_title', config('system.firm_name', 'Lexis & Co.').' | Professional Legal Excellence') }}</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{ config('system.seo_description', 'LexCore Law Firm provides elite representation across corporate, intellectual property, and high-stakes litigation matters. We combine heritage with modern agility to protect your legacy.') }}">
+    <meta name="keywords" content="{{ config('system.seo_keywords', 'law firm, corporate lawyer, intellectual property attorney, business litigation, legal services, private wealth trust planning, commercial real estate contract legal') }}">
+    <meta name="author" content="{{ config('system.firm_name', 'LexCore') }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ config('system.seo_title', config('system.firm_name', 'LexCore').' | Professional Legal Excellence') }}">
+    <meta property="og:description" content="{{ config('system.seo_description', 'LexCore Law Firm provides elite representation across corporate, intellectual property, and high-stakes litigation matters. We combine heritage with modern agility to protect your legacy.') }}">
+    @if(config('system.logo_url'))
+        <meta property="og:image" content="{{ url(config('system.logo_url')) }}">
+    @endif
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="{{ config('system.seo_title', config('system.firm_name', 'LexCore').' | Professional Legal Excellence') }}">
+    <meta property="twitter:description" content="{{ config('system.seo_description', 'LexCore Law Firm provides elite representation across corporate, intellectual property, and high-stakes litigation matters. We combine heritage with modern agility to protect your legacy.') }}">
+    @if(config('system.logo_url'))
+        <meta property="twitter:image" content="{{ url(config('system.logo_url')) }}">
+    @endif
+
+    <!-- Google Analytics -->
+    @if(config('system.google_analytics_id'))
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('system.google_analytics_id') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ config('system.google_analytics_id') }}');
+        </script>
+    @endif
 
     <!-- Google Fonts & Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>

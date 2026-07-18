@@ -47,6 +47,12 @@ class AppServiceProvider extends ServiceProvider
                     'system.accessibility_policy' => $settings['accessibility_policy'] ?? '',
                     'system.footer_text' => $settings['footer_text'] ?? '',
 
+                    // SEO & Google Analytics config bindings
+                    'system.seo_title' => $settings['seo_title'] ?? '',
+                    'system.seo_description' => $settings['seo_description'] ?? '',
+                    'system.seo_keywords' => $settings['seo_keywords'] ?? '',
+                    'system.google_analytics_id' => $settings['google_analytics_id'] ?? '',
+
                     // Dynamic Homepage CMS config bindings
                     'system.hero_title' => $settings['hero_title'] ?? 'Sophisticated counsel for complex legal landscapes.',
                     'system.hero_subtitle' => $settings['hero_subtitle'] ?? 'ESTABLISHED 1984',

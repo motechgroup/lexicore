@@ -16,6 +16,17 @@
         <link rel="icon" type="image/x-icon" href="{{ config('system.favicon_url') }}">
     @endif
 
+    <!-- Google Analytics -->
+    @if(config('system.google_analytics_id'))
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('system.google_analytics_id') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ config('system.google_analytics_id') }}');
+        </script>
+    @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col justify-between">

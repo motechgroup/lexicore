@@ -123,6 +123,45 @@
                 </div>
             </div>
 
+            <!-- SEO & Google Analytics Settings -->
+            <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
+                <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">search</span>
+                    SEO & Google Analytics
+                </h3>
+
+                <div>
+                    <label for="seoTitle" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">SEO Title Tag</label>
+                    <input wire:model="seoTitle" id="seoTitle" type="text"
+                           class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                    <x-input-error :messages="$errors->get('seoTitle')" class="mt-1" />
+                    <p class="text-[10px] text-slate-400 mt-1">Recommended length: under 60 characters. Renders as the browser tab title.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="seoKeywords" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Meta Keywords (Comma Separated)</label>
+                        <textarea wire:model="seoKeywords" id="seoKeywords" rows="4"
+                                  class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                        <x-input-error :messages="$errors->get('seoKeywords')" class="mt-1" />
+                    </div>
+                    <div>
+                        <label for="seoDescription" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Meta Description</label>
+                        <textarea wire:model="seoDescription" id="seoDescription" rows="4"
+                                  class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-[#111c2a] rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250"></textarea>
+                        <x-input-error :messages="$errors->get('seoDescription')" class="mt-1" />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="googleAnalyticsId" class="font-semibold text-xs text-slate-500 block mb-1.5 uppercase tracking-wider text-[10px]">Google Analytics Measurement ID (G-XXXXXXXXXX)</label>
+                    <input wire:model="googleAnalyticsId" id="googleAnalyticsId" type="text" placeholder="G-XXXXXXXXXX"
+                           class="block w-full px-4 py-2.5 text-sm bg-white border border-slate-200 dark:border-slate-800 dark:bg-slate-900/65 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-850 dark:text-slate-250" />
+                    <x-input-error :messages="$errors->get('googleAnalyticsId')" class="mt-1" />
+                    <p class="text-[10px] text-slate-400 mt-1">Leave empty to disable Google Analytics tracking scripts on the public pages.</p>
+                </div>
+            </div>
+
             <!-- 3. Homepage Content Manager -->
             <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-5">
                 <h3 class="font-bold text-xs text-slate-500 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-slate-850 flex items-center gap-2">

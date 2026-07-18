@@ -31,6 +31,15 @@ class Index extends Component
 
     public $footerText;
 
+    // SEO & Google Analytics Settings
+    public $seoTitle;
+
+    public $seoDescription;
+
+    public $seoKeywords;
+
+    public $googleAnalyticsId;
+
     // Livewire file uploads
     public $logoFile;
 
@@ -173,6 +182,10 @@ class Index extends Component
         'termsConditions' => 'nullable|string',
         'accessibilityPolicy' => 'nullable|string',
         'footerText' => 'nullable|string|max:255',
+        'seoTitle' => 'nullable|string|max:255',
+        'seoDescription' => 'nullable|string|max:500',
+        'seoKeywords' => 'nullable|string|max:500',
+        'googleAnalyticsId' => 'nullable|string|max:50',
 
         // CMS validation rules
         'heroTitle' => 'required|string|max:255',
@@ -257,6 +270,12 @@ class Index extends Component
         $this->termsConditions = $settings['terms_conditions'] ?? "# Terms & Conditions\n*Last updated: July 17, 2026*\n\nWelcome to LexCore Law Firm. By accessing the LexCore Portal, you agree to be bound by the following Terms & Conditions.\n\n## 1. Legal Representation & Scope\nUse of this portal or booking a consultation does not establish an attorney-client relationship. A formal relationship is only established once a written retainer agreement is signed by both an authorized attorney of LexCore and the client.\n\n## 2. Retainer Billings & Payments\n- **Invoices**: Client billing statement totals are calculated based on hourly attorney rates or flat-fee arrangements as specified in your retainer agreement.\n- **Late Payments**: Outstanding balances must be paid within the term threshold (standard net-30).\n- **Payment Processing**: Online card payments and express checkouts are processed securely through Stripe or PayPal gateways.\n\n## 3. Portal Access & Use\nClients and staff must maintain secure passwords and are solely responsible for all activities conducted under their accounts. LexCore reserves the right to suspend portal access at any time for security violations or unpaid retainers.\n\n## 4. Uploaded Documentation\nYou represent and warrant that you own or have the necessary rights to all files and case documents uploaded to the LexCore Portal. Uploading malicious software, viruses, or illegal material is strictly prohibited.";
         $this->accessibilityPolicy = $settings['accessibility_policy'] ?? "# Accessibility Statement\n*Last updated: July 17, 2026*\n\nLexCore Law Firm is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone, and applying the relevant accessibility standards to our Client Portal and website.\n\n## 1. Conformance Status\nThe Web Content Accessibility Guidelines (WCAG) defines requirements for designers and developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA. LexCore strives to conform with WCAG 2.1 Level AA standards.\n\n## 2. Accessibility Features on our Portal\nOur website and portal incorporate several features to make them accessible:\n- **Keyboard Navigation**: All interactive forms and menu buttons can be navigated completely using keyboard controls.\n- **Contrast & Styling**: High contrast modes are integrated natively via our dark/light theme systems.\n- **Alt Text**: Descriptive alt text is provided for all essential media and logo files.\n- **Semantic HTML**: Standard HTML5 landmark elements are used to assist screen reader software.\n\n## 3. Feedback & Contact\nWe welcome your feedback on the accessibility of the LexCore Portal. Please let us know if you encounter accessibility barriers:\n- **Email**: accessibility@lexicore.test\n- **Phone**: +1 (555) 019-2834\nWe try to respond to feedback within 3 business days.";
         $this->footerText = $settings['footer_text'] ?? '© '.date('Y').' LexCore Law Firm. All rights reserved. Registered Bar Association Council.';
+
+        // Mount SEO & Google Analytics defaults
+        $this->seoTitle = $settings['seo_title'] ?? 'LexCore Law Firm | Professional Legal Excellence';
+        $this->seoDescription = $settings['seo_description'] ?? 'LexCore Law Firm provides elite representation across corporate, intellectual property, and high-stakes litigation matters. We combine heritage with modern agility to protect your legacy.';
+        $this->seoKeywords = $settings['seo_keywords'] ?? 'law firm, corporate lawyer, intellectual property attorney, business litigation, legal services, private wealth trust planning, commercial real estate contract legal';
+        $this->googleAnalyticsId = $settings['google_analytics_id'] ?? '';
 
         // Mount Homepage CMS defaults
         $this->heroTitle = $settings['hero_title'] ?? 'Sophisticated counsel for complex legal landscapes.';
@@ -441,6 +460,10 @@ class Index extends Component
             'terms_conditions' => $this->termsConditions,
             'accessibility_policy' => $this->accessibilityPolicy,
             'footer_text' => $this->footerText,
+            'seo_title' => $this->seoTitle,
+            'seo_description' => $this->seoDescription,
+            'seo_keywords' => $this->seoKeywords,
+            'google_analytics_id' => $this->googleAnalyticsId,
 
             // Persist Homepage CMS fields
             'hero_title' => $this->heroTitle,
